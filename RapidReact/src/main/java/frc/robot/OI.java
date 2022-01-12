@@ -12,12 +12,13 @@ public class OI {
         return xbox.getLeftX();
     }
     public double getXboxLeftY(){
-        return xbox.getLeftY());
+        return xbox.getLeftY();
     }
     public double getXboxRightX(){
         return xbox.getRightX();
     }
     public double getXboxRightY(){
         return xbox.getRightY();
+    }
     
 }

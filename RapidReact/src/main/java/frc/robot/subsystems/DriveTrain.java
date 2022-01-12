@@ -33,10 +33,10 @@ public class DriveTrain extends SubsystemBase {
     right1.configOpenloopRamp(ramp,0);
     right2.configOpenloopRamp(ramp,0);
 
-    left1.SetNeutralMode(NeutralMode.Coast);
-    left2.SetNeutralMode(NeutralMode.Coast);
-    right1.SetNeutralMode(NeutralMode.Coast);
-    right2.SetNeutralMode(NeutralMode.Coast);
+    left1.setNeutralMode(NeutralMode.Coast);
+    left2.setNeutralMode(NeutralMode.Coast);
+    right1.setNeutralMode(NeutralMode.Coast);
+    right2.setNeutralMode(NeutralMode.Coast);
 
     left2.follow(left1);
     right2.follow(right1);
