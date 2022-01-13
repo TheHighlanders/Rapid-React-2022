@@ -48,6 +48,10 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
+  public double getOutputCurrent(){
+    return left1.getStatorCurrent();
+  }
+
 
   @Override
   public void periodic() {

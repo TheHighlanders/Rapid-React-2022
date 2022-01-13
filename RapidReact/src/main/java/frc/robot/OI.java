@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 
 public class OI {
     public XboxController xbox = new XboxController(Constants.XBOX);
@@ -20,5 +21,9 @@ public class OI {
     public double getXboxRightY(){
         return xbox.getRightY();
     }
-    
+    public void setxboxrumble(double vibrate){
+        xbox.setRumble(RumbleType.kLeftRumble, vibrate);
+        xbox.setRumble(RumbleType.kRightRumble, vibrate);
+
+    }
 }
