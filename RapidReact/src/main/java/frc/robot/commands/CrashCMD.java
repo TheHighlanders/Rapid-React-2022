@@ -13,13 +13,12 @@ import frc.robot.OI;
 public class CrashCMD extends CommandBase {
   /** Creates a new CrashCMD. */
   public final DriveTrain m_dDriveTrain;
-  public final OI m_OI;
 
  public int StopCurrent = 2;
  public int PreviousCurrent = 3;
 
   public CrashCMD(DriveTrain drive_subsystem) {
-    m_dDrivetrain = drive_subsystem;
+    m_dDriveTrain = drive_subsystem;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_dDriveTrain);
@@ -39,7 +38,7 @@ public class CrashCMD extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_OI.setxboxrumble(1);
+    //m_OI.setxboxrumble(1);
   }
 
   // Returns true when the command should end.
