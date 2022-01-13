@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.AutoGroupCMD;
 import frc.robot.commands.driveCMD;
 import frc.robot.subsystems.DriveTrain;
 
@@ -20,13 +21,16 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_dDrivetrain = new DriveTrain();
   private final OI m_OI = new OI(); 
+  private Command m_autoCommand;
 
- private final driveCMD m_autoCommand = new driveCMD(m_dDrivetrain, m_OI);
+ //private final driveCMD m_autoCommand = new driveCMD(m_dDrivetrain, m_OI);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    m_dDrivetrain.setDefaultCommand(new driveCMD(m_dDrivetrain, m_OI));
+    m_autoCommand = new AutoGroupCMD(m_dDrivetrain);
   }
 
   /**
