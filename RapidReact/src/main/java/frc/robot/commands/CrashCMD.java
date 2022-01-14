@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.OI;
 
@@ -14,8 +15,10 @@ public class CrashCMD extends CommandBase {
   /** Creates a new CrashCMD. */
   public final DriveTrain m_dDriveTrain;
 
- public int StopCurrent = 2;
- public int PreviousCurrent = 3;
+ public final float StopCurrent = 2;
+ public double PreviousCurrentL = 3;
+ public double PreviousCurrentR = 4;
+
 
   public CrashCMD(DriveTrain drive_subsystem) {
     m_dDriveTrain = drive_subsystem;
@@ -32,8 +35,16 @@ public class CrashCMD extends CommandBase {
   @Override
   public void execute() {
     m_dDriveTrain.drivepower(0.2,0.2);
-    m_dDriveTrain.getOutputCurrentL();
-    m_dDriveTrain.getOutputCurrentR();
+    DriverStation.reportWarning("current to left 2" + m_dDriveTrain.getOutputCurrentL(), false );
+    DriverStation.reportWarning("current to right 1" + m_dDriveTrain.getOutputCurrentR(), false );
+    DriverStation.reportWarning("left current  is more than stop current" + (m_dDriveTrain.getOutputCurrentL() > StopCurrent), false);
+    DriverStation.reportWarning("right current  is more than stop current" + (m_dDriveTrain.getOutputCurrentR() > StopCurrent), false);
+    DriverStation.reportWarning("current jump left" + (m_dDriveTrain.getOutputCurrentL()- PreviousCurrentL), false);
+    DriverStation.reportWarning("current jump right" + (m_dDriveTrain.getOutputCurrentR()- PreviousCurrentR), false);
+
+
+    PreviousCurrentL = m_dDriveTrain.getOutputCurrentL();
+    PreviousCurrentR =  m_dDriveTrain.getOutputCurrentR();
   }
 
   // Called once the command ends or is interrupted.
