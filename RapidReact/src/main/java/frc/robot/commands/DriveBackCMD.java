@@ -24,18 +24,24 @@ public class DriveBackCMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_Timer = new Timer();
+    m_Timer.reset();
+    m_Timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Timer.reset();
-    m_Timer.start();
+ 
     if(m_Timer.get() < 3 ) { 
        m_dDriveTrain.drivepower(-0.2, -0.2); 
     }
-     m_Timer.stop();
-     m_dDriveTrain.drivepower(0, 0); 
+    else{ 
+      m_dDriveTrain.drivepower(0, 0); 
+      m_Timer.stop();
+
+    }
+
 
   }
 
