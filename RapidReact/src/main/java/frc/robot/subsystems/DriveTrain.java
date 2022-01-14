@@ -8,6 +8,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -15,6 +17,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
+  PowerDistribution left2PD = new PowerDistribution(0, ModuleType.kCTRE);
+
+  
   public WPI_VictorSPX left1;
   public WPI_TalonSRX left2;
   public WPI_TalonSRX right1;
@@ -40,6 +45,8 @@ public class DriveTrain extends SubsystemBase {
 
     left2.follow(left1);
     right2.follow(right1);
+
+
   }
 
   public void drivepower(double left_power, double right_power){
@@ -47,14 +54,13 @@ public class DriveTrain extends SubsystemBase {
       right1.set(right_power);
 
   }
-
   public double getOutputCurrentL(){
-    return left2.getStatorCurrent();
+     left2PD.getCurrent(12);
 
   }
 
-  public double getOutputCurrentR(){
-    return right1.getStatorCurrent();
+ // public double getOutputCurrentR(){
+  //  return right1.getStatorCurrent();
 
   }
 
