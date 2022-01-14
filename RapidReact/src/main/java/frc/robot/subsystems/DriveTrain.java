@@ -55,14 +55,14 @@ public class DriveTrain extends SubsystemBase {
 
   }
   public double getOutputCurrentL(){
-     left2PD.getCurrent(12);
+     return left2PD.getCurrent(12);
 
   }
 
  // public double getOutputCurrentR(){
   //  return right1.getStatorCurrent();
 
-  }
+  //}
 
 
   @Override
