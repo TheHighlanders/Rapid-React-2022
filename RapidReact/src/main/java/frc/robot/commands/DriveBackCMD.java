@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.concurrent.TimeoutException;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -12,6 +14,7 @@ import frc.robot.subsystems.DriveTrain;
 public class DriveBackCMD extends CommandBase {
   /** Creates a new DriveBack. */
   public final DriveTrain m_dDriveTrain;
+  public Timer m_Timer;
   public DriveBackCMD(DriveTrain drive_subsystem) {
    m_dDriveTrain = drive_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -20,13 +23,19 @@ public class DriveBackCMD extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_dDriveTrain.drivepower(-0.2, -0.2);
-    new WaitCommand(3);
+    m_Timer.start();
+    if(m_Timer.get() < 3 ) { 
+       m_dDriveTrain.drivepower(-0.2, -0.2); 
+    }
+     m_Timer.stop();
+     m_dDriveTrain.drivepower(0, 0); 
+
   }
 
   // Called once the command ends or is interrupted.
