@@ -48,8 +48,14 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
-  public double getOutputCurrent(){
+  public double getOutputCurrentL(){
     return left2.getStatorCurrent();
+
+  }
+
+  public double getOutputCurrentR(){
+    return right1.getStatorCurrent();
+
   }
 
 

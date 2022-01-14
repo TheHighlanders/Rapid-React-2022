@@ -32,7 +32,8 @@ public class CrashCMD extends CommandBase {
   @Override
   public void execute() {
     m_dDriveTrain.drivepower(0.2,0.2);
-    m_dDriveTrain.getOutputCurrent();
+    m_dDriveTrain.getOutputCurrentL();
+    m_dDriveTrain.getOutputCurrentR();
   }
 
   // Called once the command ends or is interrupted.
@@ -44,7 +45,7 @@ public class CrashCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (m_dDriveTrain.getOutputCurrent() > StopCurrent) || (m_dDriveTrain.getOutputCurrent() - PreviousCurrent > 3);
+    return (m_dDriveTrain.getOutputCurrentL() > StopCurrent) || (m_dDriveTrain.getOutputCurrentL() - PreviousCurrent > 3) &&  (m_dDriveTrain.getOutputCurrentR() > StopCurrent) || (m_dDriveTrain.getOutputCurrentR() - PreviousCurrent > 3);
    // return false;
 
   }
