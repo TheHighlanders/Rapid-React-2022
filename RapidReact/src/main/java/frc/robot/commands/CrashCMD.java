@@ -18,7 +18,7 @@ public class CrashCMD extends CommandBase {
 
   public final float StopCurrent = 2; // what the robot will need to exceed when stopped
   public double PreviousCurrentL = 3;
-  public double PreviousCurrentR = 4;
+  //public double PreviousCurrentR = 4;
 
   public CrashCMD(DriveTrain drive_subsystem) {
     m_dDriveTrain = drive_subsystem;
@@ -37,9 +37,9 @@ public class CrashCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_dDriveTrain.drivepower(0.2,0.2);
-    PreviousCurrentL = m_dDriveTrain.getOutputCurrentL();
-    PreviousCurrentR =  m_dDriveTrain.getOutputCurrentR();
+    m_dDriveTrain.drivepower(0.2, 0.2);
+    //PreviousCurrentL = m_dDriveTrain.getOutputCurrentL();
+    //PreviousCurrentR =  m_dDriveTrain.getOutputCurrentR();
   }
 
   // Called once the command ends or is interrupted.
@@ -51,7 +51,7 @@ public class CrashCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (m_dDriveTrain.getOutputCurrentL() > StopCurrent) || (m_dDriveTrain.getOutputCurrentL() - PreviousCurrentL > 3)  &&  (m_dDriveTrain.getOutputCurrentR() > StopCurrent) || (m_dDriveTrain.getOutputCurrentR() - PreviousCurrentR > 3);
+    return (m_dDriveTrain.getOutputCurrentL() > StopCurrent) || (m_dDriveTrain.getOutputCurrentL() - PreviousCurrentL > 3); //  &&  (m_dDriveTrain.getOutputCurrentR() > StopCurrent) || (m_dDriveTrain.getOutputCurrentR() - PreviousCurrentR > 3);
    // return false;
 
   }
