@@ -9,26 +9,26 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class cargoMech extends SubsystemBase {
-  /** Creates a new cargoMech. */
-  private WPI_VictorSPX motorone = new WPI_VictorSPX(Constants.MOTORONE);
-  
-  private WPI_VictorSPX motorfour = new WPI_VictorSPX(Constants.MOTORFOUR);
-  
-  public cargoMech() {}
-  
-  public void IntakeIn(){
-    motorone.set(1);
-  }
-  
-  public void IntakeOut(){
-    motorone.set(-1);//oposite direction 
-  }
-  
-  public void Stop(){
-      motorone.set(0);
-    }
+public class conveyor extends SubsystemBase {
+  /** Creates a new conveyor. */
+  private WPI_VictorSPX conveyor1 = new WPI_VictorSPX(Constants.CONVEYORMOTOR_ONE);
+  private WPI_VictorSPX conveyor2 = new WPI_VictorSPX(Constants.CONVEYORMOTOR_TWO);
 
+  public conveyor() {}
+
+  public void ascendleft(){
+    conveyor1.set(1);
+  }
+  public void ascendright() {
+    conveyor2.set(1);
+  }
+  public void stopleft() {
+    conveyor1.set(0);
+  }
+  public void stopright(){
+    conveyor2.set(0);
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
