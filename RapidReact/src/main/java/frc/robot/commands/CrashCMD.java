@@ -29,18 +29,20 @@ public class CrashCMD extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    m_dDriveTrain.drivepower(0.2,0.2);
+  public void initialize() {
     DriverStation.reportWarning("current to left 2" + m_dDriveTrain.getOutputCurrentL(), false );
     DriverStation.reportWarning("current to right 1" + m_dDriveTrain.getOutputCurrentR(), false );
     DriverStation.reportWarning("left current  is more than stop current" + (m_dDriveTrain.getOutputCurrentL() > StopCurrent), false);
     DriverStation.reportWarning("right current  is more than stop current" + (m_dDriveTrain.getOutputCurrentR() > StopCurrent), false);
     DriverStation.reportWarning("current jump left" + (m_dDriveTrain.getOutputCurrentL()- PreviousCurrentL), false);
     DriverStation.reportWarning("current jump right" + (m_dDriveTrain.getOutputCurrentR()- PreviousCurrentR), false);
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    m_dDriveTrain.drivepower(0.2,0.2);
+    
 
 
     PreviousCurrentL = m_dDriveTrain.getOutputCurrentL();
