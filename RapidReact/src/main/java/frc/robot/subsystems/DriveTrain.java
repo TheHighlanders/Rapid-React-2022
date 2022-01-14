@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
   PowerDistribution left2PD = new PowerDistribution(0, ModuleType.kCTRE);
+  PowerDistribution right1PD = new PowerDistribution(0, ModuleType.kCTRE);
 
   
   public WPI_VictorSPX left1;
@@ -59,10 +60,10 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
- // public double getOutputCurrentR(){
-  //  return right1.getStatorCurrent();
+  public double getOutputCurrentR(){
+  return right1PD.getCurrent(2);
 
-  //}
+  }
 
 
   @Override
