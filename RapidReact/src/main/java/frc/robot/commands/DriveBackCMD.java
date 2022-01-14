@@ -25,7 +25,7 @@ public class DriveBackCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Timer.start();
+    //Timer.start();
     m_dDriveTrain.drivepower(-0.2, -0.2);
     new WaitCommand(3);
   }

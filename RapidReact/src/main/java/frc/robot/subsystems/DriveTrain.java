@@ -48,13 +48,6 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
-<<<<<<< Updated upstream
-=======
-  public double getOutputCurrent(){
-    return left2.getStatorCurrent();
-  }
-
->>>>>>> Stashed changes
 
   @Override
   public void periodic() {
