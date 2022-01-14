@@ -21,4 +21,9 @@ public final class Constants {
     public static final int RIGHT_ONE = 5;
     public static final int RIGHT_TWO = 6;
 
+    public static final int MOTORONE = 7;
+    public static final int MOTORTWO = 8;
+    public static final int MOTORTHREE = 9;
+    public static final int MOTORFOUR = 10;
+
 }
