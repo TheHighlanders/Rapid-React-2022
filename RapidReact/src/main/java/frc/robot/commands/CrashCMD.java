@@ -15,7 +15,7 @@ public class CrashCMD extends CommandBase {
   /** Creates a new CrashCMD. */
   public final DriveTrain m_dDriveTrain;
 
- public final float StopCurrent = 2;
+ public final float StopCurrent = 2; //what the robot will need to exceed when stopped
  public double PreviousCurrentL = 3;
  public double PreviousCurrentR = 4;
 
@@ -56,7 +56,7 @@ public class CrashCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (m_dDriveTrain.getOutputCurrentL() > StopCurrent) || (m_dDriveTrain.getOutputCurrentL() - PreviousCurrent > 3) &&  (m_dDriveTrain.getOutputCurrentR() > StopCurrent) || (m_dDriveTrain.getOutputCurrentR() - PreviousCurrent > 3);
+    return (m_dDriveTrain.getOutputCurrentL() > StopCurrent) || (m_dDriveTrain.getOutputCurrentL() - PreviousCurrentL > 3) &&  (m_dDriveTrain.getOutputCurrentR() > StopCurrent) || (m_dDriveTrain.getOutputCurrentR() - PreviousCurrentR > 3);
    // return false;
 
   }
