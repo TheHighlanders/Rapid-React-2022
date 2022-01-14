@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
-  public WPI_TalonSRX left1;
+  public WPI_VictorSPX left1;
   public WPI_TalonSRX left2;
   public WPI_TalonSRX right1;
   public WPI_VictorSPX right2;
@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
   private double ramp = 0.2;
 
   public DriveTrain() {
-    left1= new WPI_TalonSRX(Constants.LEFT_ONE);
+    left1= new WPI_VictorSPX(Constants.LEFT_ONE);
     left2 = new WPI_TalonSRX(Constants.LEFT_TWO);
     right1 = new WPI_TalonSRX(Constants.RIGHT_ONE);
     right2 = new WPI_VictorSPX(Constants.RIGHT_TWO);
@@ -48,6 +48,13 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
+<<<<<<< Updated upstream
+=======
+  public double getOutputCurrent(){
+    return left2.getStatorCurrent();
+  }
+
+>>>>>>> Stashed changes
 
   @Override
   public void periodic() {
