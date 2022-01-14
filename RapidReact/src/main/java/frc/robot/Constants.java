@@ -16,9 +16,9 @@ public final class Constants {
 
     public static final int XBOX = 0;
 
-    public static final int LEFT_ONE = 3;
+    public static final int LEFT_ONE = 6;
     public static final int LEFT_TWO = 4;
     public static final int RIGHT_ONE = 5;
-    public static final int RIGHT_TWO = 6;
+    public static final int RIGHT_TWO = 3;
 
 }
