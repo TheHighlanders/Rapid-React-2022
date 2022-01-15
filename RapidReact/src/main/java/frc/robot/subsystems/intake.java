@@ -9,24 +9,23 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class cargoMech extends SubsystemBase {
+public class intake extends SubsystemBase {
   /** Creates a new cargoMech. */
-  private WPI_VictorSPX motorone = new WPI_VictorSPX(Constants.MOTORONE);
+  private WPI_VictorSPX intakemotor = new WPI_VictorSPX(Constants.MOTORONE);
+
   
-  private WPI_VictorSPX motorfour = new WPI_VictorSPX(Constants.MOTORFOUR);
-  
-  public cargoMech() {}
+  public intake() {}
   
   public void IntakeIn(){
-    motorone.set(1);
+    intakemotor.set(1);
   }
   
   public void IntakeOut(){
-    motorone.set(-1);//oposite direction 
+    intakemotor.set(-1);//oposite direction 
   }
   
   public void Stop(){
-      motorone.set(0);
+      intakemotor.set(0);
     }
 
   @Override

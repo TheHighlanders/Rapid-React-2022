@@ -28,6 +28,12 @@ public class conveyor extends SubsystemBase {
   public void stopright(){
     conveyor2.set(0);
   }
+  public void descendleft(){
+    conveyor1.set(1);
+  }
+  public void descendright(){
+    conveyor2.set(1);
+  }
   
   @Override
   public void periodic() {
