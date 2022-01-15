@@ -30,29 +30,30 @@ public class CrashCMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
- 
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_dDriveTrain.drivepower(0.2, 0.2);
+    m_dDriveTrain.drivepower(0.1, -0.1);
     //PreviousCurrentL = m_dDriveTrain.getOutputCurrentL();
     //PreviousCurrentR =  m_dDriveTrain.getOutputCurrentR();
+   // m_dDriveTrain.driveBack();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     //m_OI.setxboxrumble(1);
+    DriverStation.reportWarning("DONE",false);
+    
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (m_dDriveTrain.getOutputCurrentL() > StopCurrent) || (m_dDriveTrain.getOutputCurrentL() - PreviousCurrentL > 3); //  &&  (m_dDriveTrain.getOutputCurrentR() > StopCurrent) || (m_dDriveTrain.getOutputCurrentR() - PreviousCurrentR > 3);
-   // return false;
+   // return (m_dDriveTrain.getOutputCurrentL() > StopCurrent) || (m_dDriveTrain.getOutputCurrentL() - PreviousCurrentL > 3); //  &&  (m_dDriveTrain.getOutputCurrentR() > StopCurrent) || (m_dDriveTrain.getOutputCurrentR() - PreviousCurrentR > 3);
+   return false;
 
   }
 }

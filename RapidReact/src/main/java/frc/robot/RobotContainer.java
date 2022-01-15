@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.AutoGroupCMD;
+import frc.robot.commands.AutoGroupCMD1;
 import frc.robot.commands.driveCMD;
 import frc.robot.subsystems.DriveTrain;
 
@@ -30,7 +31,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_dDrivetrain.setDefaultCommand(new driveCMD(m_dDrivetrain, m_OI));
-    m_autoCommand = new AutoGroupCMD(m_dDrivetrain);
+    m_autoCommand = new AutoGroupCMD1(m_dDrivetrain);
   }
 
   /**

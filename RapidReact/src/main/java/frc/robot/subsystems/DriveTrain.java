@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -19,7 +20,8 @@ public class DriveTrain extends SubsystemBase {
   /** Creates a new DriveTrain. */
   PowerDistribution left2PD = new PowerDistribution(0, ModuleType.kCTRE);
   //PowerDistribution right1PD = new PowerDistribution(0, ModuleType.kCTRE);
-
+  
+  public Timer m_Timer;
   
   public WPI_VictorSPX left1;
   public WPI_TalonSRX left2;
@@ -47,6 +49,9 @@ public class DriveTrain extends SubsystemBase {
     left2.follow(left1);
     right2.follow(right1);
 
+    m_Timer = new Timer();
+    m_Timer.reset();
+    m_Timer.start();
 
   }
 
@@ -65,6 +70,16 @@ public class DriveTrain extends SubsystemBase {
 
  // }
 
+//  public void driveBack(){
+//     if(m_Timer.get() < 1 ) { 
+//         drivepower(-0.1, -0.1); 
+//   }
+//   else{ 
+//     drivepower(0, 0); 
+//     m_Timer.stop();
+
+//   }
+//  }
 
   @Override
   public void periodic() {
