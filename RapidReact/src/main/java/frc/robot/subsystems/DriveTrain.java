@@ -27,6 +27,9 @@ public class DriveTrain extends SubsystemBase {
     left2 = new WPI_TalonSRX(Constants.LEFT_TWO);
     right1 = new WPI_TalonSRX(Constants.RIGHT_ONE);
     right2 = new WPI_VictorSPX(Constants.RIGHT_TWO);
+    left2.setInverted(true);
+
+    left1.setInverted(true);
 
     left1.configOpenloopRamp(ramp,0);
     left2.configOpenloopRamp(ramp,0);
