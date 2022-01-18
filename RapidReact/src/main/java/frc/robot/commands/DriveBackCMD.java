@@ -34,7 +34,7 @@ public class DriveBackCMD extends CommandBase {
   public void execute() {
  
     if(m_Timer.get() < 3 ) { 
-       m_dDriveTrain.drivepower(-0.2, -0.2); 
+       m_dDriveTrain.drivepower(0.2, 0.2); 
     }
     else{ 
       m_dDriveTrain.drivepower(0, 0); 
