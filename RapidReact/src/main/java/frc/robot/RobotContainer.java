@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.AutoGroupCMD;
 import frc.robot.commands.ascendCMD;
 import frc.robot.commands.descendCMD;
 import frc.robot.commands.driveCMD;
@@ -30,13 +31,14 @@ public class RobotContainer {
   private final OI m_OI = new OI();
   private final conveyor m_Conveyor = new conveyor();
   private final intake m_intake = new intake();
- private final driveCMD m_autoCommand = new driveCMD(m_dDrivetrain, m_OI);
+  private Command m_autoCommand;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     m_dDrivetrain.setDefaultCommand(new driveCMD(m_dDrivetrain, m_OI));
+    m_autoCommand = new AutoGroupCMD(m_dDrivetrain, m_Conveyor);
   }
 
   /**
