@@ -43,13 +43,12 @@ public class CrashCMD extends CommandBase {
   public void execute() {
     x = accelerometer.getX();
     DriverStation.reportError(x + "", false);
-    if (x > 0.5) {
+    if (x > 0.6) { // used to be 0.5
       DriverStation.reportError(x + "x > -0.5", false);
-      
+      m_OI.setxboxrumble(1);
       isFinished = true;
       
     }
-     
   }
 
   // Called once the command ends or is interrupted.
@@ -57,7 +56,6 @@ public class CrashCMD extends CommandBase {
   public void end(boolean interrupted) {
     m_dDriveTrain.drivepower(0, 0);
     DriverStation.reportError("ALL DONE ALL DONE ALLL DONE", false);
-    m_OI.setxboxrumble(1);
   }
 
   // Returns true when the command should end.
