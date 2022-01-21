@@ -6,20 +6,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.OI;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.conveyor;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoGroupCMD extends SequentialCommandGroup {
+public class autoGroupCMD extends SequentialCommandGroup {
   /** Creates a new Auto. */
-  public AutoGroupCMD(DriveTrain m_dDriveTrain, conveyor m_conveyor, OI OI_xbox) {
+  public autoGroupCMD(driveTrain m_ddriveTrain, conveyor m_conveyor, OI OI_xbox) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new CrashCMD(m_dDriveTrain, OI_xbox),
-      new DriveBackCMD(m_dDriveTrain),
+      new crashCMD(m_ddriveTrain, OI_xbox),
+      new driveBackCMD(m_ddriveTrain),
       new ascendCMD(m_conveyor)
     );
   }

@@ -9,16 +9,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.driveTrain;
 
-public class DriveBackCMD extends CommandBase {
+public class driveBackCMD extends CommandBase {
   /** Creates a new DriveBack. */
-  public final DriveTrain m_dDriveTrain;
+  public final driveTrain m_ddriveTrain;
   public Timer m_Timer;
-  public DriveBackCMD(DriveTrain drive_subsystem) {
-   m_dDriveTrain = drive_subsystem;
+  public driveBackCMD(driveTrain drive_subsystem) {
+   m_ddriveTrain = drive_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-  addRequirements(m_dDriveTrain);
+  addRequirements(m_ddriveTrain);
   }
 
   // Called when the command is initially scheduled.
@@ -34,10 +34,10 @@ public class DriveBackCMD extends CommandBase {
   public void execute() {
  
     if(m_Timer.get() < 3 ) { 
-       m_dDriveTrain.drivepower(0.2, 0.2); 
+       m_ddriveTrain.drivepower(0.2, 0.2); 
     }
     else{ 
-      m_dDriveTrain.drivepower(0, 0); 
+      m_ddriveTrain.drivepower(0, 0); 
       m_Timer.stop();
 
     }

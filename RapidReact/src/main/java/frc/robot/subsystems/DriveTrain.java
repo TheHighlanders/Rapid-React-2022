@@ -13,8 +13,8 @@ import frc.robot.Constants;
 
 //import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class DriveTrain extends SubsystemBase {
-  /** Creates a new DriveTrain. */
+public class driveTrain extends SubsystemBase {
+  /** Creates a new driveTrain. */
   public WPI_VictorSPX left1;
   public WPI_TalonSRX left2;
   public WPI_TalonSRX right1;
@@ -22,7 +22,7 @@ public class DriveTrain extends SubsystemBase {
   
   private double ramp = 0.2;
 
-  public DriveTrain() {
+  public driveTrain() {
     left1= new WPI_VictorSPX(Constants.LEFT_ONE);
     left2 = new WPI_TalonSRX(Constants.LEFT_TWO);
     right1 = new WPI_TalonSRX(Constants.RIGHT_ONE);

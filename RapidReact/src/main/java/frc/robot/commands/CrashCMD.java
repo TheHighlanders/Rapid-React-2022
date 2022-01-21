@@ -5,19 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.driveTrain;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.DriverStation;
-//import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import frc.robot.OI;
 
 
-public class CrashCMD extends CommandBase {
-  /** Creates a new CrashCMD. */
-  public final DriveTrain m_dDriveTrain;
+public class crashCMD extends CommandBase {
+  /** Creates a new crashCMD. */
+  public final driveTrain m_ddriveTrain;
   public final OI m_OI;
   Accelerometer accelerometer = new BuiltInAccelerometer();
  double x = accelerometer.getX();
@@ -25,17 +22,17 @@ public class CrashCMD extends CommandBase {
 
 
 
-  public CrashCMD(DriveTrain drive_subsystem, OI OI_xbox) {
-    m_dDriveTrain = drive_subsystem;
+  public crashCMD(driveTrain drive_subsystem, OI OI_xbox) {
+    m_ddriveTrain = drive_subsystem;
     m_OI = OI_xbox;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_dDriveTrain);
+    addRequirements(m_ddriveTrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_dDriveTrain.drivepower(-0.15,-0.15);
+    m_ddriveTrain.drivepower(-0.15,-0.15);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -54,7 +51,7 @@ public class CrashCMD extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_dDriveTrain.drivepower(0, 0);
+    m_ddriveTrain.drivepower(0, 0);
     DriverStation.reportError("ALL DONE ALL DONE ALLL DONE", false);
   }
 
