@@ -6,14 +6,14 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
-import frc.robot.subsystems.driveTrain;
+import frc.robot.subsystems.DriveTrain;
 
 public class driveCMD extends CommandBase {
   /** Creates a new driveCMD. */
-  public final driveTrain m_ddriveTrain;
+  public final DriveTrain m_ddriveTrain;
   public final OI m_OI;
 
-  public driveCMD(driveTrain drive_subsystem, OI OI_xbox) {
+  public driveCMD(DriveTrain drive_subsystem, OI OI_xbox) {
     m_ddriveTrain = drive_subsystem;
     m_OI = OI_xbox;
     // Use addRequirements() here to declare subsystem dependencies.
