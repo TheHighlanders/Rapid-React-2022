@@ -9,13 +9,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 //import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.subsystems.driveTrain;
+import frc.robot.subsystems.DriveTrain;
 
-public class driveBackCMD extends CommandBase {
+public class DriveBackCMD extends CommandBase {
   /** Creates a new DriveBack. */
-  public final driveTrain m_ddriveTrain;
+  public final DriveTrain m_ddriveTrain;
   public Timer m_Timer;
-  public driveBackCMD(driveTrain drive_subsystem) {
+  public DriveBackCMD(DriveTrain drive_subsystem) {
    m_ddriveTrain = drive_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
   addRequirements(m_ddriveTrain);

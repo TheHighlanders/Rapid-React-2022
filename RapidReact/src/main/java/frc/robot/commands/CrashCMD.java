@@ -5,16 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.driveTrain;
+import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import frc.robot.OI;
 
 
-public class crashCMD extends CommandBase {
+public class CrashCMD extends CommandBase {
   /** Creates a new crashCMD. */
-  public final driveTrain m_ddriveTrain;
+  public final DriveTrain m_ddriveTrain;
   public final OI m_OI;
   Accelerometer accelerometer = new BuiltInAccelerometer();
  double x = accelerometer.getX();
@@ -22,7 +22,7 @@ public class crashCMD extends CommandBase {
 
 
 
-  public crashCMD(driveTrain drive_subsystem, OI OI_xbox) {
+  public CrashCMD(DriveTrain drive_subsystem, OI OI_xbox) {
     m_ddriveTrain = drive_subsystem;
     m_OI = OI_xbox;
     // Use addRequirements() here to declare subsystem dependencies.
