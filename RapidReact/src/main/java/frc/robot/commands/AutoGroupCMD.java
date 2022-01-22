@@ -20,7 +20,7 @@ public class autoGroupCMD extends SequentialCommandGroup {
     addCommands(
       new crashCMD(m_ddriveTrain, OI_xbox),
       new driveBackCMD(m_ddriveTrain),
-      new ascendCMD(m_conveyor)
+      new conveyorAuto(m_conveyor)
     );
   }
 }
