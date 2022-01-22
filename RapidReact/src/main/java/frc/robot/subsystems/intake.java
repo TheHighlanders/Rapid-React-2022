@@ -5,14 +5,18 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class intake extends SubsystemBase {
   /** Creates a new cargoMech. */
   private WPI_VictorSPX intakemotor = new WPI_VictorSPX(Constants.MOTORONE);
-
+  // private final Color blueTarget = ColorMatch.addColorMatch(0.14,0.42,0.42);
   
   public intake() {}
   

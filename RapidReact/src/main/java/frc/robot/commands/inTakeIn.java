@@ -5,23 +5,29 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.util.Color;
-import frc.robot.subsystems.intake;
-import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
+import com.revrobotics.ColorSensorV3;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.intake;
+
 
 public class inTakeIn extends CommandBase {
   /** Creates a new inTakeIn. */
   public final intake m_intake;
+
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
+  private final Color blueTarget = new Color(0.143,0.427,0.429);
+  double IR = m_colorSensor.getIR();
+  String colorString;
   
+  //private final Color blueTarget = ColorMatch.Color(0.14,0.42,0.42);
   public inTakeIn(intake intake_subsystem) {
     m_intake = intake_subsystem;
     addRequirements(m_intake);
@@ -37,10 +43,18 @@ public class inTakeIn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+   
     Color detectedColor = m_colorSensor.getColor();
-    double IR = m_colorSensor.getIR();
-    SmartDashboard.putNumber("Red", detectedColor.red);
-    SmartDashboard.putNumber("Blue", detectedColor.blue);
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+
+    if (match.color == blueTarget){
+      colorString = "Blue";
+    }
+    DriverStation.reportWarning("color"+ colorString, false);
+    //double IR = m_colorSensor.getIR();
+    
+   // SmartDashboard.putNumber("Red", detectedColor.red);
+    //SmartDashboard.putNumber("Blue", detectedColor.blue);
     m_intake.IntakeIn();
   }
 
