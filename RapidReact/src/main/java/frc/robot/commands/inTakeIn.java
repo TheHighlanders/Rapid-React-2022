@@ -11,6 +11,7 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.intake;
@@ -45,6 +46,9 @@ public class inTakeIn extends CommandBase {
   public void execute() {
    
     Color detectedColor = m_colorSensor.getColor();
+    SmartDashboard.putNumber("red", detectedColor.red);
+    SmartDashboard.putNumber("green", detectedColor.green);
+    SmartDashboard.putNumber("blue", detectedColor.blue);
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
     if (match.color == blueTarget){
