@@ -24,7 +24,7 @@ public class inTakeIn extends CommandBase {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
-  private final Color blueTarget = new Color(0.23,0.44,0.32);
+  private final Color blueTarget = new Color(0.2,0.45,0.34);
   double IR = m_colorSensor.getIR();
   String colorString;
   
