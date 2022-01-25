@@ -13,7 +13,7 @@ public class intake extends SubsystemBase {
   /** Creates a new cargoMech. */
   private WPI_VictorSPX intakemotor = new WPI_VictorSPX(Constants.MOTORONE);
 
-  
+
   public intake() {}
   
   public void IntakeIn(){
@@ -21,7 +21,7 @@ public class intake extends SubsystemBase {
   }
   
   public void IntakeOut(){
-    intakemotor.set(-1);//oposite direction 
+    intakemotor.set(-1);//opposite direction 
   }
   
   public void Stop(){
