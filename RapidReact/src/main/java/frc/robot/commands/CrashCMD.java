@@ -52,13 +52,13 @@ public class CrashCMD extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_ddriveTrain.drivepower(0, 0);
+    m_OI.setxboxrumble(0);
     DriverStation.reportError("ALL DONE ALL DONE ALLL DONE", false);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    
     return isFinished;
   }
 
