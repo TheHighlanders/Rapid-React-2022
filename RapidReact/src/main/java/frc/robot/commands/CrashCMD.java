@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
@@ -15,6 +16,7 @@ import frc.robot.OI;
 public class CrashCMD extends CommandBase {
   /** Creates a new crashCMD. */
   public final DriveTrain m_ddriveTrain;
+  public Timer m_Timer;
   public final OI m_OI;
   Accelerometer accelerometer = new BuiltInAccelerometer();
  double x = accelerometer.getX();
@@ -32,6 +34,8 @@ public class CrashCMD extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_Timer = new Timer();
+    m_Timer.reset();
     m_ddriveTrain.drivepower(-0.15,-0.15);
   }
 
@@ -43,6 +47,7 @@ public class CrashCMD extends CommandBase {
     if (x > 0.6) { // used to be 0.5
       DriverStation.reportError(x + "x > -0.5", false);
       m_OI.setxboxrumble(1);
+      m_Timer.start();
       isFinished = true;
       
     }
@@ -52,7 +57,9 @@ public class CrashCMD extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_ddriveTrain.drivepower(0, 0);
+    if (m_Timer.get() < 3 ){
     m_OI.setxboxrumble(0);
+    }
     DriverStation.reportError("ALL DONE ALL DONE ALLL DONE", false);
   }
 
