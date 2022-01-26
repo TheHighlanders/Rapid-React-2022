@@ -26,4 +26,7 @@ public final class Constants {
     public static final int CONVEYORMOTOR_TWO = 9;
     public static final int MOTORFOUR = 10;
 
+    public static final int LEFTBOUND = 4;
+    public static final int RIGHTBOUND = 8;
+
 }

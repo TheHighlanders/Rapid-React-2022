@@ -8,20 +8,21 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
 public class AlignCMD extends CommandBase {
   /** Creates a new AlignCMD. */
 
   public final DriveTrain m_DriveTrain;
-  public boolean FoundBall;
   
   NetworkTableEntry middleX;
   NetworkTableEntry middleY;
-  NetworkTableEntry range; //distance robot has to travel
-  NetworkTableEntry UpdateCounterEntry;
-  
-  double UpdateCounter = 0;
+  public boolean isAligned = false;
+  double Xvalue;
+  double Yvalue;
+  double middlesphere = (Constants.LEFTBOUND+Constants.RIGHTBOUND)/2;// (3a+b)/2
+
 
 
   public AlignCMD(DriveTrain driveTrain_subsystem) {
@@ -37,21 +38,17 @@ public class AlignCMD extends CommandBase {
     NetworkTable Table = NetworkTable.getTable("Table");
     this.middleX = Table.getEntry("center x");
     this.middleY = Table.getEntry("center y");
-    this.range = Table.getEntry("range");
-    this.UpdateCounterEntry = Table.getEntry("Counter");
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
+
   public void execute() {
-     UpdateCounter = UpdateCounter.getDouble(0);
-     if(UpdateCounter != UpdateCounterEntry){
-      double middleX = middleX.getDouble(0);
-      double middleY = middleY.getDouble(0);
-      double range= range.getDouble(0);
-
-
-     }
+     
+      this.Xvalue = middleX.getDouble(0);
+      this.Yvalue = middleY.getDouble(0);
+      
 
   }
 
