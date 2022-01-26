@@ -48,7 +48,9 @@ public class AlignCMD extends CommandBase {
      
       this.Xvalue = middleX.getDouble(0);
       this.Yvalue = middleY.getDouble(0);
-      
+      if(Xvalue>middlesphere){
+        
+      }
 
   }
 
