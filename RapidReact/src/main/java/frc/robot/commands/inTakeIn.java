@@ -26,6 +26,7 @@ public class inTakeIn extends CommandBase {
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
   private final Color blueTarget = new Color(0.2,0.45,0.34);
+  private final Color redTarget = new Color(0.4, 0.4, 0.2);
   double IR = m_colorSensor.getIR();
   String colorString;
   
@@ -52,9 +53,16 @@ public class inTakeIn extends CommandBase {
     SmartDashboard.putNumber("blue", detectedColor.blue);
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
-    if (match.color == blueTarget){
+    if (detectedColor.red > detectedColor.blue){
+      colorString = "Red";
+
+    }
+    else if (detectedColor.red < detectedColor.blue){
       colorString = "Blue";
     }
+
+
+
     DriverStation.reportWarning("color"+ colorString, false);
     //double IR = m_colorSensor.getIR();
     
