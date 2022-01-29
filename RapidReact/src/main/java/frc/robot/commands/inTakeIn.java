@@ -49,12 +49,13 @@ public class inTakeIn extends CommandBase {
    
     Color detectedColor = m_colorSensor.getColor();
     double proximity = m_colorSensor.getProximity();
+    DriverStation.reportWarning("distance" + proximity, false);
     SmartDashboard.putNumber("red", detectedColor.red);
     SmartDashboard.putNumber("green", detectedColor.green);
     SmartDashboard.putNumber("blue", detectedColor.blue);
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
-    if (proximity < 400){
+    //if (proximity < 400){
       if (detectedColor.red > detectedColor.blue){
         colorString = "Red";
   
@@ -63,7 +64,7 @@ public class inTakeIn extends CommandBase {
         colorString = "Blue";
       }
   
-    }
+    //}
 
    
 
