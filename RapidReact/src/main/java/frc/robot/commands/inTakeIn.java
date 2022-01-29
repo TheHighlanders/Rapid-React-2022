@@ -55,7 +55,7 @@ public class inTakeIn extends CommandBase {
     SmartDashboard.putNumber("blue", detectedColor.blue);
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
-    //if (proximity < 400){
+    if ( proximity > 180|| proximity < 210){
       if (detectedColor.red > detectedColor.blue){
         colorString = "Red";
   
@@ -64,7 +64,7 @@ public class inTakeIn extends CommandBase {
         colorString = "Blue";
       }
   
-    //}
+    }
 
    
 
