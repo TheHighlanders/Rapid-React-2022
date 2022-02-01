@@ -10,6 +10,7 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
+import frc.robot.OI;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,14 +23,16 @@ public class inTakeIn extends CommandBase {
   /** Creates a new inTakeIn. */
   public final intake m_intake;
   
+  public final OI m_OI;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
   double IR = m_colorSensor.getIR();
   String colorString;
   DriverStation.Alliance Alliancecolor = DriverStation.getAlliance();
-  public inTakeIn(intake intake_subsystem) {
+  public inTakeIn(intake intake_subsystem, OI OI_xbox) {
     m_intake = intake_subsystem;
+    m_OI = OI_xbox;
     addRequirements(m_intake);
 
     
@@ -57,9 +60,9 @@ public class inTakeIn extends CommandBase {
       else if (detectedColor.red < detectedColor.blue){
         colorString = "Blue";
       }
-      DriverStation.reportWarning("color"+ colorString +  DriverStation.getAlliance(), false);
+      DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false);
       if (colorString == Alliancecolor.toString()){
-
+        m_OI.setxboxrumble(1);
       }
     }
     //double IR = m_colorSensor.getIR();
