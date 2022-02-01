@@ -57,7 +57,7 @@ public class inTakeIn extends CommandBase {
       else if (detectedColor.red < detectedColor.blue){
         colorString = "Blue";
       }
-      DriverStation.reportWarning("color"+ colorString + Alliancecolor.toString(), false);
+      DriverStation.reportWarning("color"+ colorString +  DriverStation.getAlliance(), false);
       if (colorString == Alliancecolor.toString()){
 
       }
