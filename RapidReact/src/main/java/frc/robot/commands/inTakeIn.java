@@ -21,16 +21,13 @@ import frc.robot.subsystems.intake;
 public class inTakeIn extends CommandBase {
   /** Creates a new inTakeIn. */
   public final intake m_intake;
-
+  
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
-  private final Color blueTarget = new Color(0.2,0.45,0.34);
-  private final Color redTarget = new Color(0.4, 0.4, 0.2);
   double IR = m_colorSensor.getIR();
   String colorString;
-  
-  //private final Color blueTarget = ColorMatch.Color(0.14,0.42,0.42);
+  DriverStation.Alliance Alliancecolor = DriverStation.getAlliance();
   public inTakeIn(intake intake_subsystem) {
     m_intake = intake_subsystem;
     addRequirements(m_intake);
@@ -60,7 +57,10 @@ public class inTakeIn extends CommandBase {
       else if (detectedColor.red < detectedColor.blue){
         colorString = "Blue";
       }
-      DriverStation.reportWarning("color"+ colorString, false);
+      DriverStation.reportWarning("color"+ colorString + Alliancecolor.toString(), false);
+      if (colorString == Alliancecolor.toString()){
+
+      }
     }
     //double IR = m_colorSensor.getIR();
     
