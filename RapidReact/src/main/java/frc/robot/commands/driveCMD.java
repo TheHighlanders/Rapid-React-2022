@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
@@ -28,7 +29,19 @@ public class driveCMD extends CommandBase {
   @Override
   public void execute() {
     m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
-
+    //dead band stuff
+    double x = this.m_OI.getXboxLeftX();
+    double y = this.m_OI.getXboxLeftY();
+    double threshold = 0.1;
+    if (Math.abs(x) < threshold){
+      x = 0;
+    }
+    if (Math.abs(y) < threshold) {
+      y = 0;
+    }
+    x = (x - threshold * Math.signum(x)) / (1 - threshold);
+    y = (y - threshold * Math.signum(y)) / (1 - threshold);
+    m_dDrivetrain.drivepower(y - x, y + x);
   }
 
   // Called once the command ends or is interrupted.
