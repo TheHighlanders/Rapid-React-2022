@@ -28,7 +28,6 @@ public class driveCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
     //dead band stuff
     double x = this.m_OI.getXboxLeftX();
     double y = this.m_OI.getXboxLeftY();
@@ -42,6 +41,8 @@ public class driveCMD extends CommandBase {
     x = (x - threshold * Math.signum(x)) / (1 - threshold);
     y = (y - threshold * Math.signum(y)) / (1 - threshold);
     m_dDrivetrain.drivepower(y - x, y + x);
+    // used to be the code below
+    // m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
   }
 
   // Called once the command ends or is interrupted.
