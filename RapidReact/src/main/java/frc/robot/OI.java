@@ -8,10 +8,11 @@ import edu.wpi.first.wpilibj.Timer;
 public class OI {
     public XboxController xbox = new XboxController(Constants.XBOX);
     public Timer m_Timer;
+    public boolean start = false;
     
     public OI(){
-    m_Timer = new Timer();
-    m_Timer.reset();
+        m_Timer = new Timer();
+        m_Timer.reset();
      }
 
     public double getXboxLeftX(){
@@ -27,13 +28,16 @@ public class OI {
         return xbox.getRightY();
     }
     public void setxboxrumble(double vibrate, double length){
-        m_Timer.reset();
-        m_Timer.start();
-        while (m_Timer.get() < length) {
-            xbox.setRumble(RumbleType.kLeftRumble, vibrate);
-            xbox.setRumble(RumbleType.kRightRumble, vibrate);
+        if (m_Timer.get() > length || start == false) {
+            start = true;
+            m_Timer.reset();
+            m_Timer.start();
+            while (m_Timer.get() < length) {
+                xbox.setRumble(RumbleType.kLeftRumble, vibrate);
+                xbox.setRumble(RumbleType.kRightRumble, vibrate);
         }
         xbox.setRumble(RumbleType.kLeftRumble, 0);
         xbox.setRumble(RumbleType.kRightRumble, 0);
+    }
     }
 }
