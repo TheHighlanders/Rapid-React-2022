@@ -51,7 +51,7 @@ public class RobotContainer {
     // JoystickButton name = new JoystickButton(m_OI.xbox, #);
     // name.whileHeld(new commmandname(m_Conveyor));
     JoystickButton inTakeIn = new JoystickButton(m_OI.xbox, 1);
-    inTakeIn.whileHeld(new inTakeIn(m_intake));
+    inTakeIn.whileHeld(new inTakeIn(m_intake,m_OI));
 
     JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2);
     intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));

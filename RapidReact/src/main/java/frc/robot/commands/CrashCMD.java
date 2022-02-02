@@ -15,16 +15,14 @@ import frc.robot.OI;
 public class CrashCMD extends CommandBase {
   /** Creates a new crashCMD. */
   public final DriveTrain m_ddriveTrain;
-  public final OI m_OI;
   Accelerometer accelerometer = new BuiltInAccelerometer();
  double x = accelerometer.getX();
  boolean isFinished = false;
 
 
 
-  public CrashCMD(DriveTrain drive_subsystem, OI OI_xbox) {
+  public CrashCMD(DriveTrain drive_subsystem) {
     m_ddriveTrain = drive_subsystem;
-    m_OI = OI_xbox;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_ddriveTrain);
   }
@@ -42,7 +40,6 @@ public class CrashCMD extends CommandBase {
     DriverStation.reportError(x + "", false);
     if (x > 0.6) { // used to be 0.5
       DriverStation.reportError(x + "x > -0.5", false);
-      m_OI.setxboxrumble(1);
       isFinished = true;
       
     }

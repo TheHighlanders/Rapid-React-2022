@@ -27,10 +27,11 @@ public class OI {
         return xbox.getRightY();
     }
     public void setxboxrumble(double vibrate, double length){
+        m_Timer.reset();
         m_Timer.start();
         while (m_Timer.get() < length) {
-        xbox.setRumble(RumbleType.kLeftRumble, vibrate);
-        xbox.setRumble(RumbleType.kRightRumble, vibrate);
+            xbox.setRumble(RumbleType.kLeftRumble, vibrate);
+            xbox.setRumble(RumbleType.kRightRumble, vibrate);
         }
         xbox.setRumble(RumbleType.kLeftRumble, 0);
         xbox.setRumble(RumbleType.kRightRumble, 0);

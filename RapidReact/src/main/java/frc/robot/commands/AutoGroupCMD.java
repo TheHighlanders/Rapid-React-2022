@@ -18,7 +18,7 @@ public class AutoGroupCMD extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new CrashCMD(m_ddriveTrain, OI_xbox),
+      new CrashCMD(m_ddriveTrain),
       new conveyorAuto(m_conveyor),
       new DriveBackCMD(m_ddriveTrain)
     );

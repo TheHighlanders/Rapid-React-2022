@@ -29,7 +29,8 @@ public class inTakeIn extends CommandBase {
   private final ColorMatch m_colorMatcher = new ColorMatch();
   double IR = m_colorSensor.getIR();
   String colorString;
-  DriverStation.Alliance Alliancecolor = DriverStation.getAlliance();
+ // DriverStation.Alliance Alliancecolor;// = DriverStation.getAlliance();
+  
   public inTakeIn(intake intake_subsystem, OI OI_xbox) {
     m_intake = intake_subsystem;
     m_OI = OI_xbox;
@@ -47,6 +48,7 @@ public class inTakeIn extends CommandBase {
   @Override
   public void execute() {
    
+    DriverStation.Alliance Alliancecolor = DriverStation.getAlliance();
     Color detectedColor = m_colorSensor.getColor();
     double proximity = m_colorSensor.getProximity();
     ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
@@ -61,14 +63,12 @@ public class inTakeIn extends CommandBase {
         colorString = "Blue";
       }
       DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false);
-      if (colorString == Alliancecolor.toString()){
-        m_OI.setxboxrumble(1);
+      
+      if (!colorString.equals(Alliancecolor.toString())){
+        m_OI.setxboxrumble(1,1);
+        DriverStation.reportWarning("rumble", false);
       }
     }
-    //double IR = m_colorSensor.getIR();
-    
-   // SmartDashboard.putNumber("Red", detectedColor.red);
-    //SmartDashboard.putNumber("Blue", detectedColor.blue);
     m_intake.IntakeIn();
   }
 
