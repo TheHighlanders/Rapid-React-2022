@@ -57,10 +57,13 @@ public class inTakeIn extends CommandBase {
     if (proximity > 300 && proximity < 2047){
       if (detectedColor.red > detectedColor.blue){
         colorString = "Red";
+        SmartDashboard.putBoolean("cargo", true);       
+
   
       }
       else if (detectedColor.red < detectedColor.blue){
         colorString = "Blue";
+        SmartDashboard.putBoolean("cargo", false);       
       }
       DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false);
       
