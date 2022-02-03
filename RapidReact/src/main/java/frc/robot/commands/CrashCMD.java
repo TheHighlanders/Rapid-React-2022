@@ -49,7 +49,7 @@ public class CrashCMD extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_ddriveTrain.drivepower(0, 0);
-    DriverStation.reportError("ALL DONE ALL DONE ALLL DONE", false);
+    DriverStation.reportError("---------------------------------------------- CrashCMD Complete", false);
   }
 
   // Returns true when the command should end.

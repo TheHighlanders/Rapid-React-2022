@@ -23,15 +23,15 @@ public class descendCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Conveyor.descendleft();
-    m_Conveyor.descendright();
+    m_Conveyor.descend();
+    m_Conveyor.descend();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Conveyor.stopleft();
-    m_Conveyor.stopright();
+    m_Conveyor.stop();
+    m_Conveyor.stop();
   }
 
   // Returns true when the command should end.

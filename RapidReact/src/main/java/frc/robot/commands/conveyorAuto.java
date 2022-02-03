@@ -31,19 +31,18 @@ public class conveyorAuto extends CommandBase {
   @Override
   public void execute() {
     if (m_Timer.get() <3) {
-      m_Conveyor.ascendleft();
-      m_Conveyor.ascendright();
+      m_Conveyor.ascend();
     } else {
-      m_Conveyor.stopleft();
-      m_Conveyor.stopright();
+      m_Conveyor.stop();
+      m_Conveyor.stop();
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Conveyor.stopleft();
-    m_Conveyor.stopright();
+    m_Conveyor.stop();
+    m_Conveyor.stop();
   }
 
   // Returns true when the command should end.

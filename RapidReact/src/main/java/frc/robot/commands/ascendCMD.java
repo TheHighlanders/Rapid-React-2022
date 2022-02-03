@@ -23,15 +23,14 @@ public class ascendCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Conveyor.ascendleft();
-    m_Conveyor.ascendright();
+    m_Conveyor.ascend();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Conveyor.stopleft();
-    m_Conveyor.stopright();
+    m_Conveyor.stop();
+    m_Conveyor.stop();
   }
 
   // Returns true when the command should end.
