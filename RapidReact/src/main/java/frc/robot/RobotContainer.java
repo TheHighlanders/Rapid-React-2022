@@ -30,7 +30,7 @@ public class RobotContainer {
   private final DriveTrain m_ddriveTrain = new DriveTrain();
   private final OI m_OI = new OI();
   private final conveyor m_Conveyor = new conveyor();
-  private final intake m_intake = new intake();
+  private final intake m_conveyor = new intake();
   private Command m_autoCommand;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -51,10 +51,10 @@ public class RobotContainer {
     // JoystickButton name = new JoystickButton(m_OI.xbox, #);
     // name.whileHeld(new commmandname(m_Conveyor));
     JoystickButton inTakeIn = new JoystickButton(m_OI.xbox, 1);
-    inTakeIn.whileHeld(new inTakeIn(m_intake,m_OI));
+    inTakeIn.whileHeld(new inTakeIn(m_conveyor,m_OI));
 
     JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2);
-    intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
+    intakeoutCMD.whileHeld(new intakeoutCMD(m_conveyor));
 
     JoystickButton ascendCMD = new JoystickButton(m_OI.xbox, 3);
     ascendCMD.whileHeld(new ascendCMD(m_Conveyor));
