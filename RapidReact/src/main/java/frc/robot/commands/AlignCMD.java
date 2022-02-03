@@ -21,7 +21,7 @@ public class AlignCMD extends CommandBase {
   public boolean isAligned = false;
   double Xvalue;
   double Yvalue;
-  double middlesphere = (Constants.LEFTBOUND+Constants.RIGHTBOUND)/2;// (3a+b)/2
+  double middlesphere = (3*Constants.LEFTBOUND + Constants.RIGHTBOUND)/2;// (3a+b)/2
 
 
 
@@ -48,11 +48,22 @@ public class AlignCMD extends CommandBase {
      
       this.Xvalue = middleX.getDouble(0);
       this.Yvalue = middleY.getDouble(0);
-      if(Xvalue>middlesphere){
-        
-      }
 
+      if(Xvalue>middlesphere){
+        m_DriveTrain.drivepower(-0.2, 0.2); //turn left
+        isAligned= false;
+      }
+      if(Xvalue<middlesphere){
+        m_DriveTrain.drivepower(0.2, -0.2);   //turn right
+        isAligned = false;
+      }
+      else{
+        m_DriveTrain.drivepower(0, 0);
+        isAligned = true;
+
+      }
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
@@ -61,6 +72,6 @@ public class AlignCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isAligned;
   }
 }
