@@ -16,7 +16,7 @@ public class DriveBackCMD extends CommandBase {
   public final DriveTrain m_ddriveTrain;
   public Timer m_Timer;
   public DriveBackCMD(DriveTrain drive_subsystem) {
-   m_ddriveTrain = drive_subsystem;
+  m_ddriveTrain = drive_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
   addRequirements(m_ddriveTrain);
   }

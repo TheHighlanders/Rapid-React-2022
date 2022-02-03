@@ -11,28 +11,18 @@ import frc.robot.Constants;
 
 public class conveyor extends SubsystemBase {
   /** Creates a new conveyor. */
-  private WPI_VictorSPX conveyor1 = new WPI_VictorSPX(Constants.CONVEYORMOTOR_ONE);
-  private WPI_VictorSPX conveyor2 = new WPI_VictorSPX(Constants.CONVEYORMOTOR_TWO);
+  private WPI_VictorSPX conveyor = new WPI_VictorSPX(Constants.CONVEYORMOTOR_ONE);
 
   public conveyor() {}
 
-  public void ascendleft(){
-    conveyor1.set(1);
+  public void ascend(){
+    conveyor.set(1);
   }
-  public void ascendright() {
-    conveyor2.set(1);
+  public void stop() {
+    conveyor.set(0);
   }
-  public void stopleft() {
-    conveyor1.set(0);
-  }
-  public void stopright(){
-    conveyor2.set(0);
-  }
-  public void descendleft(){
-    conveyor1.set(1);
-  }
-  public void descendright(){
-    conveyor2.set(1);
+  public void descend(){
+    conveyor.set(1);
   }
   
   @Override

@@ -24,7 +24,6 @@ public class descendCMD extends CommandBase {
   @Override
   public void execute() {
     m_Conveyor.descend();
-    m_Conveyor.descend();
   }
 
   // Called once the command ends or is interrupted.

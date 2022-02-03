@@ -16,12 +16,12 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.intake;
+import frc.robot.subsystems.conveyor;
 
 
 public class inTakeIn extends CommandBase {
   /** Creates a new inTakeIn. */
-  public final intake m_intake;
+  public final conveyor m_conveyor;
   
   public final OI m_OI;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
@@ -31,10 +31,10 @@ public class inTakeIn extends CommandBase {
   String colorString;
  // DriverStation.Alliance Alliancecolor;// = DriverStation.getAlliance();
   
-  public inTakeIn(intake intake_subsystem, OI OI_xbox) {
-    m_intake = intake_subsystem;
+  public inTakeIn(conveyor conveyor_subsystem, OI OI_xbox) {
+    m_conveyor = conveyor_subsystem;
     m_OI = OI_xbox;
-    addRequirements(m_intake);
+    addRequirements(m_conveyor);
 
     
     // Use addRequirements() here to declare subsystem dependencies.
@@ -72,13 +72,13 @@ public class inTakeIn extends CommandBase {
         DriverStation.reportWarning("rumble", false);
       }
     }
-    m_intake.IntakeIn();
+    m_conveyor.ascend();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intake.Stop();
+    m_conveyor.stop();
   }
 
   // Returns true when the command should end.
