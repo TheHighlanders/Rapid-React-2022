@@ -26,4 +26,6 @@ public final class Constants {
     public static final int CONVEYORMOTOR_ONE = 8;
     public static final int CONVEYORMOTOR_TWO = 9;
     public static final int MOTORFOUR = 10;
+    public static final int DOORMOTOR = 11;
+    public static final double INCHES_PER_ROTATION = 6*Math.PI;
 }
