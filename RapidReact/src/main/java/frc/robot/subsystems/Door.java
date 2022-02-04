@@ -29,10 +29,12 @@ public class Door extends SubsystemBase {
 
   public void up(){
     DMTR.set(ControlMode.Position, -409600/Constants.INCHES_PER_ROTATION);
+    DriverStation.reportWarning("Up--------------------------------", false);
   }
   public void stop() {
   }
   public void down(){
+    DriverStation.reportWarning("down------------------------------", false);
   }
 
   @Override

@@ -6,8 +6,6 @@
 package frc.robot.commands;
 
 
-import com.revrobotics.ColorMatch;
-import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
 import frc.robot.OI;
@@ -26,7 +24,6 @@ public class inTakeIn extends CommandBase {
   public final OI m_OI;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
-  private final ColorMatch m_colorMatcher = new ColorMatch();
   double IR = m_colorSensor.getIR();
   String colorString;
  // DriverStation.Alliance Alliancecolor;// = DriverStation.getAlliance();
@@ -51,7 +48,6 @@ public class inTakeIn extends CommandBase {
     DriverStation.Alliance Alliancecolor = DriverStation.getAlliance();
     Color detectedColor = m_colorSensor.getColor();
     double proximity = m_colorSensor.getProximity();
-    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
 
     DriverStation.reportWarning("distance" + proximity, false);
     if (proximity > 300 && proximity < 2047){
