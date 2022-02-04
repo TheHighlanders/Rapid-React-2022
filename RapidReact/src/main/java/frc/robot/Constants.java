@@ -16,6 +16,7 @@ package frc.robot;
 public final class Constants {
 
     public static final int XBOX = 0;
+    public static final int XBOXCLIMB = 1;
 
     public static final int LEFT_ONE = 6;
     public static final int LEFT_TWO = 4;
@@ -26,4 +27,9 @@ public final class Constants {
     public static final int CONVEYORMOTOR_ONE = 8;
     public static final int CONVEYORMOTOR_TWO = 9;
     public static final int MOTORFOUR = 10;
+
+    public static final int CLIMBERMOTOR_ONE = 15;
+    public static final int CLIMBERMOTOR_TWO = 16;
+
+
 }

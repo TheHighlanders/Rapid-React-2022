@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoGroupCMD;
-import frc.robot.commands.ascendCMD;
-import frc.robot.commands.descendCMD;
+import frc.robot.commands.BabyClimberCMD;
+import frc.robot.commands.DadClimberCMD;
 import frc.robot.commands.driveCMD;
-import frc.robot.commands.inTakeIn;
+import frc.robot.commands.inTakeInCMD;
 import frc.robot.commands.intakeoutCMD;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.conveyor;
 import frc.robot.subsystems.intake;
 
 /**
@@ -29,8 +29,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_ddriveTrain = new DriveTrain();
   private final OI m_OI = new OI();
-  private final conveyor m_Conveyor = new conveyor();
-  private final intake m_conveyor = new intake();
+  private final intake m_intake = new intake();
+  private final Climber m_cClimber = new Climber();
+
   private Command m_autoCommand;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -38,7 +39,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
-    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_Conveyor, m_OI);
+    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake, m_OI);
   }
 
   /**
@@ -50,17 +51,21 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // JoystickButton name = new JoystickButton(m_OI.xbox, #);
     // name.whileHeld(new commmandname(m_Conveyor));
+    
+    // Controller 1
     JoystickButton inTakeIn = new JoystickButton(m_OI.xbox, 1);
-    inTakeIn.whileHeld(new inTakeIn(m_conveyor,m_OI));
+    inTakeIn.whileHeld(new inTakeInCMD(m_intake,m_OI));
 
     JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2);
-    intakeoutCMD.whileHeld(new intakeoutCMD(m_conveyor));
+    intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
 
-    JoystickButton ascendCMD = new JoystickButton(m_OI.xbox, 3);
-    ascendCMD.whileHeld(new ascendCMD(m_Conveyor));
+    // Controller #2
+    JoystickButton BabyMotorSTOPCMD = new JoystickButton(m_OI.xboxClimb, 1);
+    BabyMotorSTOPCMD.whileHeld(new BabyClimberCMD(m_cClimber, m_OI));
+    
+    JoystickButton DadMotorSTOPCMD = new JoystickButton(m_OI.xboxClimb, 2);
+    DadMotorSTOPCMD.whileHeld(new DadClimberCMD(m_cClimber, m_OI));
 
-    JoystickButton descendCMD = new JoystickButton(m_OI.xbox, 4);
-    descendCMD.whileHeld(new descendCMD(m_Conveyor));
   }
 
   /**

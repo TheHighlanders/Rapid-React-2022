@@ -5,14 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.conveyor;
+import frc.robot.OI;
+import frc.robot.subsystems.Climber;
 
-public class descendCMD extends CommandBase {
-  /** Creates a new descendCMD. */
-  public final conveyor m_Conveyor;
-  public descendCMD(conveyor conveyor_subsystem) {
-  m_Conveyor = conveyor_subsystem;
-    addRequirements(m_Conveyor);
+public class DadClimberCMD extends CommandBase {
+  /** Creates a new DadClimberCMD. */
+  public final Climber m_cClimber;
+  public final OI m_OI;
+  public DadClimberCMD(Climber Climber_subsystem, OI OI_climbXbox) {
+    m_cClimber = Climber_subsystem;
+    m_OI = OI_climbXbox;
+    addRequirements(m_cClimber);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -23,14 +26,13 @@ public class descendCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Conveyor.descend();
+    m_cClimber.SetDadMotorPower(this.m_OI.getClimbXboxRightY());
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Conveyor.stop();
-    m_Conveyor.stop();
   }
 
   // Returns true when the command should end.

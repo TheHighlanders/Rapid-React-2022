@@ -16,28 +16,25 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.conveyor;
+import frc.robot.subsystems.intake;
 
 
-public class inTakeIn extends CommandBase {
+public class inTakeInCMD extends CommandBase {
   /** Creates a new inTakeIn. */
-  public final conveyor m_conveyor;
+  public final intake m_intake;
   
   public final OI m_OI;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private final ColorMatch m_colorMatcher = new ColorMatch();
+  
   double IR = m_colorSensor.getIR();
   String colorString;
- // DriverStation.Alliance Alliancecolor;// = DriverStation.getAlliance();
   
-  public inTakeIn(conveyor conveyor_subsystem, OI OI_xbox) {
-    m_conveyor = conveyor_subsystem;
+  public inTakeInCMD(intake conveyor_subsystem, OI OI_xbox) {
+    m_intake = conveyor_subsystem;
     m_OI = OI_xbox;
-    addRequirements(m_conveyor);
-
-    
-    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_intake);
   }
 
   // Called when the command is initially scheduled.
@@ -72,13 +69,13 @@ public class inTakeIn extends CommandBase {
         DriverStation.reportWarning("rumble", false);
       }
     }
-    m_conveyor.ascend();
+    m_intake.ascend();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_conveyor.stop();
+    m_intake.stop();
   }
 
   // Returns true when the command should end.

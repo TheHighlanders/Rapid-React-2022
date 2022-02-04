@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class OI {
     public XboxController xbox = new XboxController(Constants.XBOX);
+    public XboxController xboxClimb = new XboxController(Constants.XBOXCLIMB);
+
     public Timer m_Timer;
     public boolean start = false;
     
@@ -27,6 +29,27 @@ public class OI {
     public double getXboxRightY(){
         return xbox.getRightY();
     }
+    
+    //xbox climbing
+
+    public double getClimbXboxLeftX(){
+        return xboxClimb.getLeftX();
+    }
+    public double getClimbXboxLeftY(){
+        return xboxClimb.getLeftY();
+    }
+    public double getCLimbXboxRightX(){
+        return xboxClimb.getRightX();
+    }
+    public double getClimbXboxRightY(){
+        return xboxClimb.getRightY();
+    }
+    
+    
+
+
+
+
     public void setxboxrumble(double vibrate, double length){
         if (m_Timer.get() > length || start == false) {
             start = true;

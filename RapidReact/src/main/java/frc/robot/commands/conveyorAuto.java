@@ -6,13 +6,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.conveyor;
+import frc.robot.subsystems.intake;
 
 public class conveyorAuto extends CommandBase {
   /** Creates a new conveyorAuto. */
-  public final conveyor m_Conveyor;
+  public final intake m_Conveyor;
   public Timer m_Timer;
-  public conveyorAuto(conveyor conveyor_subsystem) {
+  public conveyorAuto(intake conveyor_subsystem) {
     m_Conveyor = conveyor_subsystem;
     addRequirements(m_Conveyor);
     // Use addRequirements() here to declare subsystem dependencies.
