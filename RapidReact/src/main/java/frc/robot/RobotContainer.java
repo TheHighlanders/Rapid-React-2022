@@ -16,7 +16,7 @@ import frc.robot.commands.driveCMD;
 import frc.robot.commands.inTakeIn;
 import frc.robot.commands.intakeoutCMD;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.conveyor;
+import frc.robot.subsystems.intake;
 import frc.robot.subsystems.Door;
 
 /**
@@ -30,7 +30,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain m_ddriveTrain = new DriveTrain();
   private final OI m_OI = new OI();
-  private final conveyor m_conveyor = new conveyor();
+  private final intake m_intake = new intake();
   private Command m_autoCommand;
   public final Door m_door = new Door();
 
@@ -39,7 +39,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
-    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_conveyor, m_OI);
+    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake, m_OI);
   }
 
   /**
@@ -50,12 +50,12 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // JoystickButton name = new JoystickButton(m_OI.xbox, #);
-    // name.whileHeld(new commmandname(m_Conveyor));
+    // name.whileHeld(new commmandname(m_intake));
     JoystickButton inTakeIn = new JoystickButton(m_OI.xbox, 1);
-    inTakeIn.whileHeld(new inTakeIn(m_conveyor,m_OI));
+    inTakeIn.whileHeld(new inTakeIn(m_intake,m_OI));
 
     JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2);
-    intakeoutCMD.whileHeld(new intakeoutCMD(m_conveyor));
+    intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
 
     JoystickButton Door = new JoystickButton(m_OI.xbox, 3);
     Door.toggleWhenPressed(new DoorCMD(m_door));
