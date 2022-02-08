@@ -14,27 +14,32 @@ import frc.robot.Constants;
 
 public class Door extends SubsystemBase {
   /** Creates a new Door. */
-  private WPI_TalonSRX DMTR; // Declare motor controllers variables
+  
+  private WPI_TalonSRX Door = new WPI_TalonSRX(Constants.DOORMOTOR);
 
   public Door() {
-    DMTR = new WPI_TalonSRX(Constants.DOORMOTOR);
-    DMTR.setNeutralMode(NeutralMode.Coast);
+    Door.setNeutralMode(NeutralMode.Coast);
+    Door.setInverted(false);
+    Door.setSensorPhase(false);
 
   }
 
   public void drivePower(double power){
-    DMTR.set(power);
-    DriverStation.reportWarning("DMTR pow =" + power, false);
+    Door.set(power);
+    DriverStation.reportWarning("Door pow =" + power, false);
   }
 
-  public void up(){
-    DMTR.set(ControlMode.Position, -409600/Constants.INCHES_PER_ROTATION);
-    DriverStation.reportWarning("Up--------------------------------", false);
+  public void open(){
+    Door.set(ControlMode.Position, -409600/Constants.INCHES_PER_ROTATION);
+    DriverStation.reportWarning("Up--------------(._.)------------------", false);
+    if (Door.getSelectedSensorPosition()<5){
+Door.set(0.2);
+    }
   }
   public void stop() {
   }
-  public void down(){
-    DriverStation.reportWarning("down------------------------------", false);
+  public void close(){
+    DriverStation.reportWarning("down--------------(._.)----------------", false);
   }
 
   @Override

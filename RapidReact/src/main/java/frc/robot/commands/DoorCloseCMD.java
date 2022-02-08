@@ -7,10 +7,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Door;
 
-public class DoorCMD extends CommandBase {
-  /** Creates a new DoorCMD. */
+public class DoorCloseCMD extends CommandBase {
   public final Door m_door;
-  public DoorCMD(Door door_subsystem) {
+  public DoorCloseCMD(Door door_subsystem) {
     m_door = door_subsystem;
   }
 
@@ -21,7 +20,7 @@ public class DoorCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_door.up();
+    m_door.close();
   }
 
   // Called once the command ends or is interrupted.
