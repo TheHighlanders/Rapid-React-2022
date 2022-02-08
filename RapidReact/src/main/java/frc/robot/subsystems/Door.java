@@ -32,14 +32,17 @@ public class Door extends SubsystemBase {
   public void open(){
     Door.set(ControlMode.Position, -409600/Constants.INCHES_PER_ROTATION);
     DriverStation.reportWarning("Up--------------(._.)------------------", false);
-    if (Door.getSelectedSensorPosition()<5){
-Door.set(0.2);
+    if (Door.getSelectedSensorPosition()>5){
+      Door.set(0.2);
     }
   }
   public void stop() {
   }
   public void close(){
     DriverStation.reportWarning("down--------------(._.)----------------", false);
+   if (Door.getSelectedSensorPosition()>5){
+      Door.set(0.0);
+   }
   }
 
   @Override
@@ -47,3 +50,4 @@ Door.set(0.2);
     // This method will be called once per scheduler run
   }
 }
+
