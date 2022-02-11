@@ -48,6 +48,27 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
+  // gets left1 motor controller id
+  public int getLeft1ID(){
+    return left1.getDeviceID();
+  }
+  
+  // gets left2 motor controller id
+  public int getLeft2ID(){
+    return left2.getDeviceID();
+  }
+
+  // gets right1 motor controller id
+  public int getRight1ID(){
+    return right1.getDeviceID();
+  }
+
+  // gets right2 motor controller id
+  public int getRight2ID(){
+    return right2.getDeviceID();
+
+  }
+
 
   @Override
   public void periodic() {
