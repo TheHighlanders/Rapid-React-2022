@@ -4,8 +4,10 @@
 
 package frc.robot.subsystems;
 
+import java.sql.Driver;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -13,36 +15,41 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Door extends SubsystemBase {
-  /** Creates a new Door. */
-  
   private WPI_TalonSRX Door = new WPI_TalonSRX(Constants.DOORMOTOR);
-
+ 
   public Door() {
-    Door.setNeutralMode(NeutralMode.Coast);
-    Door.setInverted(false);
-    Door.setSensorPhase(false);
-
+    Door.configFactoryDefault(); // clears any non default settings
+    Door.configOpenloopRamp(0.2, 0); // min time to go from neutral to full throttle
+    // The feedback Device is a Quad Encoder (quare period of out phase)
+    // 0 means it's Primary closed loop (1 is auxiliary)
+    // 1000 is the timeout value
+    Door.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    Door.configPeakOutputForward(1); // Configures the forward peak output percentage.
+    Door.config_kP(0,20); //Constants is 0 and P value is 20
+    Door.config_kD(0,100);
+    Door.setSelectedSensorPosition(0); // sets the sensor position to 0 
+    // ((Math.PI * 6)/360.0); btw 6 is the wheel diameter 
   }
 
-  public void drivePower(double power){
-    Door.set(power);
-    DriverStation.reportWarning("Door pow =" + power, false);
-  }
+  // RANDOM NOTES THAT I'M KEEPING FOR NOW
+  // 10:1 means it takes 10 rotations of the motor to 1 complete revolution 
+  // wheel diameter is "6"
+  // C = pi * d ->  3.14 * "6" = 18.84 inches per wheel revolution
+  // I set it to 756 pulse(s) per revolution
+  // 756 pulse = 1 rotation = 18.84 inches travled
+ 
+  //756 PPR (pulse(s) per revolution)
+  //1024 when the motor is "on"
 
-  public void open(){
-    Door.set(ControlMode.Position, -409600/Constants.INCHES_PER_ROTATION);
+
+  public void openDoor(){
     DriverStation.reportWarning("Up--------------(._.)------------------", false);
-    if (Door.getSelectedSensorPosition()>5){
-      Door.set(0.2);
-    }
+    Door.set(ControlMode.Position,189);
   }
-  public void stop() {
-  }
-  public void close(){
+
+  public void closeDoor(){
     DriverStation.reportWarning("down--------------(._.)----------------", false);
-   if (Door.getSelectedSensorPosition()>5){
-      Door.set(0.0);
-   }
+    Door.set(ControlMode.Position,0); // moves back to down 0
   }
 
   @Override
