@@ -50,10 +50,10 @@ public class inTakeIn extends CommandBase {
     double proximity = m_colorSensor.getProximity();
 
     DriverStation.reportWarning("distance" + proximity, false);
-    if (proximity > 300 && proximity < 2047){
-      if (detectedColor.red > detectedColor.blue){
-        colorString = "Red";
-        SmartDashboard.putBoolean("cargo", true);       
+    if (proximity > 300 && proximity < 2047){ //if the ball is in range
+      if (detectedColor.red > detectedColor.blue){ // if the red color value is greater than the blue color value
+        colorString = "Red"; 
+        SmartDashboard.putBoolean("cargo", true); //some dashboard feedback       
 
   
       }
@@ -61,14 +61,17 @@ public class inTakeIn extends CommandBase {
         colorString = "Blue";
         SmartDashboard.putBoolean("cargo", false);       
       }
+      else{
+        execute(); //just in case the neither of the if statments trigger
+      }
+
       DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false);
       
-      if (!colorString.equals(Alliancecolor.toString())){
-        m_OI.setxboxrumble(1,1);
-        DriverStation.reportWarning("rumble", false);
+      if (!colorString.equals(Alliancecolor.toString())){ //check if the ball is the color of our alliance
+        m_OI.setxboxrumble(1,1); //set the controller to rumbleif wrong color
       }
     }
-    m_intake.ascend();
+    m_intake.ascend(); 
   }
 
   // Called once the command ends or is interrupted.
