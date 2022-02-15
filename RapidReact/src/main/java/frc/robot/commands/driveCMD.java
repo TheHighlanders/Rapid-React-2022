@@ -40,28 +40,25 @@ public class driveCMD extends CommandBase {
   @Override
   public void execute() {
 
-    double x = this.m_OI.getXboxLeftX()*26076;
-    double y = this.m_OI.getXboxLeftY()*26076;
+    double x = this.m_OI.getXboxLeftX()*2173; // (4096 [encoder units] * 10 [encoder is in 10^{-1} of a second])/(6 [diameter of wheel] * pi [get circumfrence]) = 2172
+    double y = this.m_OI.getXboxLeftY()*2173; 
     double threshold = 0.3;
-    float velocity = ControlMode.Velocity/10;
     if (!(Math.abs(y) < threshold) && !(Math.abs(x) < threshold)){
      // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); old code
 
-     // whoever wrote stupid, ur koala brain
-
-     left1.set(velocity,x-y);
-     right1.set(velocity,y+x);
+     left1.set(ControlMode.Velocity,x-y);
+     right1.set(ControlMode.Velocity,y+x);
     }
     else if (Math.abs(y) < threshold){
       x = (1/(1 + Math.pow(Math.E,(-1*x))));
-      left1.set(velocity,x);
-      right1.set(velocity,x);
+      left1.set(ControlMode.Velocity,x);
+      right1.set(ControlMode.Velocity,x);
     }
   
     else if (Math.abs(x) < threshold){
       y = (y - threshold * Math.signum(y)) / (1 - threshold);
-      left1.set(velocity,y);
-      right1.set(velocity,y);
+      left1.set(ControlMode.Velocity,y);
+      right1.set(ControlMode.Velocity,y);
     }
   }
       //y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); old code
