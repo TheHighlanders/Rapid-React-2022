@@ -29,17 +29,6 @@ public class Door extends SubsystemBase {
     // ((Math.PI * 6)/360.0); btw 6 is the wheel diameter 
   }
 
-  // RANDOM NOTES THAT I'M KEEPING FOR NOW
-  // 10:1 means it takes 10 rotations of the motor to 1 complete revolution 
-  // wheel diameter is "6"
-  // C = pi * d ->  3.14 * "6" = 18.84 inches per wheel revolution
-  // I set it to 756 pulse(s) per revolution
-  // 756 pulse = 1 rotation = 18.84 inches travled
- 
-  //756 PPR (pulse(s) per revolution)
-  //1024 when the motor is "on"
-
-
   public void openDoor(){
     DriverStation.reportWarning("Up--------------(._.)------------------", false);
     Door.set(ControlMode.Position,189);
