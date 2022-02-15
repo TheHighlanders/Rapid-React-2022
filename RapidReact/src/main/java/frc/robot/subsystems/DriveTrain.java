@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
   private double ramp = 0.2;
 
   public DriveTrain() {
-    left1= new WPI_VictorSPX(Constants.LEFT_ONE);
+    left1 = new WPI_VictorSPX(Constants.LEFT_ONE);
     left2 = new WPI_TalonSRX(Constants.LEFT_TWO);
     right1 = new WPI_TalonSRX(Constants.RIGHT_ONE);
     right2 = new WPI_VictorSPX(Constants.RIGHT_TWO);

@@ -25,10 +25,12 @@ public class driveCMD extends CommandBase {
     m_OI = OI_xbox;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_dDrivetrain);
+
     left1.configFactoryDefault();
     right1.configFactoryDefault();
-    right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    
     left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
   }
   // Called when the command is initially scheduled.
   @Override
@@ -37,29 +39,33 @@ public class driveCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //dead band stuff
+
     double x = this.m_OI.getXboxLeftX()*26076;
     double y = this.m_OI.getXboxLeftY()*26076;
     double threshold = 0.3;
-    float stupid = ControlMode.Velocity/10;
+    float velocity = ControlMode.Velocity/10;
     if (!(Math.abs(y) < threshold) && !(Math.abs(x) < threshold)){
      // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); old code
-     left1.set(stupid,x-y);
-     right1.set(stupid,y+x);
+
+     // whoever wrote stupid, ur koala brain
+
+     left1.set(velocity,x-y);
+     right1.set(velocity,y+x);
     }
     else if (Math.abs(y) < threshold){
-      left1.set(stupid,x);
-      right1.set(stupid,x);
+      x = (1/(1 + Math.pow(Math.E,(-1*x))));
+      left1.set(velocity,x);
+      right1.set(velocity,x);
     }
   
     else if (Math.abs(x) < threshold){
-      left1.set(stupid,y);
-      right1.set(stupid,y);
+      y = (y - threshold * Math.signum(y)) / (1 - threshold);
+      left1.set(velocity,y);
+      right1.set(velocity,y);
     }
   }
       //y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); old code
       
-    // Lex and Iskandar aded Sigmoid curve to the controls
 
     //x = (1/(1 + Math.pow(Math.E,(-1*x))));
 
@@ -70,11 +76,11 @@ public class driveCMD extends CommandBase {
     // m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
 
   // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
+  public void end(boolean interrupted) {}
+
   public boolean isFinished() {
     return false;
   }
