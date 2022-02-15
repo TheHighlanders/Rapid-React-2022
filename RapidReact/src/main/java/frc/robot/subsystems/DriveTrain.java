@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
@@ -40,6 +41,13 @@ public class DriveTrain extends SubsystemBase {
 
     left2.follow(left1);
     right2.follow(right1);
+
+    // Encoders
+    left1.configFactoryDefault();
+    right1.configFactoryDefault();
+    
+    left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
   }
 
   public void drivepower(double left_power, double right_power){
@@ -48,7 +56,13 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
-
+  /*
+      m_dDrivetrain.left1.configFactoryDefault();
+    m_dDrivetrain.right1.configFactoryDefault();
+    
+    m_dDrivetrain.left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    m_dDrivetrain.right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+  */
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

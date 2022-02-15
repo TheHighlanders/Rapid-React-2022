@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import java.sql.Driver;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -25,12 +24,6 @@ public class driveCMD extends CommandBase {
     m_OI = OI_xbox;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_dDrivetrain);
-
-    left1.configFactoryDefault();
-    right1.configFactoryDefault();
-    
-    left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
-    right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
   }
   // Called when the command is initially scheduled.
   @Override
@@ -46,19 +39,19 @@ public class driveCMD extends CommandBase {
     if (!(Math.abs(y) < threshold) && !(Math.abs(x) < threshold)){
      // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); old code
 
-     left1.set(ControlMode.Velocity,x-y);
-     right1.set(ControlMode.Velocity,y+x);
+     m_dDrivetrain.left1.set(ControlMode.Velocity,x-y);
+     m_dDrivetrain.right1.set(ControlMode.Velocity,y+x);
     }
     else if (Math.abs(y) < threshold){
       x = (1/(1 + Math.pow(Math.E,(-1*x))));
-      left1.set(ControlMode.Velocity,x);
-      right1.set(ControlMode.Velocity,x);
+      m_dDrivetrain.left1.set(ControlMode.Velocity,x);
+      m_dDrivetrain.right1.set(ControlMode.Velocity,x);
     }
   
     else if (Math.abs(x) < threshold){
       y = (y - threshold * Math.signum(y)) / (1 - threshold);
-      left1.set(ControlMode.Velocity,y);
-      right1.set(ControlMode.Velocity,y);
+      m_dDrivetrain.left1.set(ControlMode.Velocity,y);
+      m_dDrivetrain.right1.set(ControlMode.Velocity,y);
     }
   }
       //y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); old code
