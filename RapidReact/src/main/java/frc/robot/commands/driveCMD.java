@@ -4,6 +4,11 @@
 
 package frc.robot.commands;
 
+import java.sql.Driver;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -20,8 +25,11 @@ public class driveCMD extends CommandBase {
     m_OI = OI_xbox;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_dDrivetrain);
+    left1.configFactoryDefault();
+    right1.configFactoryDefault();
+    right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
   }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
@@ -30,33 +38,36 @@ public class driveCMD extends CommandBase {
   @Override
   public void execute() {
     //dead band stuff
-    double x = this.m_OI.getXboxLeftX();
-    double y = this.m_OI.getXboxLeftY();
+    double x = this.m_OI.getXboxLeftX()*26076;
+    double y = this.m_OI.getXboxLeftY()*26076;
     double threshold = 0.3;
-    if (Math.abs(x) < threshold){
-      x = 0;
+    float stupid = ControlMode.Velocity/10;
+    if (!(Math.abs(y) < threshold) && !(Math.abs(x) < threshold)){
+     // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); old code
+     left1.set(stupid,x-y);
+     right1.set(stupid,y+x);
     }
-    else{
-      x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); // * Math.signum(x);
+    else if (Math.abs(y) < threshold){
+      left1.set(stupid,x);
+      right1.set(stupid,x);
+    }
+  
+    else if (Math.abs(x) < threshold){
+      left1.set(stupid,y);
+      right1.set(stupid,y);
+    }
+  }
+      //y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); old code
       
-    }
-    if (Math.abs(y) < threshold) {
-      y = 0;
-    }
-    else{
-      y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); // * Math.signum(y);
-      
-    }
     // Lex and Iskandar aded Sigmoid curve to the controls
 
     //x = (1/(1 + Math.pow(Math.E,(-1*x))));
 
     //x = (x - threshold * Math.signum(x)) / (1 - threshold);
     //y = (y - threshold * Math.signum(y)) / (1 - threshold);
-    m_dDrivetrain.drivepower(x-y, y + x);
+    //m_dDrivetrain.drivepower(x-y, y + x);
     // used to be the code below
     // m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
-  }
 
   // Called once the command ends or is interrupted.
   @Override
