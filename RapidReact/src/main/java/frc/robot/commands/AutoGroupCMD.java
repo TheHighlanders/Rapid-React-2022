@@ -14,7 +14,7 @@ import frc.robot.subsystems.intake;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoGroupCMD extends SequentialCommandGroup {
   /** Creates a new Auto. */
-  public AutoGroupCMD(DriveTrain m_ddriveTrain, intake m_intake, OI OI_xbox) {
+  public AutoGroupCMD(DriveTrain m_ddriveTrain, intake m_intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(

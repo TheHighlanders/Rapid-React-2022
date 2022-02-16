@@ -40,7 +40,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
-    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake, m_OI);
+    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake);
   }
 
   /**
@@ -58,13 +58,15 @@ public class RobotContainer {
     JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2);
     intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
 
-    JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 3);
+    JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 5);
     DoorOpen.whileHeld(new DoorOpenCMD(m_door));
 
-    JoystickButton DoorClosed = new JoystickButton(m_OI.xbox,4); // change number button when needed
+    JoystickButton DoorClosed = new JoystickButton(m_OI.xbox,6); // change number button when needed
     DoorClosed.whileHeld(new DoorCloseCMD(m_door));
-  }
 
+    JoystickButton AutoRun = new JoystickButton(m_OI.xbox,4);
+    AutoRun.whileHeld(new AutoGroupCMD(m_ddriveTrain, m_intake));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
