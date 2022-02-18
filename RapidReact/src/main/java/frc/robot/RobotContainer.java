@@ -9,16 +9,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoGroupCMD;
-import frc.robot.commands.DoorCloseCMD;
-import frc.robot.commands.DoorOpenCMD;
-import frc.robot.commands.ascendCMD;
-import frc.robot.commands.descendCMD;
+//import frc.robot.commands.DoorCloseCMD;
+//import frc.robot.commands.DoorOpenCMD; add in imports when merged with a branch with door code
 import frc.robot.commands.driveCMD;
-import frc.robot.commands.inTakeIn;
+//import frc.robot.commands.inTakeIn;
 import frc.robot.commands.intakeoutCMD;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.intake;
-import frc.robot.subsystems.Door;
+//import frc.robot.subsystems.Door;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -34,7 +32,6 @@ public class RobotContainer {
   private final intake m_intake = new intake();
   private Command m_autoCommand;
   public final Door m_door = new Door();
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings

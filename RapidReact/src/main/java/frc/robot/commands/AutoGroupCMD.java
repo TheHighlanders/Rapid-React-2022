@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.intake;
 
@@ -19,7 +18,7 @@ public class AutoGroupCMD extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new CrashCMD(m_ddriveTrain),
-      new intakeAuto(m_intake),
+      new intake(m_intake),
       new DriveBackCMD(m_ddriveTrain)
     );
   }
