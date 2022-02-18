@@ -5,16 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.intake;
+import frc.robot.subsystems.Door;
 
-public class intakeoutCMD extends CommandBase {
-  /** Creates a new intakemotor. */
-  public final intake m_intake;
-  public intakeoutCMD(intake intake_subsystem) {
-    m_intake = intake_subsystem;
-    addRequirements(m_intake);
-    // Use addRequirements() here to declare subsystem dependencies.
+public class DoorCloseCMD extends CommandBase {
+  public final Door m_door;
+  public DoorCloseCMD(Door door_subsystem) {
+    m_door = door_subsystem;
   }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
@@ -22,14 +20,12 @@ public class intakeoutCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intake.descend();
+    m_door.closeDoor();
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    m_intake.stop();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

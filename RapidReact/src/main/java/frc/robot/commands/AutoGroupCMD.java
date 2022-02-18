@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.intake;
 
@@ -14,12 +13,12 @@ import frc.robot.subsystems.intake;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoGroupCMD extends SequentialCommandGroup {
   /** Creates a new Auto. */
-  public AutoGroupCMD(DriveTrain m_ddriveTrain, intake m_conveyor, OI OI_xbox) {
+  public AutoGroupCMD(DriveTrain m_ddriveTrain, intake m_intake) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new CrashCMD(m_ddriveTrain),
-      new conveyorAuto(m_conveyor),
+      new intake(m_intake),
       new DriveBackCMD(m_ddriveTrain)
     );
   }

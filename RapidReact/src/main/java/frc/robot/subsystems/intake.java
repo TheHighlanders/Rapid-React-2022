@@ -10,19 +10,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class intake extends SubsystemBase {
-  /** Creates a new conveyor. */
-  private WPI_VictorSPX conveyor = new WPI_VictorSPX(Constants.CONVEYORMOTOR_ONE);
+  /** Creates a new intake. */
+  private WPI_VictorSPX intake = new WPI_VictorSPX(Constants.CONVEYORMOTOR_ONE);
 
   public intake() {}
 
   public void ascend(){
-    conveyor.set(1);
+    intake.set(1);
   }
   public void stop() {
-    conveyor.set(0);
+    intake.set(0);
   }
   public void descend(){
-    conveyor.set(1);
+    intake.set(1);
   }
   
   @Override

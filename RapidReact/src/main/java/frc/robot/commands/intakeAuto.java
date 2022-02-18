@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.intake;
 
-public class conveyorAuto extends CommandBase {
-  /** Creates a new conveyorAuto. */
-  public final intake m_Conveyor;
+public class intakeAuto extends CommandBase {
+  /** Creates a new intakeAuto. */
+  public final intake m_intake;
   public Timer m_Timer;
-  public conveyorAuto(intake conveyor_subsystem) {
-    m_Conveyor = conveyor_subsystem;
-    addRequirements(m_Conveyor);
+  public intakeAuto(intake intake_subsystem) {
+    m_intake = intake_subsystem;
+    addRequirements(m_intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -31,18 +31,18 @@ public class conveyorAuto extends CommandBase {
   @Override
   public void execute() {
     if (m_Timer.get() <3) {
-      m_Conveyor.ascend();
+      m_intake.ascend();
     } else {
-      m_Conveyor.stop();
-      m_Conveyor.stop();
+      m_intake.stop();
+      m_intake.stop();
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Conveyor.stop();
-    m_Conveyor.stop();
+    m_intake.stop();
+    m_intake.stop();
   }
 
   // Returns true when the command should end.

@@ -17,6 +17,7 @@ import frc.robot.commands.intakeoutCMD;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.intake;
+//import frc.robot.subsystems.Door;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -30,16 +31,14 @@ public class RobotContainer {
   private final DriveTrain m_ddriveTrain = new DriveTrain();
   private final OI m_OI = new OI();
   private final intake m_intake = new intake();
-  private final Climber m_cClimber = new Climber();
-
   private Command m_autoCommand;
-
+  public final Door m_door = new Door();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
-    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake, m_OI);
+    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake);
   }
 
   /**
@@ -50,22 +49,21 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // JoystickButton name = new JoystickButton(m_OI.xbox, #);
-    // name.whileHeld(new commmandname(m_Conveyor));
-    
-    // Controller 1
+    // name.whileHeld(new commmandname(m_intake));
     JoystickButton inTakeIn = new JoystickButton(m_OI.xbox, 1);
-    inTakeIn.whileHeld(new inTakeInCMD(m_intake,m_OI));
+    inTakeIn.whileHeld(new inTakeIn(m_intake,m_OI));
 
     JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2);
     intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
 
-    // Controller #2
-    JoystickButton BabyMotorSTOPCMD = new JoystickButton(m_OI.xboxClimb, 1);
-    BabyMotorSTOPCMD.whileHeld(new BabyClimberCMD(m_cClimber, m_OI));
-    
-    JoystickButton DadMotorSTOPCMD = new JoystickButton(m_OI.xboxClimb, 2);
-    DadMotorSTOPCMD.whileHeld(new DadClimberCMD(m_cClimber, m_OI));
+    JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 5);
+    DoorOpen.whileHeld(new DoorOpenCMD(m_door));
 
+    JoystickButton DoorClosed = new JoystickButton(m_OI.xbox,6); // change number button when needed
+    DoorClosed.whileHeld(new DoorCloseCMD(m_door));
+
+    JoystickButton AutoRun = new JoystickButton(m_OI.xbox,4);
+    AutoRun.whileHeld(new AutoGroupCMD(m_ddriveTrain, m_intake));
   }
 
   /**
