@@ -4,44 +4,29 @@
 
 package frc.robot.commands;
 
-//import java.util.concurrent.TimeoutException;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-//import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Climber;
 
-public class DriveBackCMD extends CommandBase {
-  /** Creates a new DriveBack. */
-  public final DriveTrain m_ddriveTrain;
-  public Timer m_Timer;
-  public DriveBackCMD(DriveTrain drive_subsystem) {
-  m_ddriveTrain = drive_subsystem;
+public class DadMotorStopCMD extends CommandBase {
+  /** Creates a new DadMotorStopCMD. */
+  public final Climber m_cClimber;
+
+  public DadMotorStopCMD(Climber Climber_subsystem) {
+    m_cClimber = Climber_subsystem;
+
+    addRequirements(m_cClimber);
+
     // Use addRequirements() here to declare subsystem dependencies.
-  addRequirements(m_ddriveTrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    m_Timer = new Timer();
-    m_Timer.reset();
-    m_Timer.start();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
- 
-    if(m_Timer.get() < 3 ) { 
-       m_ddriveTrain.drivepower(0.2, 0.2); 
-    }
-    else{ 
-      m_ddriveTrain.drivepower(0, 0); 
-      m_Timer.stop();
-
-    }
-
+    m_cClimber.DadStopMotor(); 
 
   }
 

@@ -7,27 +7,39 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.AutoGroupCMD;
+import frc.robot.commands.BabyClimberCMD;
+import frc.robot.commands.DadClimberCMD;
 import frc.robot.commands.driveCMD;
+import frc.robot.commands.inTakeInCMD;
+import frc.robot.commands.intakeoutCMD;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.intake;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and button mappings) should be declared here.
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a "declarative" paradigm, very little robot logic should
+ * actually be handled in the {@link Robot} periodic methods (other than the
+ * scheduler calls). Instead, the structure of the robot (including subsystems,
+ * commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveTrain m_dDrivetrain = new DriveTrain();
-  private final OI m_OI = new OI(); 
+  private final DriveTrain m_ddriveTrain = new DriveTrain();
+  private final OI m_OI = new OI();
+  private final intake m_intake = new intake();
+  private final Climber m_cClimber = new Climber();
 
- private final driveCMD m_autoCommand = new driveCMD(m_dDrivetrain, m_OI);
+  private Command m_autoCommand;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_dDrivetrain.setDefaultCommand(new driveCMD(m_dDrivetrain, m_OI));
+    m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
+    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake, m_OI);
   }
 
   /**
@@ -36,7 +48,25 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    // JoystickButton name = new JoystickButton(m_OI.xbox, #);
+    // name.whileHeld(new commmandname(m_Conveyor));
+    
+    // Controller 1
+    JoystickButton inTakeIn = new JoystickButton(m_OI.xbox, 1);
+    inTakeIn.whileHeld(new inTakeInCMD(m_intake,m_OI));
+
+    JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2);
+    intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
+
+    // Controller #2
+    JoystickButton BabyMotorSTOPCMD = new JoystickButton(m_OI.xboxClimb, 1);
+    BabyMotorSTOPCMD.whileHeld(new BabyClimberCMD(m_cClimber, m_OI));
+    
+    JoystickButton DadMotorSTOPCMD = new JoystickButton(m_OI.xboxClimb, 2);
+    DadMotorSTOPCMD.whileHeld(new DadClimberCMD(m_cClimber, m_OI));
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

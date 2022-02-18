@@ -16,14 +16,14 @@ import frc.robot.subsystems.DriveTrain;
 
 public class driveCMD extends CommandBase {
   /** Creates a new driveCMD. */
-  public final DriveTrain m_dDrivetrain;
+  public final DriveTrain m_ddriveTrain;
   public final OI m_OI;
 
   public driveCMD(DriveTrain drive_subsystem, OI OI_xbox) {
-    m_dDrivetrain = drive_subsystem;
+    m_ddriveTrain = drive_subsystem;
     m_OI = OI_xbox;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_dDrivetrain);
+    addRequirements(m_ddriveTrain);
   }
   // Called when the command is initially scheduled.
   @Override
@@ -32,6 +32,7 @@ public class driveCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    m_ddriveTrain.drivepower(this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
 
     double x = this.m_OI.getXboxLeftX()*2173; // (4096 [encoder units] * 10 [encoder is in 10^{-1} of a second])/(6 [diameter of wheel] * pi [get circumfrence]) = 2172
     double y = this.m_OI.getXboxLeftY()*2173; 
@@ -39,19 +40,19 @@ public class driveCMD extends CommandBase {
     if (!(Math.abs(y) < threshold) && !(Math.abs(x) < threshold)){
      // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); old code
 
-     m_dDrivetrain.left1.set(ControlMode.Velocity,x-y);
-     m_dDrivetrain.right1.set(ControlMode.Velocity,y+x);
+     m_ddriveTrain.left1.set(ControlMode.Velocity,x-y);
+     m_ddriveTrain.right1.set(ControlMode.Velocity,y+x);
     }
     else if (Math.abs(y) < threshold){
       x = (1/(1 + Math.pow(Math.E,(-1*x))));
-      m_dDrivetrain.left1.set(ControlMode.Velocity,x);
-      m_dDrivetrain.right1.set(ControlMode.Velocity,x);
+      m_ddriveTrain.left1.set(ControlMode.Velocity,x);
+      m_ddriveTrain.right1.set(ControlMode.Velocity,x);
     }
   
     else if (Math.abs(x) < threshold){
       y = (y - threshold * Math.signum(y)) / (1 - threshold);
-      m_dDrivetrain.left1.set(ControlMode.Velocity,y);
-      m_dDrivetrain.right1.set(ControlMode.Velocity,y);
+      m_ddriveTrain.left1.set(ControlMode.Velocity,y);
+      m_ddriveTrain.right1.set(ControlMode.Velocity,y);
     }
   }
       //y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); old code

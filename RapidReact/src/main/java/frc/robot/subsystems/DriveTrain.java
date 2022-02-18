@@ -12,10 +12,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+//import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
-  /** Creates a new DriveTrain. */
+  /** Creates a new driveTrain. */
   public WPI_VictorSPX left1;
   public WPI_TalonSRX left2;
   public WPI_TalonSRX right1;
@@ -28,6 +28,9 @@ public class DriveTrain extends SubsystemBase {
     left2 = new WPI_TalonSRX(Constants.LEFT_TWO);
     right1 = new WPI_TalonSRX(Constants.RIGHT_ONE);
     right2 = new WPI_VictorSPX(Constants.RIGHT_TWO);
+    
+    left2.setInverted(true);
+    left1.setInverted(true);
 
     left1.configOpenloopRamp(ramp,0);
     left2.configOpenloopRamp(ramp,0);
@@ -56,13 +59,17 @@ public class DriveTrain extends SubsystemBase {
 
   }
 
-  /*
-      m_dDrivetrain.left1.configFactoryDefault();
-    m_dDrivetrain.right1.configFactoryDefault();
-    
-    m_dDrivetrain.left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
-    m_dDrivetrain.right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
-  */
+  public double getOutputCurrentL(){
+    return left2.getStatorCurrent();
+
+  }
+
+  public double getOutputCurrentR(){
+    return right1.getStatorCurrent();
+
+  }
+
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
