@@ -18,7 +18,7 @@ public class AutoGroupCMD extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new CrashCMD(m_ddriveTrain),
-      new intake(m_intake),
+      new intakeoutCMD(m_intake),
       new DriveBackCMD(m_ddriveTrain)
     );
   }

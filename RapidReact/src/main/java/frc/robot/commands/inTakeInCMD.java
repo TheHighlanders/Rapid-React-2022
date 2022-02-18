@@ -27,12 +27,10 @@ public class inTakeInCMD extends CommandBase {
   double IR = m_colorSensor.getIR();
   String colorString;
   
-  public inTakeIn(intake intake_subsystem, OI OI_xbox) {
+  public inTakeInCMD(intake intake_subsystem, OI OI_xbox) {
     m_intake = intake_subsystem;
     m_OI = OI_xbox;
     addRequirements(m_intake);
-
-    
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

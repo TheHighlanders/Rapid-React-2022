@@ -31,5 +31,6 @@ public final class Constants {
     public static final int CLIMBERMOTOR_ONE = 15;
     public static final int CLIMBERMOTOR_TWO = 16;
 
+    public static final int DOORMOTOR = 17;
 
 }
