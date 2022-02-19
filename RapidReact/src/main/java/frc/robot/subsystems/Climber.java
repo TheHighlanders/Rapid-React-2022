@@ -17,12 +17,17 @@ public class Climber extends SubsystemBase {
   public WPI_TalonFX DadMotor = new WPI_TalonFX(Constants.CLIMBERMOTOR_TWO); 
 
   public Climber() {
+    BabyMotor.getSelectedSensorPosition();
     DadMotor.configFactoryDefault(); // clears any non default settings
     DadMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     DadMotor.configPeakOutputForward(1); // Configures the forward peak output percentage.
     BabyMotor.configFactoryDefault(); 
     BabyMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     BabyMotor.configPeakOutputForward(1);
+    DadMotor.config_kP(0,20);
+    DadMotor.config_kD(0,100);
+    BabyMotor.config_kP(0,20);
+    BabyMotor.config_kD(0,100);
    }
 
 
