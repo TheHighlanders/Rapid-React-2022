@@ -24,8 +24,12 @@ public class Climber extends SubsystemBase {
     BabyMotor.configFactoryDefault(); 
     BabyMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     BabyMotor.configPeakOutputForward(1);
-    DadMotor.config_kP(0,20);
-    DadMotor.config_kD(0,100);
+
+    // math
+    DadMotor.config_kP(0,50);
+    DadMotor.config_kI(0, 0.2);
+    DadMotor.config_kD(0,10);
+
     BabyMotor.config_kP(0,20);
     BabyMotor.config_kD(0,100);
    }
