@@ -6,9 +6,10 @@
 package frc.robot.commands;
 
 
+import frc.robot.OI;
+
 import com.revrobotics.ColorSensorV3;
 
-import frc.robot.OI;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,22 +17,20 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.intake;
 
-
 public class inTakeInCMD extends CommandBase {
   /** Creates a new inTakeIn. */
-  public final intake m_intake;
-  
+  public final intake m_intake; 
   public final OI m_OI;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   double IR = m_colorSensor.getIR();
   String colorString;
+  Boolean cargoColor; // Red when True, Blue when false
   
   public inTakeInCMD(intake intake_subsystem, OI OI_xbox) {
     m_intake = intake_subsystem;
     m_OI = OI_xbox;
     addRequirements(m_intake);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -42,39 +41,39 @@ public class inTakeInCMD extends CommandBase {
   @Override
   public void execute() {
    
-    DriverStation.Alliance Alliancecolor = DriverStation.getAlliance();
-    Color detectedColor = m_colorSensor.getColor();
-    double proximity = m_colorSensor.getProximity();
+    DriverStation.Alliance Alliancecolor = DriverStation.getAlliance(); // gets our alliance Color
+    Color detectedColor = m_colorSensor.getColor(); // gets the detected color of the color sensor
+    double proximity = m_colorSensor.getProximity(); // gets the proximity from the color sensor
+    
+    m_intake.ascend(); // runs the intake
+    cargoColor = false;
 
-    DriverStation.reportWarning("distance" + proximity, false);
-    if (proximity > 300 && proximity < 2047){ //if the ball is in range
+    SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
+    DriverStation.reportWarning("distance" + proximity, false); // prints out the proximity sensor's range (can be commented out after attached to intake)
+    
+    if (proximity > 300 && proximity < 2047){ // if the cargo is in range (300 will change once attached to the intake)
       if (detectedColor.red > detectedColor.blue){ // if the red color value is greater than the blue color value
-        colorString = "Red"; 
-        SmartDashboard.putBoolean("cargo", true); //some dashboard feedback       
-
-  
+        colorString = "Red"; // cargo is red
+        cargoColor = true; // displays red
       }
-      else if (detectedColor.red < detectedColor.blue){
-        colorString = "Blue";
-        SmartDashboard.putBoolean("cargo", false);       
-      }
-      else{
-        execute(); //just in case the neither of the if statments trigger
+      else if (detectedColor.red < detectedColor.blue){ // if the red color value is less than the blue color value
+        colorString = "Blue"; // cargo is blue
+        cargoColor = false; // displays blue
       }
 
-      DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false);
+      SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
+      DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false); // prints out cargo color and alliance color
       
-      if (!colorString.equals(Alliancecolor.toString())){ //check if the ball is the color of our alliance
-        m_OI.setxboxrumble(1,1); //set the controller to rumbleif wrong color
+      if (!colorString.equals(Alliancecolor.toString())){ // if the color is not equal to the alliance color therefore the wrong color
+        m_OI.setxboxrumble(1,1); //set the controller to rumble
       }
     }
-    m_intake.ascend();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intake.stop();
+    m_intake.stop(); // sets intake motors to 0 so it stops once the command is done
   }
 
   // Returns true when the command should end.
