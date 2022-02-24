@@ -16,6 +16,7 @@ public class Door extends SubsystemBase {
   private WPI_TalonSRX Door = new WPI_TalonSRX(Constants.DOORMOTOR);
  
   public Door() {
+   // Door.setInverted(true);
     Door.configFactoryDefault(); // clears any non default settings
     Door.configOpenloopRamp(0.2, 0); // min time to go from neutral to full throttle
     // The feedback Device is a Quad Encoder (quare period of out phase)
