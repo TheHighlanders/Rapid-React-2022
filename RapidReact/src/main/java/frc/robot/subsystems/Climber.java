@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -17,6 +18,7 @@ public class Climber extends SubsystemBase {
   public WPI_TalonFX DadMotor = new WPI_TalonFX(Constants.CLIMBERMOTOR_TWO); 
 
   public Climber() {
+    // BIG ARMS: up is negative and down is positive 
     BabyMotor.getSelectedSensorPosition();
     DadMotor.configFactoryDefault(); // clears any non default settings
     DadMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
@@ -36,6 +38,18 @@ public class Climber extends SubsystemBase {
 
 
   public void SetBabyMotorPower(double BabyMotorPower){
+    //if limit switch was not pressed
+    // boolean switchIsGood = limitSwitch.get() == true;
+    // DriverStation.reportWarning("Sensor Status: " + switchIsGood, false);
+    // if(limitSwitch.get() == false){
+    //   //move left not right 
+    //   DriverStation.reportWarning("Hook left up", false);
+    //   m_Hook.HookUpLeft();
+    // }
+    //  //if limit switch was pressed
+    // if(limitSwitch.get() == true){
+    //   m_Hook.HookStopLeft();
+    // }
     BabyMotor.set(ControlMode.Velocity, 100); //have no idea how fast we wanted them to go so just put 100 in
   }
   
