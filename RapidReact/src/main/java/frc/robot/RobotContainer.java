@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.AutoGroupCMD;
+import frc.robot.commands.DadClimberCMD;
 import frc.robot.commands.DoorCloseCMD;
 import frc.robot.commands.DoorOpenCMD;
 //import frc.robot.commands.DoorCloseCMD;
@@ -18,6 +19,7 @@ import frc.robot.commands.inTakeInCMD;
 //import frc.robot.commands.inTakeIn;
 //import frc.robot.commands.inTakeIn;
 import frc.robot.commands.intakeoutCMD;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Door;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.intake;
@@ -37,6 +39,7 @@ public class RobotContainer {
   private final intake m_intake = new intake();
   private Command m_autoCommand;
   public final Door m_door = new Door();
+  public final Climber m_climber = new Climber();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -54,20 +57,24 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // JoystickButton name = new JoystickButton(m_OI.xbox, #);
     // name.whileHeld(new commmandname(m_intake));
-    JoystickButton inTakein = new JoystickButton(m_OI.xbox, 1);
+    JoystickButton inTakein = new JoystickButton(m_OI.xbox, 1); //A
     inTakein.whileHeld(new inTakeInCMD(m_intake,m_OI));
 
-    JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2);
+    JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2); // B
     intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
 
-    JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 3);
+    JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 3); // x
     DoorOpen.whileHeld(new DoorOpenCMD(m_door));
 
-    JoystickButton DoorClosed = new JoystickButton(m_OI.xbox,6); // change number button when needed
-    DoorClosed.whileHeld(new DoorCloseCMD(m_door));
-
-    JoystickButton AutoRun = new JoystickButton(m_OI.xbox,4);
+    JoystickButton AutoRun = new JoystickButton(m_OI.xbox,4); // y
     AutoRun.whileHeld(new AutoGroupCMD(m_ddriveTrain, m_intake));
+
+    // climbing
+    JoystickButton BigArmsClimb = new JoystickButton(m_OI.xbox,5); // LB Button
+    BigArmsClimb.whileHeld(new DadClimberCMD(m_climber, m_OI));
+
+    JoystickButton SmallArmsClimb = new JoystickButton(m_OI.xbox,6); // RB Button
+    SmallArmsClimb.whileHeld(new DadClimberCMD(m_climber, m_OI));
   }
 
   /**

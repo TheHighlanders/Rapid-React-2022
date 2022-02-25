@@ -23,13 +23,10 @@ public final class Constants {
     public static final int RIGHT_ONE = 5;
     public static final int RIGHT_TWO = 3;
 
-    public static final int MOTORONE = 7;
     public static final int CONVEYORMOTOR_ONE = 8;
-    public static final int CONVEYORMOTOR_TWO = 9;
-    public static final int MOTORFOUR = 10;
 
-    public static final int CLIMBERMOTOR_ONE = 15;
-    public static final int CLIMBERMOTOR_TWO = 16;
+    public static final int CLIMBERMOTOR_ONE = 9;
+    public static final int CLIMBERMOTOR_TWO = 7;
 
     public static final int DOORMOTOR = 10;
 

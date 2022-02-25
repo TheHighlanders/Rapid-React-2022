@@ -37,7 +37,7 @@ public class Climber extends SubsystemBase {
    }
 
 
-  public void SetBabyMotorPower(double BabyMotorPower){
+  public void SetBabyMotorPower(){
     //if limit switch was not pressed
     // boolean switchIsGood = limitSwitch.get() == true;
     // DriverStation.reportWarning("Sensor Status: " + switchIsGood, false);
@@ -50,19 +50,21 @@ public class Climber extends SubsystemBase {
     // if(limitSwitch.get() == true){
     //   m_Hook.HookStopLeft();
     // }
-    BabyMotor.set(ControlMode.Velocity, 100); //have no idea how fast we wanted them to go so just put 100 in
+    BabyMotor.set(ControlMode.Position,2000); 
   }
   
-  public void SetDadMotorPower(double DadMotorPower){
-    DadMotor.set(ControlMode.Velocity, 100);
+  public void SetDadMotorPower(){
+    DadMotor.set(ControlMode.Position, -425);
   }
 
   public void BabyStopMotor(){
-    BabyMotor.set(ControlMode.Velocity, 0);
+    BabyMotor.set(0);
+    //BabyMotor.set(ControlMode.Position, 0);
   }
 
   public void DadStopMotor(){
-    DadMotor.set(ControlMode.Velocity, 0);
+    DadMotor.set(0);
+    //DadMotor.set(ControlMode.Position, 0);
   }
 
 
