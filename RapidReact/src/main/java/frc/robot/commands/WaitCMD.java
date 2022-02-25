@@ -35,7 +35,6 @@ public class WaitCMD extends CommandBase {
    else{ 
      m_dDriveTrain.drivepower(0.2, 0.2); 
      m_Timer.stop();
-
    }
   }
 

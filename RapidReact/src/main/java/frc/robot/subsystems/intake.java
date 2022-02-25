@@ -11,7 +11,7 @@ import frc.robot.Constants;
 
 public class intake extends SubsystemBase {
   /** Creates a new intake. */
-  private WPI_VictorSPX intake = new WPI_VictorSPX(Constants.CONVEYORMOTOR_ONE);
+  private WPI_VictorSPX intake = new WPI_VictorSPX(Constants.INTAKE);
 
   public intake() {}
 

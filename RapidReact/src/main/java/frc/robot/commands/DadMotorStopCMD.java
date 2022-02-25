@@ -13,10 +13,7 @@ public class DadMotorStopCMD extends CommandBase {
 
   public DadMotorStopCMD(Climber Climber_subsystem) {
     m_cClimber = Climber_subsystem;
-
     addRequirements(m_cClimber);
-
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.

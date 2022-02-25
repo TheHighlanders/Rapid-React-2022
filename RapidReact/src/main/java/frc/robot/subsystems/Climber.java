@@ -14,11 +14,10 @@ import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  public WPI_TalonFX BabyMotor = new WPI_TalonFX(Constants.CLIMBERMOTOR_ONE); 
+  public WPI_TalonFX BabyMotor = new WPI_TalonFX(Constants.CLIMBERMOTOR_ONE); // up is negative and down is positive
   public WPI_TalonFX DadMotor = new WPI_TalonFX(Constants.CLIMBERMOTOR_TWO); 
 
   public Climber() {
-    // BIG ARMS: up is negative and down is positive 
     BabyMotor.getSelectedSensorPosition();
     DadMotor.configFactoryDefault(); // clears any non default settings
     DadMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
@@ -38,18 +37,6 @@ public class Climber extends SubsystemBase {
 
 
   public void SetBabyMotorPower(){
-    //if limit switch was not pressed
-    // boolean switchIsGood = limitSwitch.get() == true;
-    // DriverStation.reportWarning("Sensor Status: " + switchIsGood, false);
-    // if(limitSwitch.get() == false){
-    //   //move left not right 
-    //   DriverStation.reportWarning("Hook left up", false);
-    //   m_Hook.HookUpLeft();
-    // }
-    //  //if limit switch was pressed
-    // if(limitSwitch.get() == true){
-    //   m_Hook.HookStopLeft();
-    // }
     BabyMotor.set(ControlMode.Position,2000); 
   }
   
