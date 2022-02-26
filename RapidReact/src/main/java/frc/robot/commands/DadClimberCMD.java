@@ -15,7 +15,7 @@ public class DadClimberCMD extends CommandBase {
   public DadClimberCMD(Climber Climber_subsystem, OI OI_climbXbox) {
     m_cClimber = Climber_subsystem;
     m_OI = OI_climbXbox;
-    addRequirements(m_cClimber);
+    // addRequirements(m_cClimber);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

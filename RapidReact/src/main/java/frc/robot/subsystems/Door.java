@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Door extends SubsystemBase {
-  private WPI_TalonSRX Door = new WPI_TalonSRX(Constants.DOORMOTOR);
+  public WPI_TalonSRX Door = new WPI_TalonSRX(Constants.DOORMOTOR);
  
   public Door() {
    // Door.setInverted(true);
@@ -31,12 +31,12 @@ public class Door extends SubsystemBase {
   }
 
   public void openDoor(){
-    DriverStation.reportWarning("Up--------------(._.)------------------", false);
+    //DriverStation.reportWarning("Up--------------(._.)------------------", false);
     Door.set(ControlMode.Position,189);
   }
 
   public void closeDoor(){
-    DriverStation.reportWarning("down--------------(._.)----------------", false);
+    //DriverStation.reportWarning("down--------------(._.)----------------", false);
     Door.set(ControlMode.Position,0); // moves back to down 0
   }
 

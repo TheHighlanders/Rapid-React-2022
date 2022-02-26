@@ -12,6 +12,7 @@ public class DoorOpenCMD extends CommandBase {
   public final Door m_door;
   public DoorOpenCMD(Door door_subsystem) {
     m_door = door_subsystem;
+    // addRequirements(m_door);
   }
 
   // Called when the command is initially scheduled.
@@ -21,13 +22,14 @@ public class DoorOpenCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_door.openDoor();
+    m_door.closeDoor();
+   
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_door.closeDoor();
+     m_door.openDoor();
   }
 
   // Returns true when the command should end.

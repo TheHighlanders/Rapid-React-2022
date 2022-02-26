@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
@@ -28,20 +29,33 @@ public class driveCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
     //dead band stuff
     double x = this.m_OI.getXboxLeftX();
     double y = this.m_OI.getXboxLeftY();
-    double threshold = 0.1;
+    double threshold = 0.3;
     if (Math.abs(x) < threshold){
       x = 0;
+    }
+    else{
+      x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); // * Math.signum(x);
+      
     }
     if (Math.abs(y) < threshold) {
       y = 0;
     }
-    x = (x - threshold * Math.signum(x)) / (1 - threshold);
-    y = (y - threshold * Math.signum(y)) / (1 - threshold);
-    m_dDrivetrain.drivepower(y - x, y + x);
+    else{
+      y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); // * Math.signum(y);
+      
+    }
+    // Lex and Iskandar aded Sigmoid curve to the controls
+
+    //x = (1/(1 + Math.pow(Math.E,(-1*x))));
+
+    //x = (x - threshold * Math.signum(x)) / (1 - threshold);
+    //y = (y - threshold * Math.signum(y)) / (1 - threshold);
+    m_dDrivetrain.drivepower(x-y, y + x);
+    // used to be the code below
+    // m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
   }
 
   // Called once the command ends or is interrupted.

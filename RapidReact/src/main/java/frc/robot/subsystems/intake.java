@@ -22,7 +22,7 @@ public class intake extends SubsystemBase {
     intake.set(0);
   }
   public void descend(){
-    intake.set(1);
+    intake.set(-1);
   }
   
   @Override

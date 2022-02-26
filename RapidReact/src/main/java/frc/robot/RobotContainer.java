@@ -44,6 +44,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    m_door.Door.setSelectedSensorPosition(0);
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
     m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake);
   }
@@ -66,16 +67,16 @@ public class RobotContainer {
     JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 3); // x
     DoorOpen.whileHeld(new DoorOpenCMD(m_door));
 
-    JoystickButton AutoRun = new JoystickButton(m_OI.xbox,4); // y
-    AutoRun.whileHeld(new AutoGroupCMD(m_ddriveTrain, m_intake));
+    //JoystickButton AutoRun = new JoystickButton(m_OI.xbox,4); // y
+    //AutoRun.whileHeld(new AutoGroupCMD(m_ddriveTrain, m_intake));
 
     // climbing
     JoystickButton BigArmsClimb = new JoystickButton(m_OI.xbox,5); // LB Button
     BigArmsClimb.whileHeld(new DadClimberCMD(m_climber, m_OI));
 
-    JoystickButton SmallArmsClimb = new JoystickButton(m_OI.xbox,6); // RB Button
-    SmallArmsClimb.whileHeld(new DadClimberCMD(m_climber, m_OI));
-  }
+  //   JoystickButton SmallArmsClimb = new JoystickButton(m_OI.xbox,6); // RB Button
+  //   SmallArmsClimb.whileHeld(new DadClimberCMD(m_climber, m_OI));
+    }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
