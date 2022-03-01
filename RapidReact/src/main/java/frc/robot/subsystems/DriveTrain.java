@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -16,16 +17,16 @@ import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
   /** Creates a new driveTrain. */
-  public WPI_VictorSPX left1;
-  public WPI_TalonSRX left2;
+  public WPI_TalonSRX left1;
+  public WPI_VictorSPX left2;
   public WPI_TalonSRX right1;
   public WPI_VictorSPX right2;
   
   private double ramp = 0.2;
 
   public DriveTrain() {
-    left1 = new WPI_VictorSPX(Constants.LEFT_ONE);
-    left2 = new WPI_TalonSRX(Constants.LEFT_TWO);
+    left1 = new WPI_TalonSRX(Constants.LEFT_ONE);
+    left2 = new WPI_VictorSPX(Constants.LEFT_TWO);
     right1 = new WPI_TalonSRX(Constants.RIGHT_ONE);
     right2 = new WPI_VictorSPX(Constants.RIGHT_TWO);
     
@@ -45,12 +46,15 @@ public class DriveTrain extends SubsystemBase {
     left2.follow(left1);
     right2.follow(right1);
 
+
     // Encoders
     left1.configFactoryDefault();
     right1.configFactoryDefault();
     
     left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    left1.config_kP(0,1/2611);
+    right1.config_kP(0,1/2611);
   }
 
   public void drivepower(double left_power, double right_power){
@@ -58,9 +62,13 @@ public class DriveTrain extends SubsystemBase {
       right1.set(right_power);
 
   }
+  public void drivespeed(double left_power, double right_power){
+    left1.set(ControlMode.Velocity,left_power*2621.44);
+    right1.set(ControlMode.Velocity,right_power*2621.44);
 
+}
   public double getOutputCurrentL(){
-    return left2.getStatorCurrent();
+    return left1.getStatorCurrent();
 
   }
 

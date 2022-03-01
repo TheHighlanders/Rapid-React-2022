@@ -8,17 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.AutoGroupCMD;
-import frc.robot.commands.DadClimberCMD;
-import frc.robot.commands.DoorCloseCMD;
-import frc.robot.commands.DoorOpenCMD;
-//import frc.robot.commands.DoorCloseCMD;
-//import frc.robot.commands.DoorOpenCMD; add in imports when merged with a branch with door code
-import frc.robot.commands.driveCMD;
-import frc.robot.commands.inTakeInCMD;
-//import frc.robot.commands.inTakeIn;
-//import frc.robot.commands.inTakeIn;
-import frc.robot.commands.intakeoutCMD;
+import frc.robot.commands.*;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Door;
 import frc.robot.subsystems.DriveTrain;
@@ -71,11 +61,15 @@ public class RobotContainer {
     //AutoRun.whileHeld(new AutoGroupCMD(m_ddriveTrain, m_intake));
 
     // climbing
-    JoystickButton BigArmsClimb = new JoystickButton(m_OI.xbox,5); // LB Button
-    BigArmsClimb.whileHeld(new DadClimberCMD(m_climber, m_OI));
 
-  //   JoystickButton SmallArmsClimb = new JoystickButton(m_OI.xbox,6); // RB Button
-  //   SmallArmsClimb.whileHeld(new DadClimberCMD(m_climber, m_OI));
+    JoystickButton SmallArmsBack = new JoystickButton(m_OI.xboxClimb,0); // y
+    SmallArmsBack.whileHeld(new DadClimberUpCMD(m_climber,m_OI));
+
+    JoystickButton BigArmsBack = new JoystickButton(m_OI.xboxClimb,2); // a
+    BigArmsBack.whileHeld(new DadMotorDownCMD(m_climber,m_OI));
+
+    //JoystickButton l = new JoystickButton(m_OI.xboxClimb,m_OI.getClimbXboxPOV());
+    //l.whenPressed(new BabyClimberDownCMD(m_climber, m_OI));
     }
 
   /**

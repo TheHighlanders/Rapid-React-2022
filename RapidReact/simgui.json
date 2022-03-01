@@ -1,9 +1,51 @@
 {
+  "HALProvider": {
+    "Other Devices": {
+      "Talon SRX[9]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[9]/Analog In": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[9]/Fwd Limit": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[9]/Pulse Width Input": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[9]/Quad Encoder": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon SRX[9]/Rev Limit": {
+        "header": {
+          "open": true
+        }
+      },
+      "Victor SPX[8]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Climber": "Subsystem",
+      "/LiveWindow/Door": "Subsystem",
       "/LiveWindow/DriveTrain": "Subsystem",
-      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/intake": "Subsystem"
     },
     "windows": {
       "/LiveWindow/Ungrouped/Scheduler": {

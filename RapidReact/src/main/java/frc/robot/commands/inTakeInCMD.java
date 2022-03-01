@@ -22,8 +22,8 @@ public class inTakeInCMD extends CommandBase {
   public final intake m_intake; 
   public final OI m_OI;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
-  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
-  double IR = m_colorSensor.getIR();
+  //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+  //double IR = m_colorSensor.getIR();
   String colorString;
   Boolean cargoColor; // Red when True, Blue when false
   
@@ -40,34 +40,34 @@ public class inTakeInCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   
-    DriverStation.Alliance Alliancecolor = DriverStation.getAlliance(); // gets our alliance Color
-    Color detectedColor = m_colorSensor.getColor(); // gets the detected color of the color sensor
-    double proximity = m_colorSensor.getProximity(); // gets the proximity from the color sensor
-    
     m_intake.ascend(); // runs the intake
-    cargoColor = false;
-
-    SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
-    DriverStation.reportWarning("distance" + proximity, false); // prints out the proximity sensor's range (can be commented out after attached to intake)
+   
+    // DriverStation.Alliance Alliancecolor = DriverStation.getAlliance(); // gets our alliance Color
+    // Color detectedColor = m_colorSensor.getColor(); // gets the detected color of the color sensor
+    // double proximity = m_colorSensor.getProximity(); // gets the proximity from the color sensor
     
-    if (proximity > 300 && proximity < 2047){ // if the cargo is in range (300 will change once attached to the intake)
-      if (detectedColor.red > detectedColor.blue){ // if the red color value is greater than the blue color value
-        colorString = "Red"; // cargo is red
-        cargoColor = true; // displays red
-      }
-      else if (detectedColor.red < detectedColor.blue){ // if the red color value is less than the blue color value
-        colorString = "Blue"; // cargo is blue
-        cargoColor = false; // displays blue
-      }
+    // cargoColor = false;
 
-      SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
-      DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false); // prints out cargo color and alliance color
+    // SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
+    // DriverStation.reportWarning("distance" + proximity, false); // prints out the proximity sensor's range (can be commented out after attached to intake)
+    
+    // if (proximity > 300 && proximity < 2047){ // if the cargo is in range (300 will change once attached to the intake)
+    //   if (detectedColor.red > detectedColor.blue){ // if the red color value is greater than the blue color value
+    //     colorString = "Red"; // cargo is red
+    //     cargoColor = true; // displays red
+    //   }
+    //   else if (detectedColor.red < detectedColor.blue){ // if the red color value is less than the blue color value
+    //     colorString = "Blue"; // cargo is blue
+    //     cargoColor = false; // displays blue
+    //   }
+
+    //   SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
+    //   DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false); // prints out cargo color and alliance color
       
-      if (!colorString.equals(Alliancecolor.toString())){ // if the color is not equal to the alliance color therefore the wrong color
-        m_OI.setxboxrumble(1,1); //set the controller to rumble
-      }
-    }
+    //   if (!colorString.equals(Alliancecolor.toString())){ // if the color is not equal to the alliance color therefore the wrong color
+    //     m_OI.setxboxrumble(1,1); //set the controller to rumble
+    //   }
+    // }
   }
 
   // Called once the command ends or is interrupted.

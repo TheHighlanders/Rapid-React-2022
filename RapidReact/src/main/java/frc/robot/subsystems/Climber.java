@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -22,53 +23,47 @@ public class Climber extends SubsystemBase {
     DadMotor.configFactoryDefault(); // clears any non default settings
     DadMotor.configOpenloopRamp(0.2, 0);
     DadMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
-    DadMotor.configPeakOutputForward(0.2); // Configures the forward peak output percentage.
-    DadMotor.configPeakOutputReverse(0.2); // Configures the forward peak output percentage.
+    
+    DadMotor.configPeakOutputForward(0.8); // Configures the forward peak output percentage.
+    DadMotor.configPeakOutputReverse(-0.8); // Configures the forward peak output percentage.
+    DadMotor.setSelectedSensorPosition(0);
+    DadMotor.setInverted(false);
     DadMotor.setSelectedSensorPosition(0);
     // math
     DadMotor.config_kP(0,50);
-    DadMotor.config_kI(0, 0.2);
+    DadMotor.config_kI(0, 0);
     DadMotor.config_kD(0,10);
+    SupplyCurrentLimitConfiguration test = new SupplyCurrentLimitConfiguration();
+    test.currentLimit = 60;
+    test.enable = true;
+    DadMotor.configSupplyCurrentLimit(test);
 
-    // BabyMotor.configFactoryDefault(); 
-    // BabyMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
-    // BabyMotor.configPeakOutputForward(0.2);
-    // BabyMotor.configPeakOutputReverse(0.2);
+    BabyMotor.configFactoryDefault(); 
+    BabyMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    BabyMotor.configPeakOutputForward(0.5);
+    BabyMotor.configPeakOutputReverse(-0.5);
 
-    // BabyMotor.config_kP(0,20);
-    // BabyMotor.config_kD(0,100);
+    BabyMotor.config_kP(0,20);
+    BabyMotor.config_kI(0, 0);
+    BabyMotor.config_kD(0,100);
    
   }
 
  
-  public void SetBabyMotorPower(){
-    //if limit switch was not pressedx
-    // boolean switchIsGood = limitSwitch.get() == true;
-    // DriverStation.reportWarning("Sensor Status: " + switchIsGood, false);
-    // if(limitSwitch.get() == false){
-    //   //move left not right 
-    //   DriverStation.reportWarning("Hook left up", false);
-    //   m_Hook.HookUpLeft();
-    // }
-    //  //if limit switch wa s pressed
-    // if(limitSwitch.get() == true){
-    //   m_Hook.HookStopLeft();
-    // }
-    BabyMotor.set(ControlMode.Position,2000); 
+  public void SetBabyMotorUp(){
+    BabyMotor.set(ControlMode.Position,-2000); 
   }
   
-  public void SetDadMotorPower(){
-    DadMotor.set(ControlMode.Position, -425);
+  public void SetDadMotorUp(){
+    DadMotor.set(ControlMode.Position, -1920);
   }
 
-  public void BabyStopMotor(){
-    BabyMotor.set(0);
-    //BabyMotor.set(ControlMode.Position, 0);
+  public void SetBabyMotorDown(){
+    BabyMotor.set(ControlMode.Position, 0);
   }
 
-  public void DadStopMotor(){
-    DadMotor.set(0);
-    //DadMotor.set(ControlMode.Position, 0);
+  public void SetDadMotorDown(){
+    DadMotor.set(ControlMode.Position, 0);
   }
 
 

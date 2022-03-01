@@ -34,17 +34,8 @@ public class OI {
     
     //xbox climbing
 
-    public double getClimbXboxLeftX(){
-        return xboxClimb.getLeftX();
-    }
-    public double getClimbXboxLeftY(){
-        return xboxClimb.getLeftY();
-    }
-    public double getCLimbXboxRightX(){
-        return xboxClimb.getRightX();
-    }
-    public double getClimbXboxRightY(){
-        return xboxClimb.getRightY();
+    public int getClimbXboxPOV(){
+        return xboxClimb.getPOV();
     }
     
     
