@@ -15,11 +15,11 @@ import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  public WPI_TalonSRX BabyMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_TWO); 
-  public WPI_TalonSRX DadMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_ONE); 
+  public WPI_TalonSRX BabyMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_ONE); // up is negative and down is positive
+  public WPI_TalonSRX DadMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_TWO); 
 
   public Climber() {
-    // BIG ARMS: up is negative and down is positive 
+    BabyMotor.getSelectedSensorPosition();
     DadMotor.configFactoryDefault(); // clears any non default settings
     DadMotor.configOpenloopRamp(0.2, 0);
     DadMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
