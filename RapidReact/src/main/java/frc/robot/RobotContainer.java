@@ -68,9 +68,9 @@ public class RobotContainer {
     JoystickButton BigArmsBack = new JoystickButton(m_OI.xboxClimb,2); // a
     BigArmsBack.whileHeld(new DadMotorDownCMD(m_climber,m_OI));
 
-    //JoystickButton l = new JoystickButton(m_OI.xboxClimb,m_OI.getClimbXboxPOV());
-    //l.whenPressed(new BabyClimberDownCMD(m_climber, m_OI));
+
     }
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

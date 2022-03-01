@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   public Climber m_Climber;
+  public OI m_oi;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -88,7 +89,11 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    
+    DriverStation.reportWarning("POV is" + m_oi.xboxClimb.getPOV(), false);
+    // if(m_oi.DPadUp() == true){
+    //   m_Climber.SetBabyMotorUp();
+    // }
+
     if (DriverStation.getMatchTime() >= 120){
       System.out.print(m_Climber.BabyMotor.getSelectedSensorPosition()/1024);
     }
