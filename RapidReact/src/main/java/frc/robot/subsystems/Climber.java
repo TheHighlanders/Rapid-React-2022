@@ -51,32 +51,33 @@ public class Climber extends SubsystemBase {
 
  
   public void SetBabyMotorUp(){
-    BabyMotor.set(-0.5);
+    BabyMotor.set(-1);
     //BabyMotor.set(ControlMode.Position,-2000); 
   }
   
   public void SetDadMotorUp(){
-    DadMotor.set(-0.5);
+    DadMotor.set(-1);
     //DadMotor.set(ControlMode.Position, -1920);
-   }
+  }
 
   public void SetBabyMotorDown(){
-    BabyMotor.set(-0.5);
+    BabyMotor.set(1);
     //BabyMotor.set(ControlMode.Position, 0);
   }
 
   public void SetDadMotorDown(){
-    DadMotor.set(0.5);
-    //DadMotor.set(ControlMode.Position, 0);
+    DadMotor.set(1);
+    // DadMotor.set(ControlMode.Position, 0);
+  }
+  public void SetDadMoterHold(){
+    DadMotor.setSelectedSensorPosition(0);
+    DadMotor.set(ControlMode.Position,0);
   }
 
-  public void DadMotorStop(){
-    DadMotor.set(ControlMode.Position, DadMotor.getSelectedSensorPosition());
+  public void SetBabyMotorHold(){
+    BabyMotor.setSelectedSensorPosition(0);
+    BabyMotor.set(ControlMode.Position,0);
   }
-  public void BabyMotorStop(){
-    BabyMotor.set(ControlMode.Position, BabyMotor.getSelectedSensorPosition());
-  }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
