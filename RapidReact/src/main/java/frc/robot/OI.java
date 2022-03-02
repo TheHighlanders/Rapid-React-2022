@@ -35,28 +35,6 @@ public class OI {
         return xbox.getRightY();
     }
 
-
-    public boolean DPadUp() {
-        if ((xboxClimb.getPOV(1) >= 315 || xboxClimb.getPOV(1) <= 45) && xboxClimb.getPOV(1) != -1){
-            
-            return true;
-        }
-        else
-            return false;
-    }
-
-    public boolean DPadDown() {
-        if (xboxClimb.getPOV(0) >= 135 && xboxClimb.getPOV(0) <= 225)
-            return true;
-        else
-            return false;
-    }
-
-    //xbox climbing
-    public int getClimbXboxPOV(){
-        return xboxClimb.getPOV(0);
-    }
-
     public void setxboxrumble(double vibrate, double length){
         if (m_Timer.get() > length || start == false) {
             start = true;

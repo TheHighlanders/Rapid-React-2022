@@ -89,11 +89,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    DriverStation.reportWarning("POV is" + m_oi.xboxClimb.getPOV(), false);
-    // if(m_oi.DPadUp() == true){
-    //   m_Climber.SetBabyMotorUp();
-    // }
-
     if (DriverStation.getMatchTime() >= 120){
       System.out.print(m_Climber.BabyMotor.getSelectedSensorPosition()/1024);
     }

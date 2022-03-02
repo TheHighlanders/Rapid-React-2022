@@ -31,7 +31,7 @@ public class Climber extends SubsystemBase {
     DadMotor.setSelectedSensorPosition(0);
     // math
     DadMotor.config_kP(0,50);
-    DadMotor.config_kI(0, 0);
+    DadMotor.config_kI(0,0);
     DadMotor.config_kD(0,10);
     SupplyCurrentLimitConfiguration test = new SupplyCurrentLimitConfiguration();
     test.currentLimit = 60;
@@ -51,21 +51,31 @@ public class Climber extends SubsystemBase {
 
  
   public void SetBabyMotorUp(){
-    BabyMotor.set(ControlMode.Position,-2000); 
+    BabyMotor.set(-0.5);
+    //BabyMotor.set(ControlMode.Position,-2000); 
   }
   
   public void SetDadMotorUp(){
-    DadMotor.set(ControlMode.Position, -1920);
-  }
+    DadMotor.set(-0.5);
+    //DadMotor.set(ControlMode.Position, -1920);
+   }
 
   public void SetBabyMotorDown(){
-    BabyMotor.set(ControlMode.Position, 0);
+    BabyMotor.set(-0.5);
+    //BabyMotor.set(ControlMode.Position, 0);
   }
 
   public void SetDadMotorDown(){
-    DadMotor.set(ControlMode.Position, 0);
+    DadMotor.set(0.5);
+    //DadMotor.set(ControlMode.Position, 0);
   }
 
+  public void DadMotorStop(){
+    DadMotor.set(ControlMode.Position, DadMotor.getSelectedSensorPosition());
+  }
+  public void BabyMotorStop(){
+    BabyMotor.set(ControlMode.Position, BabyMotor.getSelectedSensorPosition());
+  }
 
   @Override
   public void periodic() {

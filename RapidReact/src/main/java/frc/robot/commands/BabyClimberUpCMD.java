@@ -29,12 +29,15 @@ public class BabyClimberUpCMD extends CommandBase {
   @Override
   public void execute() {
     m_cClimber.SetBabyMotorUp();
+   // m_cClimber.BabyMotorStop();
     //m_cClimber.SetBabyMotorPower();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_cClimber.BabyMotorStop();
+    
   }
 
   // Returns true when the command should end.
