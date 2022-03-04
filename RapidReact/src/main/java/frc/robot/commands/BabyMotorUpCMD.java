@@ -9,12 +9,12 @@ import frc.robot.OI;
 import frc.robot.subsystems.Climber;
 
 
-public class BabyClimberUpCMD extends CommandBase {
+public class BabyMotorUpCMD extends CommandBase {
   /** Creates a new ClimberCMD. */
   public final Climber m_cClimber;
   public final OI m_OI;
 
-  public BabyClimberUpCMD(Climber Climber_subsystem, OI OI_climbXbox) {
+  public BabyMotorUpCMD(Climber Climber_subsystem, OI OI_climbXbox) {
     m_cClimber = Climber_subsystem;
     m_OI = OI_climbXbox;
     addRequirements(m_cClimber);
@@ -37,7 +37,6 @@ public class BabyClimberUpCMD extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_cClimber.SetBabyMotorHold();
-    
   }
 
   // Returns true when the command should end.

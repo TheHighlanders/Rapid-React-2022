@@ -63,32 +63,36 @@ public class RobotContainer {
 
     // climbing
 
-    // BIG ARMS CLIMBING UP AND DOWN
-    JoystickButton BigArmsUp = new JoystickButton(m_OI.xboxClimb,4); // y
-    BigArmsUp.whileHeld(new DadClimberUpCMD(m_climber,m_OI));
+    JoystickButton BigArmsForward = new JoystickButton(m_OI.xboxClimb,4); // y
+    BigArmsForward.whileHeld(new DadMotorUpCMD(m_climber,m_OI));
 
-    JoystickButton BigArmsDown = new JoystickButton(m_OI.xboxClimb,1); // a
-    BigArmsDown.whileHeld(new DadMotorDownCMD(m_climber,m_OI));
+    JoystickButton BigArmsBack = new JoystickButton(m_OI.xboxClimb,1); // a
+    BigArmsBack.whileHeld(new DadMotorDownCMD(m_climber,m_OI));
 
-    // ALL SMALL ARMS UP BUTTONS
-    POVButton smallArmsUp = new POVButton(m_OI.xboxClimb, 0);
-    smallArmsUp.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));
+    JoystickButton SmallArmsBack = new JoystickButton(m_OI.xboxClimb,2); // b
+    SmallArmsBack.whileHeld(new BabyMotorDownCMD(m_climber,m_OI));
 
-    POVButton smallArmsUp2 = new POVButton(m_OI.xboxClimb, 315);
-    smallArmsUp2.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));
 
-    POVButton smallArmsUp3 = new POVButton(m_OI.xboxClimb, 45);
-    smallArmsUp3.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));
+    JoystickButton SmallArmsForward = new JoystickButton(m_OI.xboxClimb,3); // X
+    SmallArmsForward.whileHeld(new BabyMotorUpCMD(m_climber,m_OI));
 
-    // ALL SMALL ARMS DOWN BUTTONS
-    POVButton smallArmsDown = new POVButton(m_OI.xboxClimb, 180);
-    smallArmsDown.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
+    
 
-    POVButton smallArmsDown1 = new POVButton(m_OI.xboxClimb, 225);
-    smallArmsDown1.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
+    // POVButton smallArmsUp2 = new POVButton(m_OI.xboxClimb, 315);
+    // smallArmsUp2.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));
 
-    POVButton smallArmsDown2 = new POVButton(m_OI.xboxClimb, 135);
-    smallArmsDown2.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
+    // POVButton smallArmsUp3 = new POVButton(m_OI.xboxClimb, 45);
+    // smallArmsUp3.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));
+
+    // // ALL SMALL ARMS DOWN BUTTONS
+    // POVButton smallArmsDown = new POVButton(m_OI.xboxClimb, 180);
+    // smallArmsDown.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
+
+    // POVButton smallArmsDown1 = new POVButton(m_OI.xboxClimb, 225);
+    // smallArmsDown1.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
+
+    // POVButton smallArmsDown2 = new POVButton(m_OI.xboxClimb, 135);
+    // smallArmsDown2.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
     }
 
 

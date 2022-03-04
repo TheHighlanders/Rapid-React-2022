@@ -32,7 +32,7 @@ public class driveCMD extends CommandBase {
     //dead band stuff
     double x = this.m_OI.getXboxLeftX();
     double y = this.m_OI.getXboxLeftY();
-    double threshold = 0.3;
+    double threshold = 0.15;
     if (Math.abs(x) < threshold){
       x = 0;
     }
@@ -53,7 +53,7 @@ public class driveCMD extends CommandBase {
 
     //x = (x - threshold * Math.signum(x)) / (1 - threshold);
     //y = (y - threshold * Math.signum(y)) / (1 - threshold);
-    m_dDrivetrain.drivespeed(x-y, y + x);
+    m_dDrivetrain.drivepower(x-y, y + x);
     // m_dDrivetrain.drivepower(x-y, y + x);
     // used to be the code below
     // m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());

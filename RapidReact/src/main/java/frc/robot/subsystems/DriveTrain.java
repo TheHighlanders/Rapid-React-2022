@@ -22,7 +22,7 @@ public class DriveTrain extends SubsystemBase {
   public WPI_TalonSRX right1;
   public WPI_VictorSPX right2;
   
-  private double ramp = 0.2;
+  private double ramp = 1;
 
   public DriveTrain() {
     left1 = new WPI_TalonSRX(Constants.LEFT_ONE);
@@ -30,8 +30,8 @@ public class DriveTrain extends SubsystemBase {
     right1 = new WPI_TalonSRX(Constants.RIGHT_ONE);
     right2 = new WPI_VictorSPX(Constants.RIGHT_TWO);
     
-    left2.setInverted(true);
-    left1.setInverted(true);
+    left2.setInverted(false);
+    left1.setInverted(false);
 
     left1.configOpenloopRamp(ramp,0);
     left2.configOpenloopRamp(ramp,0);

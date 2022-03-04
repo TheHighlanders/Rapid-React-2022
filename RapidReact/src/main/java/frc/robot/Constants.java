@@ -20,8 +20,8 @@ public final class Constants {
     public static final int XBOXCLIMB = 1;
     
     // Drive Motors
-    public static final int LEFT_ONE = 6;
-    public static final int LEFT_TWO = 4;
+    public static final int LEFT_ONE = 4;
+    public static final int LEFT_TWO = 6;
     public static final int RIGHT_ONE = 5;
     public static final int RIGHT_TWO = 3;
 
@@ -29,10 +29,10 @@ public final class Constants {
     public static final int INTAKE = 8;
 
     // Door
-    public static final int DOORMOTOR = 10;
+    public static final int DOORMOTOR = 7;
 
     // Climb Motors
     public static final int CLIMBERMOTOR_ONE = 9;
-    public static final int CLIMBERMOTOR_TWO = 7;
+    public static final int CLIMBERMOTOR_TWO = 10;
 
 }

@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.subsystems.Climber;
 
-public class DadClimberUpCMD extends CommandBase {
+public class DadMotorUpCMD extends CommandBase {
   /** Creates a new DadClimberCMD. */
   public final Climber m_cClimber;
   public final OI m_OI;
-  public DadClimberUpCMD(Climber Climber_subsystem, OI OI_climbXbox) {
+  public DadMotorUpCMD(Climber Climber_subsystem, OI OI_climbXbox) {
     m_cClimber = Climber_subsystem;
     m_OI = OI_climbXbox;
     // addRequirements(m_cClimber);
@@ -21,7 +21,9 @@ public class DadClimberUpCMD extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -34,7 +36,7 @@ public class DadClimberUpCMD extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_cClimber.SetDadMoterHold();
+    m_cClimber.SetDadMotorHold();
   }
 
   // Returns true when the command should end.

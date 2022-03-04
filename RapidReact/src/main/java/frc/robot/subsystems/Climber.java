@@ -15,8 +15,8 @@ import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  public WPI_TalonSRX BabyMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_ONE); // up is negative and down is positive
-  public WPI_TalonSRX DadMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_TWO); 
+  public WPI_TalonSRX BabyMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_TWO); // up is negative and down is positive
+  public WPI_TalonSRX DadMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_ONE); 
 
   public Climber() {
     BabyMotor.getSelectedSensorPosition();
@@ -28,6 +28,7 @@ public class Climber extends SubsystemBase {
     DadMotor.configPeakOutputReverse(-0.8); // Configures the forward peak output percentage.
     DadMotor.setSelectedSensorPosition(0);
     DadMotor.setInverted(false);
+    DadMotor.setSensorPhase(true);
     DadMotor.setSelectedSensorPosition(0);
     // math
     DadMotor.config_kP(0,50);
@@ -43,9 +44,9 @@ public class Climber extends SubsystemBase {
     BabyMotor.configPeakOutputForward(0.5);
     BabyMotor.configPeakOutputReverse(-0.5);
 
-    BabyMotor.config_kP(0,20);
+    BabyMotor.config_kP(0,10);
     BabyMotor.config_kI(0, 0);
-    BabyMotor.config_kD(0,100);
+    BabyMotor.config_kD(0,20);
    
   }
 
@@ -69,7 +70,7 @@ public class Climber extends SubsystemBase {
     DadMotor.set(1);
     // DadMotor.set(ControlMode.Position, 0);
   }
-  public void SetDadMoterHold(){
+  public void SetDadMotorHold(){
     DadMotor.setSelectedSensorPosition(0);
     DadMotor.set(ControlMode.Position,0);
   }

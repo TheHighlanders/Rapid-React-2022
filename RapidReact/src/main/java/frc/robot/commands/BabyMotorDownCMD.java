@@ -9,12 +9,12 @@ import frc.robot.OI;
 import frc.robot.subsystems.Climber;
 
 
-public class BabyClimberDownCMD extends CommandBase {
+public class BabyMotorDownCMD extends CommandBase {
   /** Creates a new ClimberCMD. */
   public final Climber m_cClimber;
   public final OI m_OI;
 
-  public BabyClimberDownCMD(Climber Climber_subsystem, OI OI_climbXbox) {
+  public BabyMotorDownCMD(Climber Climber_subsystem, OI OI_climbXbox) {
     m_cClimber = Climber_subsystem;
     m_OI = OI_climbXbox;
     addRequirements(m_cClimber);
