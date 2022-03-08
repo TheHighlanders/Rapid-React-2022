@@ -58,22 +58,25 @@ public class RobotContainer {
     JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 3); // x
     DoorOpen.whileHeld(new DoorOpenCMD(m_door));
 
+    JoystickButton DoorCenter = new JoystickButton(m_OI.xbox, 4); // Y
+    DoorOpen.whileHeld(new DoorCenterCMD(m_door));
+
     //JoystickButton AutoRun = new JoystickButton(m_OI.xbox,4); // y
     //AutoRun.whileHeld(new AutoGroupCMD(m_ddriveTrain, m_intake));
 
     // climbing
 
-    JoystickButton BigArmsForward = new JoystickButton(m_OI.xboxClimb,4); // y
+    JoystickButton BigArmsForward = new JoystickButton(m_OI.xboxClimb,1); // a
     BigArmsForward.whileHeld(new DadMotorUpCMD(m_climber,m_OI));
 
-    JoystickButton BigArmsBack = new JoystickButton(m_OI.xboxClimb,1); // a
+    JoystickButton BigArmsBack = new JoystickButton(m_OI.xboxClimb,4); // y
     BigArmsBack.whileHeld(new DadMotorDownCMD(m_climber,m_OI));
 
-    JoystickButton SmallArmsBack = new JoystickButton(m_OI.xboxClimb,2); // b
+    JoystickButton SmallArmsBack = new JoystickButton(m_OI.xboxClimb,5); // LB
     SmallArmsBack.whileHeld(new BabyMotorDownCMD(m_climber,m_OI));
 
 
-    JoystickButton SmallArmsForward = new JoystickButton(m_OI.xboxClimb,3); // X
+    POVButton SmallArmsForward = new POVButton(m_OI.xboxClimb,180); // X
     SmallArmsForward.whileHeld(new BabyMotorUpCMD(m_climber,m_OI));
 
     

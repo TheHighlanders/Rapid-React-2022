@@ -24,29 +24,31 @@ public class Climber extends SubsystemBase {
     DadMotor.configOpenloopRamp(0.2, 0);
     DadMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     
-    DadMotor.configPeakOutputForward(0.8); // Configures the forward peak output percentage.
-    DadMotor.configPeakOutputReverse(-0.8); // Configures the forward peak output percentage.
+    DadMotor.configPeakOutputForward(1); // Configures the forward peak output percentage.
+    DadMotor.configPeakOutputReverse(-1); // Configures the forward peak output percentage.
     DadMotor.setSelectedSensorPosition(0);
     DadMotor.setInverted(false);
     DadMotor.setSensorPhase(true);
-    DadMotor.setSelectedSensorPosition(0);
+    // DadMotor.setSelectedSensorPosition(0);
     // math
     DadMotor.config_kP(0,50);
     DadMotor.config_kI(0,0);
     DadMotor.config_kD(0,10);
     SupplyCurrentLimitConfiguration test = new SupplyCurrentLimitConfiguration();
-    test.currentLimit = 60;
-    test.enable = true;
+    test.currentLimit = 100;
+    test.enable = false;
     DadMotor.configSupplyCurrentLimit(test);
 
     BabyMotor.configFactoryDefault(); 
     BabyMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    BabyMotor.setSensorPhase(true);
     BabyMotor.configPeakOutputForward(0.5);
     BabyMotor.configPeakOutputReverse(-0.5);
 
     BabyMotor.config_kP(0,10);
     BabyMotor.config_kI(0, 0);
     BabyMotor.config_kD(0,20);
+    
    
   }
 

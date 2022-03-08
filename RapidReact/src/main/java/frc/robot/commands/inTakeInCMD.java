@@ -21,11 +21,11 @@ public class inTakeInCMD extends CommandBase {
   /** Creates a new inTakeIn. */
   public final intake m_intake; 
   public final OI m_OI;
-  private final I2C.Port i2cPort = I2C.Port.kOnboard;
-  //private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+ // private final I2C.Port i2cPort = I2C.Port.kOnboard;
+ // private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   //double IR = m_colorSensor.getIR();
-  String colorString;
-  Boolean cargoColor; // Red when True, Blue when false
+ // String colorString;
+ // Boolean cargoColor; // Red when True, Blue when false
   
   public inTakeInCMD(intake intake_subsystem, OI OI_xbox) {
     m_intake = intake_subsystem;

@@ -37,14 +37,16 @@ public class driveCMD extends CommandBase {
       x = 0;
     }
     else{
-      x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); // * Math.signum(x);
+      x= (Math.abs(x)-threshold)/(1-threshold) * Math.signum(x);
+      // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); // * Math.signum(x);
       
     }
     if (Math.abs(y) < threshold) {
       y = 0;
     }
     else{
-      y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); // * Math.signum(y);
+      y= (Math.abs(y)-threshold)/(1-threshold) * Math.signum(y);
+      // y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); // * Math.signum(y);
       
     }
     // Lex and Iskandar aded Sigmoid curve to the controls
@@ -53,7 +55,7 @@ public class driveCMD extends CommandBase {
 
     //x = (x - threshold * Math.signum(x)) / (1 - threshold);
     //y = (y - threshold * Math.signum(y)) / (1 - threshold);
-    m_dDrivetrain.drivepower(x-y, y + x);
+    m_dDrivetrain.drivespeed(x-y, y + x);
     // m_dDrivetrain.drivepower(x-y, y + x);
     // used to be the code below
     // m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());

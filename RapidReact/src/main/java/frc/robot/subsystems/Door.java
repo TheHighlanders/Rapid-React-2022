@@ -40,6 +40,10 @@ public class Door extends SubsystemBase {
     Door.set(ControlMode.Position,0); // moves back to down 0
   }
 
+  public void centerDoor(){
+    Door.set(0.1);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
