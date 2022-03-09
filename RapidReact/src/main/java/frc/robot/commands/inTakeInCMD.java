@@ -12,6 +12,7 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -23,7 +24,9 @@ public class inTakeInCMD extends CommandBase {
   public final OI m_OI;
  // private final I2C.Port i2cPort = I2C.Port.kOnboard;
  // private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
-  //double IR = m_colorSensor.getIR();
+ private final DigitalInput color_in = new DigitalInput(1);
+ private final DigitalInput prox_in = new DigitalInput(2);
+ //double IR = m_colorSensor.getIR();
  // String colorString;
  // Boolean cargoColor; // Red when True, Blue when false
   
@@ -42,32 +45,33 @@ public class inTakeInCMD extends CommandBase {
   public void execute() {
     m_intake.ascend(); // runs the intake
    
-    // DriverStation.Alliance Alliancecolor = DriverStation.getAlliance(); // gets our alliance Color
-    // Color detectedColor = m_colorSensor.getColor(); // gets the detected color of the color sensor
-    // double proximity = m_colorSensor.getProximity(); // gets the proximity from the color sensor
+    DriverStation.Alliance Alliancecolor = DriverStation.getAlliance(); // gets our alliance Color
+    boolean detectedColor = color_in.get(); // true is blue false is red
+    boolean proximity = prox_in.get(); // proximity 300 - 2047 is true evrything else is false
     
-    // cargoColor = false;
+    boolean cargoColor = false;
+    String colorString = "";
 
-    // SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
-    // DriverStation.reportWarning("distance" + proximity, false); // prints out the proximity sensor's range (can be commented out after attached to intake)
+    SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
+    DriverStation.reportWarning("distance" + proximity, false); // prints out the proximity sensor's range (can be commented out after attached to intake)
     
-    // if (proximity > 300 && proximity < 2047){ // if the cargo is in range (300 will change once attached to the intake)
-    //   if (detectedColor.red > detectedColor.blue){ // if the red color value is greater than the blue color value
-    //     colorString = "Red"; // cargo is red
-    //     cargoColor = true; // displays red
-    //   }
-    //   else if (detectedColor.red < detectedColor.blue){ // if the red color value is less than the blue color value
-    //     colorString = "Blue"; // cargo is blue
-    //     cargoColor = false; // displays blue
-    //   }
+    if (proximity){ // if the cargo is in range (300 will change once attached to the intake)
+      if (!detectedColor){ // if the red color value is greater than the blue color value
+        colorString = "Red"; // cargo is red
+        cargoColor = true; // displays red
+      }
+      else if (detectedColor){ // if the red color value is less than the blue color value
+        colorString = "Blue"; // cargo is blue
+        cargoColor = false; // displays blue
+      }
 
-    //   SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
-    //   DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false); // prints out cargo color and alliance color
+      SmartDashboard.putBoolean("Cargo Color", cargoColor); // Displays Cargo color to SmartDashBoard
+      DriverStation.reportWarning("color "+ colorString +" Alliance "+  DriverStation.getAlliance(), false); // prints out cargo color and alliance color
       
-    //   if (!colorString.equals(Alliancecolor.toString())){ // if the color is not equal to the alliance color therefore the wrong color
-    //     m_OI.setxboxrumble(1,1); //set the controller to rumble
-    //   }
-    // }
+      if (!colorString.equals(Alliancecolor.toString())){ // if the color is not equal to the alliance color therefore the wrong color
+        m_OI.setxboxrumble(1,1); //set the controller to rumble
+      }
+    }
   }
 
   // Called once the command ends or is interrupted.

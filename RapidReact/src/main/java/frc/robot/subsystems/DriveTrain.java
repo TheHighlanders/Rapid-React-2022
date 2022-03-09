@@ -51,7 +51,7 @@ public class DriveTrain extends SubsystemBase {
 
     left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
-    double kp = 0.05;
+    double kp = 0.5;
     left1.config_kP(0,kp);
     left1.config_kD(0,1);
     left1.configAllowableClosedloopError(0, 50, 1000);
