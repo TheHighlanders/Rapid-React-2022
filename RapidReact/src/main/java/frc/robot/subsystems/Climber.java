@@ -19,6 +19,7 @@ public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
   public WPI_TalonSRX BabyMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_TWO); // up is negative and down is positive
   public WPI_TalonSRX DadMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_ONE); 
+  public WPI_TalonSRX DadMotor1 = new WPI_TalonSRX(Constants.CLIMBERMOTOR_THREE);
 
   public Climber() {
     BabyMotor.getSelectedSensorPosition();
@@ -55,6 +56,8 @@ public class Climber extends SubsystemBase {
     DadMotor.overrideLimitSwitchesEnable(true);
     BabyMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
     DadMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+
+    DadMotor1.follow(DadMotor);
   }
 
  
