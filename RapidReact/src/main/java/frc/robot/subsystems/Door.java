@@ -32,7 +32,7 @@ public class Door extends SubsystemBase {
 
   public void openDoor(){
     //DriverStation.reportWarning("Up--------------(._.)------------------", false);
-    Door.set(ControlMode.Position,189);
+    Door.set(ControlMode.Position,174);
   }
 
   public void closeDoor(){
