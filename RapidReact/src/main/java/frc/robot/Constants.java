@@ -34,5 +34,5 @@ public final class Constants {
     // Climb Motors
     public static final int CLIMBERMOTOR_ONE = 9;
     public static final int CLIMBERMOTOR_TWO = 10;
-
+    public static final int CLIMBERMOTOR_THREE = 11;
 }
