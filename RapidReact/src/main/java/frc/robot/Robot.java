@@ -39,6 +39,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     CameraServer.startAutomaticCapture(); //keep this it still works 
     SmartDashboard.putBoolean("Cargo Color", false); // Displays Cargo color to SmartDashBoard when robot is turned on
+    m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
+
   }
 
   /**

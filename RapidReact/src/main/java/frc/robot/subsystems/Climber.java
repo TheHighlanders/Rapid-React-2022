@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 
@@ -19,10 +20,11 @@ public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
   public WPI_TalonSRX BabyMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_TWO); // up is negative and down is positive
   public WPI_TalonSRX DadMotor = new WPI_TalonSRX(Constants.CLIMBERMOTOR_ONE); 
-  public WPI_TalonSRX DadMotor1 = new WPI_TalonSRX(Constants.CLIMBERMOTOR_THREE);
+  public WPI_VictorSPX DadMotor1 = new WPI_VictorSPX(Constants.CLIMBERMOTOR_THREE);
 
   public Climber() {
-    BabyMotor.getSelectedSensorPosition();
+    
+
     DadMotor.configFactoryDefault(); // clears any non default settings
     DadMotor.configOpenloopRamp(0.2, 0);
     DadMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
@@ -32,6 +34,7 @@ public class Climber extends SubsystemBase {
     DadMotor.setSelectedSensorPosition(0);
     DadMotor.setInverted(false);
     DadMotor.setSensorPhase(true);
+   
     // DadMotor.setSelectedSensorPosition(0);
     // math
     DadMotor.config_kP(0,50);
@@ -58,16 +61,17 @@ public class Climber extends SubsystemBase {
     DadMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
 
     DadMotor1.follow(DadMotor);
+    DadMotor1.setInverted(true);
   }
 
  
   public void SetBabyMotorUp(){
-    BabyMotor.set(-1);
+    BabyMotor.set(-1.0);
     //BabyMotor.set(ControlMode.Position,-2000); 
   }
   
   public void SetDadMotorUp(){
-    DadMotor.set(-1);
+    DadMotor.set(-0.8);
     //DadMotor.set(ControlMode.Position, -1920);
   }
 
@@ -77,7 +81,7 @@ public class Climber extends SubsystemBase {
   }
 
   public void SetDadMotorDown(){
-    DadMotor.set(1);
+    DadMotor.set(0.8);
     // DadMotor.set(ControlMode.Position, 0);
   }
   public void SetDadMotorHold(){

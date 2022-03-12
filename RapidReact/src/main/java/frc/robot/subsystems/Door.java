@@ -41,7 +41,7 @@ public class Door extends SubsystemBase {
   }
 
   public void centerDoor(){
-    Door.set(0.1);
+    // Door.set(0.1);
   }
 
   @Override
