@@ -34,12 +34,12 @@ public class intake extends SubsystemBase {
     intake.set(-1);
   }
 
-  public void intake(){
-    intakearm.set(1);
+  public void intakeIn(){
+    intakearm.set(-1);
   }
   
   public void outake(){
-    intakearm.set(-1);
+    intakearm.set(1);
   }
 
   public void stopintake(){

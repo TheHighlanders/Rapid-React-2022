@@ -47,31 +47,25 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // JoystickButton name = new JoystickButton(m_OI.xbox, #);
-    // name.whileHeld(new commmandname(m_intake));
+
+    // Driver 1 controls
     JoystickButton inTakein = new JoystickButton(m_OI.xbox, 1); //A
     inTakein.whileHeld(new inTakeInCMD(m_intake,m_OI));
 
     JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2); // B
     intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
 
-    JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 3); // x
+    JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 5); // LB
     DoorOpen.whileHeld(new DoorOpenCMD(m_door));
 
-    JoystickButton intakearmin = new JoystickButton(m_OI.xbox, 4);
+    JoystickButton intakearmin = new JoystickButton(m_OI.xbox, 4); // y
     intakearmin.whileHeld(new IntakeArmInCMD(m_intake));
 
-    JoystickButton intakearmout = new JoystickButton(m_OI.xbox, 5);
+    JoystickButton intakearmout = new JoystickButton(m_OI.xbox, 3); // X
     intakearmout.whileHeld(new IntakeReverse(m_intake));
 
-    // JoystickButton DoorCenter = new JoystickButton(m_OI.xbox, 4); // Y
-    // // DoorOpen.whileHeld(new DoorCenterCMD(m_door));
-
-    //JoystickButton AutoRun = new JoystickButton(m_OI.xbox,4); // y
-    //AutoRun.whileHeld(new AutoGroupCMD(m_ddriveTrain, m_intake));
-
-    // climbing
-
+    // Driver 2 controls
+    // CLIMBING
     JoystickButton BigArmsForward = new JoystickButton(m_OI.xboxClimb,1); // a
     BigArmsForward.whileHeld(new DadMotorUpCMD(m_climber,m_OI));
 
@@ -81,11 +75,8 @@ public class RobotContainer {
     JoystickButton SmallArmsBack = new JoystickButton(m_OI.xboxClimb,5); // LB
     SmallArmsBack.whileHeld(new BabyMotorDownCMD(m_climber,m_OI));
 
-
     POVButton SmallArmsForward = new POVButton(m_OI.xboxClimb,180); // X
     SmallArmsForward.whileHeld(new BabyMotorUpCMD(m_climber,m_OI));
-
-    
 
     // POVButton smallArmsUp2 = new POVButton(m_OI.xboxClimb, 315);
     // smallArmsUp2.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));

@@ -24,7 +24,7 @@ public class IntakeArmInCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakearm.intake();
+    m_intakearm.intakeIn();
   }
 
   // Called once the command ends or is interrupted.
