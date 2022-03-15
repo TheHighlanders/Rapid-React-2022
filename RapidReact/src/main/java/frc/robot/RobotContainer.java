@@ -58,6 +58,12 @@ public class RobotContainer {
     JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 3); // x
     DoorOpen.whileHeld(new DoorOpenCMD(m_door));
 
+    JoystickButton intakearmin = new JoystickButton(m_OI.xbox, 4);
+    intakearmin.whileHeld(new IntakeArmInCMD(m_intake));
+
+    JoystickButton intakearmout = new JoystickButton(m_OI.xbox, 5);
+    intakearmout.whileHeld(new IntakeReverse(m_intake));
+
     // JoystickButton DoorCenter = new JoystickButton(m_OI.xbox, 4); // Y
     // // DoorOpen.whileHeld(new DoorCenterCMD(m_door));
 

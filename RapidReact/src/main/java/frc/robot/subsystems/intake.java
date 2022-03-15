@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -13,8 +15,14 @@ import frc.robot.Constants;
 public class intake extends SubsystemBase {
   /** Creates a new intake. */
   private CANSparkMax intake = new CANSparkMax(Constants.INTAKE,MotorType.kBrushless);
+  public WPI_TalonSRX intakearm = new WPI_TalonSRX(Constants.INTAKEARM);
 
-  public intake() {}
+  public intake() {
+    SupplyCurrentLimitConfiguration test = new SupplyCurrentLimitConfiguration();
+    test.currentLimit = 20;
+    test.enable = false;
+    intakearm.configSupplyCurrentLimit(test);
+  }
 
   public void ascend(){
     intake.set(1);
@@ -25,7 +33,18 @@ public class intake extends SubsystemBase {
   public void descend(){
     intake.set(-1);
   }
+
+  public void intake(){
+    intakearm.set(1);
+  }
   
+  public void outake(){
+    intakearm.set(-1);
+  }
+
+  public void stopintake(){
+    intakearm.set(0);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
