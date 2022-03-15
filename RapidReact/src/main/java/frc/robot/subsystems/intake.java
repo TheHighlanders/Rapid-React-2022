@@ -45,6 +45,10 @@ public class intake extends SubsystemBase {
   public void stopintake(){
     intakearm.set(0);
   }
+
+  public void autoIntake(){
+    intakearm.set(0.2);
+  }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
