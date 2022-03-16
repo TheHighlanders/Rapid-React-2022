@@ -48,8 +48,8 @@ public class Climber extends SubsystemBase {
     BabyMotor.configFactoryDefault(); 
     BabyMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     BabyMotor.setSensorPhase(true);
-    BabyMotor.configPeakOutputForward(0.5);
-    BabyMotor.configPeakOutputReverse(-0.5);
+    BabyMotor.configPeakOutputForward(1);
+    BabyMotor.configPeakOutputReverse(-1);
 
     BabyMotor.config_kP(0,10);
     BabyMotor.config_kI(0, 0);
