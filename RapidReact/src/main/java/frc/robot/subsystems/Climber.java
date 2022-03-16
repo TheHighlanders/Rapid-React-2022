@@ -55,10 +55,10 @@ public class Climber extends SubsystemBase {
     BabyMotor.config_kI(0, 0);
     BabyMotor.config_kD(0,20);
     
-    BabyMotor.overrideLimitSwitchesEnable(true);
-    DadMotor.overrideLimitSwitchesEnable(true);
-    BabyMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+    
+    // BabyMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
     DadMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+    DadMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
 
     DadMotor1.follow(DadMotor);
     DadMotor1.setInverted(true);
@@ -86,7 +86,7 @@ public class Climber extends SubsystemBase {
   }
   public void SetDadMotorHold(){
     DadMotor.setSelectedSensorPosition(0);
-    DadMotor.set(ControlMode.Position,0);
+    DadMotor.set(ControlMode.Velocity,0);
   }
 
   public void SetBabyMotorHold(){

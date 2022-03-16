@@ -21,6 +21,7 @@ import frc.robot.subsystems.intake;
 public class inTakeInCMD extends CommandBase {
   /** Creates a new inTakeIn. */
   public final intake m_intake; 
+  
   public final OI m_OI;
  // private final I2C.Port i2cPort = I2C.Port.kOnboard;
  // private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
@@ -34,6 +35,7 @@ public class inTakeInCMD extends CommandBase {
     m_intake = intake_subsystem;
     m_OI = OI_xbox;
     addRequirements(m_intake);
+    
   }
 
   // Called when the command is initially scheduled.
