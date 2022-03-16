@@ -39,7 +39,7 @@ public class intake extends SubsystemBase {
 
   }
 
-  public void intake(){
+  public void intakeIn(){
     intakearm.set(-1);
   }
   
@@ -49,6 +49,10 @@ public class intake extends SubsystemBase {
 
   public void stopintake(){
     intakearm.set(0);
+  }
+
+  public void autoIntake(){
+    intakearm.set(0.2);
   }
   @Override
   public void periodic() {
