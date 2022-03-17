@@ -32,9 +32,10 @@ public class DriveBackCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
- 
+ //+ +
+ // - +
     if(m_Timer.get() < 3 ) { 
-       m_ddriveTrain.drivepower(0.2, 0.2); 
+       m_ddriveTrain.drivepower(-0.4, 0.4); 
     }
     else{ 
       m_ddriveTrain.drivepower(0, 0); 

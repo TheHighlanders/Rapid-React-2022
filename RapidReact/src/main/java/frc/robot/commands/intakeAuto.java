@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.intake;
@@ -34,9 +35,11 @@ public class intakeAuto extends CommandBase {
   public void execute() {
     if (m_Timer.get() < 1) {
       m_intake.asecendAuto();
+      DriverStation.reportError("Shooting cargo", false);
     } else {
       m_intake.intakeStopAuto();
       isFinished = true;
+      DriverStation.reportError("DONE Shooting cargo", false);
     }
   }
 
@@ -49,6 +52,7 @@ public class intakeAuto extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    DriverStation.reportError("FINISHED Shooting cargo", false);
     return isFinished;
   }
 }

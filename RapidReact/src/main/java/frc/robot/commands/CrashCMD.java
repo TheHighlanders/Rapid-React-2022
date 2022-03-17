@@ -38,7 +38,7 @@ public class CrashCMD extends CommandBase {
     m_ddriveTrain.drivepower(0.20,-0.20);
     x = accelerometer.getZ();
     DriverStation.reportError(x + "", false);
-    if (x > 0.3) { // used to be 0.5
+    if (x > 0.5) { // used to be 0.5
       DriverStation.reportError(x + "x > -0.5", false);
       isFinished = true;
       
