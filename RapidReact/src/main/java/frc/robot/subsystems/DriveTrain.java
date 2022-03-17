@@ -17,48 +17,48 @@ import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
   /** Creates a new driveTrain. */
-  public WPI_TalonSRX left1;
-  public WPI_VictorSPX left2;
-  public WPI_TalonSRX right1;
-  public WPI_VictorSPX right2;
+  public WPI_VictorSPX left1;
+  //public WPI_VictorSPX left2;
+  public WPI_VictorSPX right1;
+  //public WPI_VictorSPX right2;
   
   private double ramp = 0.2;
 
   public DriveTrain() {
-    left1 = new WPI_TalonSRX(Constants.LEFT_ONE);
-    left2 = new WPI_VictorSPX(Constants.LEFT_TWO);
-    right1 = new WPI_TalonSRX(Constants.RIGHT_ONE);
-    right2 = new WPI_VictorSPX(Constants.RIGHT_TWO);
+    left1 = new WPI_VictorSPX(Constants.LEFT_TWO);
+    //left2 = new WPI_VictorSPX(Constants.LEFT_TWO);
+    right1 = new WPI_VictorSPX(Constants.RIGHT_TWO);
+    //right2 = new WPI_VictorSPX(Constants.RIGHT_TWO);
     
-    left2.setInverted(false);
+    //left2.setInverted(false);
     left1.setInverted(false);
 
     left1.configOpenloopRamp(ramp,0);
-    left2.configOpenloopRamp(ramp,0);
+    //left2.configOpenloopRamp(ramp,0);
     right1.configOpenloopRamp(ramp,0);
-    right2.configOpenloopRamp(ramp,0);
+    //right2.configOpenloopRamp(ramp,0);
 
     left1.setNeutralMode(NeutralMode.Brake);
-    left2.setNeutralMode(NeutralMode.Brake);
+    //left2.setNeutralMode(NeutralMode.Brake);
     right1.setNeutralMode(NeutralMode.Brake);
-    right2.setNeutralMode(NeutralMode.Brake);
+    //right2.setNeutralMode(NeutralMode.Brake);
 
-    left2.follow(left1);
-    right2.follow(right1);
+    //left2.follow(left1);
+    //right2.follow(right1);
 
 
     // Encoders
 
-    left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
-    right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
-    double kp = 0.5;
-    left1.config_kP(0,kp);
-    left1.config_kD(0,0);
-    left1.configAllowableClosedloopError(0, 50, 1000);
+    // left1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    // right1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
+    // double kp = 0.5;
+    // left1.config_kP(0,kp);
+    // left1.config_kD(0,0);
+    // left1.configAllowableClosedloopError(0, 50, 1000);
 
-    right1.config_kP(0,kp);
-    right1.config_kD(0,0);
-    right1.configAllowableClosedloopError(0, 50, 1000);
+    // right1.config_kP(0,kp);
+    // right1.config_kD(0,0);
+    // right1.configAllowableClosedloopError(0, 50, 1000);
     
   }
 
@@ -72,16 +72,6 @@ public class DriveTrain extends SubsystemBase {
     right1.set(ControlMode.Velocity,right_power*2621.44);
 
 }
-  public double getOutputCurrentL(){
-    return left1.getStatorCurrent();
-
-  }
-
-  public double getOutputCurrentR(){
-    return right1.getStatorCurrent();
-
-  }
-
 
   @Override
   public void periodic() {

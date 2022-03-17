@@ -59,7 +59,9 @@ public class driveCMD extends CommandBase {
       x = 0;
     }
     else{
-      x = transfer_func(x);
+      // x = transfer_func(x);
+      x= (Math.abs(x)-threshold)/(1-threshold) * Math.signum(x);
+
       // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); // * Math.signum(x);
       
     }
