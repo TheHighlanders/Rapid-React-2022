@@ -48,17 +48,17 @@ public class Climber extends SubsystemBase {
     BabyMotor.configFactoryDefault(); 
     BabyMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     BabyMotor.setSensorPhase(true);
-    BabyMotor.configPeakOutputForward(1.0);
-    BabyMotor.configPeakOutputReverse(-1.0);
+    BabyMotor.configPeakOutputForward(1);
+    BabyMotor.configPeakOutputReverse(-1);
 
     BabyMotor.config_kP(0,10);
     BabyMotor.config_kI(0, 0);
     BabyMotor.config_kD(0,20);
     
-    BabyMotor.overrideLimitSwitchesEnable(true);
-    DadMotor.overrideLimitSwitchesEnable(true);
-    BabyMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+    
+    // BabyMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
     DadMotor.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
+    DadMotor.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen);
 
     DadMotor1.follow(DadMotor);
     DadMotor1.setInverted(true);
@@ -86,7 +86,7 @@ public class Climber extends SubsystemBase {
   }
   public void SetDadMotorHold(){
     DadMotor.setSelectedSensorPosition(0);
-    DadMotor.set(ControlMode.Position,0);
+    DadMotor.set(ControlMode.Velocity,0);
   }
 
   public void SetBabyMotorHold(){

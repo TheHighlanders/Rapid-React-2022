@@ -12,6 +12,8 @@ public class intakeAuto extends CommandBase {
   /** Creates a new intakeAuto. */
   public final intake m_intake;
   public Timer m_Timer;
+  boolean isFinished = false;
+
   public intakeAuto(intake intake_subsystem) {
     m_intake = intake_subsystem;
     addRequirements(m_intake);
@@ -30,24 +32,23 @@ public class intakeAuto extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_Timer.get() <3) {
-      m_intake.ascend();
+    if (m_Timer.get() < 1) {
+      m_intake.asecendAuto();
     } else {
-      m_intake.stop();
-      m_intake.stop();
+      m_intake.intakeStopAuto();
+      isFinished = true;
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intake.stop();
-    m_intake.stop();
+   m_intake.intakeStopAuto();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isFinished;
   }
 }
