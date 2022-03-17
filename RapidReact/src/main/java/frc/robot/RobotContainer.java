@@ -37,7 +37,7 @@ public class RobotContainer {
     configureButtonBindings();
     m_door.Door.setSelectedSensorPosition(0);
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
-    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake);
+    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake,m_door);
   }
 
   /**
