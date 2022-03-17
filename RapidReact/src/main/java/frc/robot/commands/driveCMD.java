@@ -27,20 +27,25 @@ public class driveCMD extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
+  private double transfer_func(double y){
+    //https://www.desmos.com/calculator/vk48zqdn3p
+    double threshold = 0.15;
+    double low_turn_sensitivity = 0.25;
+    double high_sensitivity_threshold = 0.5; 
+    double low_line=(Math.abs(y)-threshold)/(1-threshold) * Math.signum(y)*low_turn_sensitivity;
+    double high_line= 1/(1-high_sensitivity_threshold)*(Math.abs(y)-high_sensitivity_threshold);
+    high_line = Math.abs(Math.max(high_line,0));
+    y = Math.max(Math.abs(high_line),Math.abs(low_line))*Math.signum(y);
+    return y;
+  }
   @Override
   public void execute() {
     //dead band stuff
     double x = this.m_OI.getXboxLeftX();
     double y = this.m_OI.getXboxLeftY();
+
     double threshold = 0.15;
-    if (Math.abs(x) < threshold){
-      x = 0;
-    }
-    else{
-      x= (Math.abs(x)-threshold)/(1-threshold) * Math.signum(x);
-      // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); // * Math.signum(x);
-      
-    }
+    
     if (Math.abs(y) < threshold) {
       y = 0;
     }
@@ -49,13 +54,22 @@ public class driveCMD extends CommandBase {
       // y = ((2/(1 + Math.pow(Math.E,(-2*y)))) - 1.0); // * Math.signum(y);
       
     }
+    
+    if (Math.abs(x) < threshold){
+      x = 0;
+    }
+    else{
+      x = transfer_func(x);
+      // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); // * Math.signum(x);
+      
+    }
     // Lex and Iskandar aded Sigmoid curve to the controls
 
     //x = (1/(1 + Math.pow(Math.E,(-1*x))));
 
     //x = (x - threshold * Math.signum(x)) / (1 - threshold);
     //y = (y - threshold * Math.signum(y)) / (1 - threshold);
-    x*= 0.5;
+    // x *= 0.5;
     m_dDrivetrain.drivepower(x-y, y + x);
     // m_dDrivetrain.drivepower(x-y, y + x);
     // used to be the code below

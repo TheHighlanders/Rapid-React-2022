@@ -48,8 +48,8 @@ public class Climber extends SubsystemBase {
     BabyMotor.configFactoryDefault(); 
     BabyMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     BabyMotor.setSensorPhase(true);
-    BabyMotor.configPeakOutputForward(0.5);
-    BabyMotor.configPeakOutputReverse(-0.5);
+    BabyMotor.configPeakOutputForward(1.0);
+    BabyMotor.configPeakOutputReverse(-1.0);
 
     BabyMotor.config_kP(0,10);
     BabyMotor.config_kI(0, 0);
@@ -71,7 +71,7 @@ public class Climber extends SubsystemBase {
   }
   
   public void SetDadMotorUp(){
-    DadMotor.set(-0.8);
+    DadMotor.set(-0.9);
     //DadMotor.set(ControlMode.Position, -1920);
   }
 
@@ -81,7 +81,7 @@ public class Climber extends SubsystemBase {
   }
 
   public void SetDadMotorDown(){
-    DadMotor.set(0.8);
+    DadMotor.set(0.9);
     // DadMotor.set(ControlMode.Position, 0);
   }
   public void SetDadMotorHold(){
