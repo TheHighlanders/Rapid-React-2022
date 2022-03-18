@@ -5,6 +5,8 @@
 
 package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSink;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,6 +28,9 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public Climber m_Climber;
   public OI m_oi;
+  // two cameras for Drivers 
+  UsbCamera camera1;
+  UsbCamera camera2;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,7 +42,11 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    CameraServer.startAutomaticCapture(); //keep this it still works 
+    //CameraServer.startAutomaticCapture(); //keep this it still works 
+    
+    camera1 = CameraServer.startAutomaticCapture(0); 
+    camera2 = CameraServer.startAutomaticCapture(1); 
+  
     SmartDashboard.putBoolean("Cargo Color", false); // Displays Cargo color to SmartDashBoard when robot is turned on
     m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
 
