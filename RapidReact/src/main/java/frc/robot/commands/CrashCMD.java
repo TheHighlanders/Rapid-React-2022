@@ -35,7 +35,7 @@ public class CrashCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_ddriveTrain.drivepower(0.20,-0.20);
+    m_ddriveTrain.drivepower(0.80,-0.80);
     x = accelerometer.getZ();
     DriverStation.reportError(x + "", false);
     if (x > 0.5) { // used to be 0.5

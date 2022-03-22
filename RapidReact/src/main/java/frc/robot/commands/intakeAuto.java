@@ -28,14 +28,16 @@ public class intakeAuto extends CommandBase {
     m_Timer = new Timer();
     m_Timer.reset();
     m_Timer.start();
+    isFinished=false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_Timer.get() < 1) {
+    if (m_Timer.get() < 2) {
       m_intake.asecendAuto();
       DriverStation.reportError("Shooting cargo", false);
+      isFinished=false;
     } else {
       m_intake.intakeStopAuto();
       isFinished = true;

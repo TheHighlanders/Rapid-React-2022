@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSink;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,8 +31,10 @@ public class Robot extends TimedRobot {
   public Climber m_Climber;
   public OI m_oi;
   // two cameras for Drivers 
-  UsbCamera camera1;
-  UsbCamera camera2;
+  // UsbCamera camera1;
+  // UsbCamera camera2;
+  // VideoSink server;
+  // NetworkTableEntry cameraSelection;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -44,8 +48,10 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     //CameraServer.startAutomaticCapture(); //keep this it still works 
     
-    camera1 = CameraServer.startAutomaticCapture(0); 
-    camera2 = CameraServer.startAutomaticCapture(1); 
+    // camera1 = CameraServer.startAutomaticCapture(0); 
+    // camera2 = CameraServer.startAutomaticCapture(1); 
+    // server = CameraServer.getServer();
+    // cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
   
     SmartDashboard.putBoolean("Cargo Color", false); // Displays Cargo color to SmartDashBoard when robot is turned on
     m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
@@ -85,6 +91,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
+
   }
 
   /** This function is called periodically during autonomous. */
@@ -100,16 +108,22 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
+   // m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
 
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if (DriverStation.getMatchTime() >= 120){
-      System.out.print(m_Climber.BabyMotor.getSelectedSensorPosition()/1024);
-    }
+    // if (DriverStation.getMatchTime() >= 120){
+    //   System.out.print(m_Climber.BabyMotor.getSelectedSensorPosition()/1024);
+    // }
+    // if (m_oi.xboxClimb.getBackButtonPressed()){
+    //   cameraSelection.setString(camera1.getName());
+    // }
+    // if (m_oi.xboxClimb.getStartButtonPressed()){
+    //   cameraSelection.setString(camera2.getName());
+    // }
   }
 
   @Override

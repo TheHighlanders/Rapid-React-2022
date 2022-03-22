@@ -25,7 +25,7 @@ public class intake extends SubsystemBase {
   }
 
   public void asecendAuto(){
-    intake.set(1);
+    intake.set(-1);
   }
   public void intakeStopAuto(){
     intake.set(0);

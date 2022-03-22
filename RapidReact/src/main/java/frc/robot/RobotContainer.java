@@ -35,7 +35,6 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_door.Door.setSelectedSensorPosition(0);
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
     m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake,m_door);
   }
@@ -56,7 +55,7 @@ public class RobotContainer {
     intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
 
     JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 5); // LB
-    DoorOpen.whileHeld(new DoorOpenCMD(m_door));
+    DoorOpen.whenPressed(new DoorOpenCMD(m_door));
 
     JoystickButton intakearmin = new JoystickButton(m_OI.xbox, 4); // y
     intakearmin.whileHeld(new IntakeArmInCMD(m_intake));

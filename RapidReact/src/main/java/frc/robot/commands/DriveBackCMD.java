@@ -15,10 +15,11 @@ public class DriveBackCMD extends CommandBase {
   /** Creates a new DriveBack. */
   public final DriveTrain m_ddriveTrain;
   public Timer m_Timer;
+
   public DriveBackCMD(DriveTrain drive_subsystem) {
-  m_ddriveTrain = drive_subsystem;
+    m_ddriveTrain = drive_subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-  addRequirements(m_ddriveTrain);
+    addRequirements(m_ddriveTrain);
   }
 
   // Called when the command is initially scheduled.
@@ -34,8 +35,8 @@ public class DriveBackCMD extends CommandBase {
   public void execute() {
  //+ +
  // - +
-    if(m_Timer.get() < 3 ) { 
-       m_ddriveTrain.drivepower(-0.4, 0.4); 
+    if(m_Timer.get() < 2 ) { 
+       m_ddriveTrain.drivepower(-0.6, 0.6); 
     }
     else{ 
       m_ddriveTrain.drivepower(0, 0); 

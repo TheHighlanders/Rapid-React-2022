@@ -8,40 +8,29 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Door;
 
-public class DoorOpenAutoCMD extends CommandBase {
+public class DoorCloseAutoCMD extends CommandBase {
   /** Creates a new DoorOpenAutoCMD. */
     /** Creates a new DoorCMD. */
     public final Door m_door;
     public Timer m_Timer;
     boolean isFinished = false;
     
-    public DoorOpenAutoCMD(Door door_subsystem) {
+    public DoorCloseAutoCMD(Door door_subsystem) {
       m_door = door_subsystem;
       // addRequirements(m_door);
-    }
+    } 
   
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-      m_Timer = new Timer();
-      m_Timer.reset();
-      m_Timer.start();
-      isFinished=false;
+
     }
   
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-      if(m_Timer.get() < 2 ) { 
-        m_door.closeDoor();
-        isFinished=false;
-      }else{ 
+      m_door.openDoor();
       isFinished = true;
-      m_door.closeDoor();
-
- 
-     }
-     
     }
   
     // Called once the command ends or is interrupted.

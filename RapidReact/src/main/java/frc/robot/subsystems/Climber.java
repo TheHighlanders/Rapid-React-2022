@@ -26,7 +26,7 @@ public class Climber extends SubsystemBase {
     
 
     DadMotor.configFactoryDefault(); // clears any non default settings
-    DadMotor.configOpenloopRamp(0.2, 0);
+    DadMotor.configOpenloopRamp(0.5, 0);
     DadMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     
     DadMotor.configPeakOutputForward(1); // Configures the forward peak output percentage.

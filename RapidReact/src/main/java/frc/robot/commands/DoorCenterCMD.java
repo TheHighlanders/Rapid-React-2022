@@ -22,7 +22,7 @@ public class DoorCenterCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_door.centerDoor();
+    m_door.centerDoor(); //center door currently has no code
   }
 
   // Called once the command ends or is interrupted.

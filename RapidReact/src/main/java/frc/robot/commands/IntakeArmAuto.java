@@ -11,6 +11,7 @@ import frc.robot.subsystems.intake;
 public class IntakeArmAuto extends CommandBase {
   public final intake m_iIntake;
   public Timer m_Timer;
+  boolean isFinished = false;
 
   /** Creates a new IntakeArmAuto. */
   public IntakeArmAuto(intake intake_subsystem) {
@@ -36,6 +37,7 @@ public class IntakeArmAuto extends CommandBase {
    else{ 
      m_iIntake.stopintake(); 
      m_Timer.stop();
+     isFinished = true;
 
    }
   }
@@ -47,6 +49,6 @@ public class IntakeArmAuto extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isFinished;
   }
 }
