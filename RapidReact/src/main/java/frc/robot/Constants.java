@@ -27,7 +27,7 @@ public final class Constants {
 
     // Intake
     public static final int INTAKE = 8;
-public static final int INTAKEARM = 12;
+    public static final int INTAKEARM = 12;
     // Door
     public static final int DOORMOTOR = 7;
 
