@@ -55,13 +55,13 @@ public class RobotContainer {
     intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
 
     JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 5); // LB
-    DoorOpen.whenPressed(new DoorOpenCMD(m_door));
+    DoorOpen.whileHeld(new DoorOpenCMD(m_door));
 
     JoystickButton intakearmin = new JoystickButton(m_OI.xbox, 4); // y
     intakearmin.whileHeld(new IntakeArmInCMD(m_intake));
 
     JoystickButton intakearmout = new JoystickButton(m_OI.xbox, 3); // X
-    intakearmout.whileHeld(new IntakeReverse(m_intake));
+    intakearmout.toggleWhenActive(new IntakeReverse(m_intake));
 
     // Driver 2 controls
     // CLIMBING
@@ -76,6 +76,7 @@ public class RobotContainer {
 
     POVButton SmallArmsForward = new POVButton(m_OI.xboxClimb,180); // X
     SmallArmsForward.whileHeld(new BabyMotorUpCMD(m_climber,m_OI));
+    //cancelWhenActive
 
     // POVButton smallArmsUp2 = new POVButton(m_OI.xboxClimb, 315);
     // smallArmsUp2.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));
