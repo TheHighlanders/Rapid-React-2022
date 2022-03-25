@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
   public CANSparkMax right1;
   //public WPI_VictorSPX right2;
   
-  private double ramp = 0.2;
+  private double ramp = 1;
 
   public DriveTrain() {
     left1 = new CANSparkMax(Constants.LEFT_TWO, MotorType.kBrushless);
@@ -34,9 +34,11 @@ public class DriveTrain extends SubsystemBase {
     //left2.setInverted(false);
     left1.setInverted(false);
     
-    left1.setClosedLoopRampRate(ramp);
+    left1.setOpenLoopRampRate(ramp);
+    // left1.setClosedLoopRampRate(ramp);
+
     //left2.configOpenloopRamp(ramp,0);
-    right1.setClosedLoopRampRate(ramp);
+    right1.setOpenLoopRampRate(ramp);
     //right2.configOpenloopRamp(ramp,0);
 
     //left1.setNeutralMode(NeutralMode.Brake);
