@@ -9,12 +9,12 @@ import frc.robot.OI;
 import frc.robot.subsystems.Climber;
 
 
-public class BabyMotorDownCMD extends CommandBase {
+public class DadMotorDownCMD extends CommandBase {
   /** Creates a new ClimberCMD. */
   public final Climber m_cClimber;
   public final OI m_OI;
 
-  public BabyMotorDownCMD(Climber Climber_subsystem, OI OI_climbXbox) {
+  public DadMotorDownCMD(Climber Climber_subsystem, OI OI_climbXbox) {
     m_cClimber = Climber_subsystem;
     m_OI = OI_climbXbox;
     addRequirements(m_cClimber);
@@ -28,14 +28,14 @@ public class BabyMotorDownCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      m_cClimber.SetBabyMotorDown();
+    m_cClimber.SetDadMotorDown();
     //m_cClimber.SetBabyMotorPower();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_cClimber.SetBabyMotorHold();
+    m_cClimber.SetDadMotorHold();
   }
 
   // Returns true when the command should end.

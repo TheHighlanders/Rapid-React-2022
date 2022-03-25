@@ -9,12 +9,12 @@ import frc.robot.OI;
 import frc.robot.subsystems.Climber;
 
 
-public class BabyMotorDownCMD extends CommandBase {
+public class BabyMotorUpCMD extends CommandBase {
   /** Creates a new ClimberCMD. */
   public final Climber m_cClimber;
   public final OI m_OI;
 
-  public BabyMotorDownCMD(Climber Climber_subsystem, OI OI_climbXbox) {
+  public BabyMotorUpCMD(Climber Climber_subsystem, OI OI_climbXbox) {
     m_cClimber = Climber_subsystem;
     m_OI = OI_climbXbox;
     addRequirements(m_cClimber);
@@ -28,7 +28,8 @@ public class BabyMotorDownCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      m_cClimber.SetBabyMotorDown();
+    m_cClimber.SetBabyMotorUp();
+   // m_cClimber.BabyMotorStop();
     //m_cClimber.SetBabyMotorPower();
   }
 

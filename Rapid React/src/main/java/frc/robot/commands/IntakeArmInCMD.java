@@ -5,20 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.OI;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.intake;
 
+public class IntakeArmInCMD extends CommandBase {
+  /** Creates a new IntakeArmInCMD. */
+  public final intake m_intakearm;
 
-public class BabyMotorDownCMD extends CommandBase {
-  /** Creates a new ClimberCMD. */
-  public final Climber m_cClimber;
-  public final OI m_OI;
-
-  public BabyMotorDownCMD(Climber Climber_subsystem, OI OI_climbXbox) {
-    m_cClimber = Climber_subsystem;
-    m_OI = OI_climbXbox;
-    addRequirements(m_cClimber);
+  public IntakeArmInCMD(intake intakesub) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_intakearm = intakesub; 
+    addRequirements(m_intakearm);
   }
 
   // Called when the command is initially scheduled.
@@ -28,14 +24,13 @@ public class BabyMotorDownCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      m_cClimber.SetBabyMotorDown();
-    //m_cClimber.SetBabyMotorPower();
+    m_intakearm.intakeIn();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_cClimber.SetBabyMotorHold();
+    m_intakearm.stopintake();
   }
 
   // Returns true when the command should end.

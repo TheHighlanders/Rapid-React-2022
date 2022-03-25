@@ -2,11 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
 
+package frc.robot;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSink;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Climber;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -14,10 +23,18 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
+//yeet
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  public Climber m_Climber;
+  public OI m_oi;
+  // two cameras for Drivers 
+  // UsbCamera camera1;
+  // UsbCamera camera2;
+  // VideoSink server;
+  // NetworkTableEntry cameraSelection;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -25,9 +42,20 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    //CameraServer.startAutomaticCapture(); //keep this it still works 
+    
+    // camera1 = CameraServer.startAutomaticCapture(0); 
+    // camera2 = CameraServer.startAutomaticCapture(1); 
+    // server = CameraServer.getServer();
+    // cameraSelection = NetworkTableInstance.getDefault().getTable("").getEntry("CameraSelection");
+  
+    SmartDashboard.putBoolean("Cargo Color", false); // Displays Cargo color to SmartDashBoard when robot is turned on
+    m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
+
   }
 
   /**
@@ -48,7 +76,8 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -62,6 +91,8 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
+
   }
 
   /** This function is called periodically during autonomous. */
@@ -77,11 +108,23 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+   // m_robotContainer.m_door.Door.setSelectedSensorPosition(0);
+
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    // if (DriverStation.getMatchTime() >= 120){
+    //   System.out.print(m_Climber.BabyMotor.getSelectedSensorPosition()/1024);
+    // }
+    // if (m_oi.xboxClimb.getBackButtonPressed()){
+    //   cameraSelection.setString(camera1.getName());
+    // }
+    // if (m_oi.xboxClimb.getStartButtonPressed()){
+    //   cameraSelection.setString(camera2.getName());
+    // }
+  }
 
   @Override
   public void testInit() {
