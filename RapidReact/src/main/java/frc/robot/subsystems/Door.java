@@ -24,8 +24,8 @@ public class Door extends SubsystemBase {
     // 1000 is the timeout value
     Door.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 1000);
     Door.configPeakOutputForward(1); // Configures the forward peak output percentage.
-    Door.config_kP(0,20); //Constants is 0 and P value is 20
-    Door.config_kD(0,100);
+    Door.config_kP(0,50); //Constants is 0 and P value is 20
+    Door.config_kD(0,70);
     Door.setSelectedSensorPosition(0); // sets the sensor position to 0 
     // ((Math.PI * 6)/360.0); btw 6 is the wheel diameter 
   }
