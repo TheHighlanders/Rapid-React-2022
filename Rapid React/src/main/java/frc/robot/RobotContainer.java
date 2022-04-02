@@ -14,6 +14,8 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Door;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.intake;
+import frc.robot.subsystems.spoinkVision2;
+import frc.robot.subsystems.SpoinkVision;
 //import frc.robot.subsystems.Door;
 
 /**
@@ -31,6 +33,8 @@ public class RobotContainer {
   private Command m_autoCommand;
   public final Door m_door = new Door();
   public final Climber m_climber = new Climber();
+  public final SpoinkVision m_vision = new SpoinkVision();
+  public final spoinkVision2 m_vision2 = new spoinkVision2();
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -63,6 +67,8 @@ public class RobotContainer {
     JoystickButton intakearmout = new JoystickButton(m_OI.xbox, 3); // X
     intakearmout.toggleWhenActive(new IntakeReverse(m_intake));
 
+    JoystickButton vision = new JoystickButton(m_OI.xbox, 7);
+    vision.whileHeld(new SpoinkVisionCMD(m_ddriveTrain, m_vision2));
     // Driver 2 controls
     // CLIMBING
     JoystickButton BigArmsForward = new JoystickButton(m_OI.xboxClimb,1); // a
