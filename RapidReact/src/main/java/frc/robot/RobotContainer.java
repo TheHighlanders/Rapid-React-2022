@@ -48,6 +48,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     // Driver 1 controls
+    //Intake
+    
     JoystickButton inTakein = new JoystickButton(m_OI.xbox, 1); //A
     inTakein.whileHeld(new inTakeInCMD(m_intake,m_OI));
 
