@@ -19,8 +19,8 @@ public class AutoGroupCMD extends SequentialCommandGroup {
     addCommands(
       //new CrashCMD(m_ddriveTrain),
       new IntakeArmAuto(m_intake), //This was added because it moves the stars away from the shooter which is a good thing
-      new DoorOpenAutoCMD(m_door),
-      new intakeAuto(m_intake),
+      // new DoorOpenAutoCMD(m_door),
+      new intakeAuto(m_intake,m_door),
       new DriveTurn180CMD(m_ddriveTrain)
       //new DoorOpenAutoCMD(m_door)
       //new IntakeArmAuto(m_intake)

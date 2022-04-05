@@ -7,16 +7,20 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.subsystems.Door;
 import frc.robot.subsystems.intake;
 
 public class intakeAuto extends CommandBase {
   /** Creates a new intakeAuto. */
   public final intake m_intake;
+  public final Door m_door;
   public Timer m_Timer;
   boolean isFinished = false;
 
-  public intakeAuto(intake intake_subsystem) {
+  public intakeAuto(intake intake_subsystem,Door door_subsystem) {
     m_intake = intake_subsystem;
+    m_door = door_subsystem;
     addRequirements(m_intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -38,6 +42,11 @@ public class intakeAuto extends CommandBase {
       m_intake.asecendAuto();
       DriverStation.reportError("Shooting cargo", false);
       isFinished=false;
+      if(m_Timer.get()%(Constants.open_time + Constants.close_time)<Constants.close_time){  
+        m_door.openDoor();
+      }
+      else{m_door.closeDoor();}
+      
     } else {
       m_intake.intakeStopAuto();
       isFinished = true;
