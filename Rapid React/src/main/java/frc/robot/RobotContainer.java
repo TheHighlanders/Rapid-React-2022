@@ -69,7 +69,7 @@ public class RobotContainer {
     intakearmout.toggleWhenActive(new IntakeReverse(m_intake));
 
     JoystickButton vision = new JoystickButton(m_OI.xbox, 7);
-    vision.whileHeld(new VisionAlignCMD(m_visionAlign, m_ddriveTrain));
+    vision.whileHeld(new VisionAlignDistanceCMD(m_visionAlign, m_ddriveTrain));
 
     // JoystickButton visionAlign = new JoystickButton(m_OI.xbox, 8);
     // visionAlign.whileHeld(new VisionAlignCMD(m_ddriveTrain, m_vision2));

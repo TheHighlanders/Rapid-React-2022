@@ -15,7 +15,7 @@ import frc.robot.subsystems.SpoinkVision;
 import frc.robot.subsystems.spoinkVision2;
 
 
-public class VisionAlignCMD extends CommandBase {
+public class VisionAlignDistanceCMD extends CommandBase {
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
 
   // how many degrees back is your limelight rotated from perfectly vertical?
@@ -30,7 +30,7 @@ public class VisionAlignCMD extends CommandBase {
   /** Creates a new VisionAlignCMD. */
   public final SpoinkVision m_vision;
   public final DriveTrain m_dDriveTrain; 
-  public VisionAlignCMD(SpoinkVision vision_sub, DriveTrain  drive_sub) {
+  public VisionAlignDistanceCMD(SpoinkVision vision_sub, DriveTrain  drive_sub) {
   // Use addRequirements() here to declare subsystem dependencies.
     m_vision = vision_sub;
     m_dDriveTrain = drive_sub;
