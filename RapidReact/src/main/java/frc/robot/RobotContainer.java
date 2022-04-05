@@ -36,7 +36,8 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
-    m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake,m_door);
+    // m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake,m_door);
+    m_autoCommand = new DriveTurn180CMD(m_ddriveTrain);
   }
 
   /**

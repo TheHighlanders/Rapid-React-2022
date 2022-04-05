@@ -61,7 +61,7 @@ public class driveCMD extends CommandBase {
     else{
     //  x = transfer_func(x);
       x= (Math.abs(x)-threshold)/(1-threshold) * Math.signum(x);
-      x*=0.5;
+      // x*=0.5;
 
       // x = ((2/(1 + Math.pow(Math.E,(-2*x)))) - 1.0); // * Math.signum(x);
       
@@ -73,8 +73,8 @@ public class driveCMD extends CommandBase {
     //x = (x - threshold * Math.signum(x)) / (1 - threshold);
     //y = (y - threshold * Math.signum(y)) / (1 - threshold);
     // x *= 0.5;
-    m_dDrivetrain.drivepower(x-y, y + x);
     // m_dDrivetrain.drivepower(x-y, y + x);
+    m_dDrivetrain.drivespeed(x-y, y + x);
     // used to be the code below
     // m_dDrivetrain.drivepower(-this.m_OI.getXboxLeftY(), this.m_OI.getXboxRightY());
   }
