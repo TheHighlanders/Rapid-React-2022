@@ -44,18 +44,24 @@
       "/LiveWindow/Climber": "Subsystem",
       "/LiveWindow/Door": "Subsystem",
       "/LiveWindow/DriveTrain": "Subsystem",
+      "/LiveWindow/SpoinkVision": "Subsystem",
+      "/LiveWindow/Ungrouped/DigitalInput[1]": "Digital Input",
+      "/LiveWindow/Ungrouped/DigitalInput[2]": "Digital Input",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
       "/LiveWindow/Ungrouped/Talon SRX [10]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon SRX [12]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [4]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [5]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [6]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [7]": "Motor Controller",
       "/LiveWindow/Ungrouped/Talon SRX [9]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Victor SPX [11]": "Motor Controller",
       "/LiveWindow/Ungrouped/Victor SPX [3]": "Motor Controller",
       "/LiveWindow/Ungrouped/Victor SPX [4]": "Motor Controller",
       "/LiveWindow/Ungrouped/Victor SPX [6]": "Motor Controller",
       "/LiveWindow/Ungrouped/Victor SPX [8]": "Motor Controller",
-      "/LiveWindow/intake": "Subsystem"
+      "/LiveWindow/intake": "Subsystem",
+      "/LiveWindow/spoinkVision2": "Subsystem"
     },
     "windows": {
       "/LiveWindow/Ungrouped/Scheduler": {
@@ -63,6 +69,11 @@
           "visible": true
         }
       }
+    }
+  },
+  "NetworkTables": {
+    "SmartDashboard": {
+      "open": true
     }
   }
 }

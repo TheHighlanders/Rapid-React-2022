@@ -17,7 +17,7 @@ import frc.robot.subsystems.spoinkVision2;
 
 public class VisionAlignDistanceCMD extends CommandBase {
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-
+  boolean finished = false;
   // how many degrees back is your limelight rotated from perfectly vertical?
   double limelightMountAngleDegrees = 45.0;
   
@@ -60,18 +60,22 @@ public class VisionAlignDistanceCMD extends CommandBase {
     double visionPower = (distanceFromLimelightToGoalInches - 42) * 0.01;
     // distances > 42  give a pos proportional to the difference
     //distances < 42 give a neg val proportional to the difference
-    if (visionPower > 0.10){
+    if (visionPower > 0.025){
         DriverStation.reportWarning("BONK GOING FORWARD", false);
         m_dDriveTrain.drivepower(0.25, -0.25);
+        finished = false;
       }
-      if (visionPower < 0.10) {
+      if (visionPower < 0.01) {
         DriverStation.reportWarning("BONK GOING BACK", false);
         m_dDriveTrain.drivepower(-0.25, 0.25);
+        finished = false;
       }
-      if (visionPower < 0.10 && visionPower > 0.01) {
+      if (visionPower < 0.025 && visionPower > 0.01) {
         DriverStation.reportWarning("BONK STOPPED", false);
         m_dDriveTrain.drivepower(0, 0);
+        finished = true;
       }
+      
     // if distance is not good
     // drive
     // if distance is good
@@ -89,6 +93,6 @@ public class VisionAlignDistanceCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }

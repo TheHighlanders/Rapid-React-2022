@@ -17,6 +17,7 @@ public class VisionAlignYawCMD extends CommandBase {
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
   public final spoinkVision2 m_vision;
   public final DriveTrain m_dDriveTrain; 
+  boolean finished = false;
   /** Creates a new VisionAlignYawCMD. */
   public VisionAlignYawCMD(spoinkVision2 vision_sub, DriveTrain  drive_sub) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -32,21 +33,26 @@ public class VisionAlignYawCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    /*
-      THIS NEEDS TO BE TESTED
-      THIS MIGHT NOT WORK 
-      IT NEEDS TO BE TESTED
-    */
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     NetworkTableEntry tx = table.getEntry("tx");
     double TargetOffsetYaw = tx.getDouble(0.0);
-    if(TargetOffsetYaw > 3){
+    double MaxYaw = 5;
+    double MinYaw = -5;
+    if(TargetOffsetYaw > MaxYaw){
       DriverStation.reportWarning("Turning Left", false);
-      m_dDriveTrain.drivepower(0.15, 0.15);
+      m_dDriveTrain.drivepower(0.05, 0.05);
+      finished = false;
 
     }
-    if(TargetOffsetYaw < -3) {
+    if(TargetOffsetYaw < MinYaw) {
       DriverStation.reportWarning("Turning Right", false);
-      m_dDriveTrain.drivepower(-0.15, -0.15);
+      m_dDriveTrain.drivepower(-0.05, -0.05);
+      finished = false;
+    }
+    if(TargetOffsetYaw < MaxYaw && TargetOffsetYaw > MinYaw) {
+      DriverStation.reportWarning("Centered", false);
+      m_dDriveTrain.drivepower(0, 0);
+      finished = true;
     }
 
   }
@@ -58,6 +64,6 @@ public class VisionAlignYawCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }

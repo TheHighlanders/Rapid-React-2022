@@ -34,6 +34,7 @@ public class RobotContainer {
   private Command m_autoCommand;
   public final Door m_door = new Door();
   public final Climber m_climber = new Climber();
+  public final spoinkVision2 m_visionAlign2 = new spoinkVision2();
   public final SpoinkVision m_visionAlign = new SpoinkVision();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -69,7 +70,10 @@ public class RobotContainer {
     intakearmout.toggleWhenActive(new IntakeReverse(m_intake));
 
     JoystickButton vision = new JoystickButton(m_OI.xbox, 7);
-    vision.whileHeld(new VisionAlignDistanceCMD(m_visionAlign, m_ddriveTrain));
+    vision.whileHeld(new VisionShootingSequenceCMDGroup(m_ddriveTrain, m_intake, m_door, m_visionAlign2, m_visionAlign));
+
+    JoystickButton limeLEDoff = new JoystickButton(m_OI.xbox, 8);
+    limeLEDoff.whenPressed(new limeLEDOffCMD(m_visionAlign));
 
     // JoystickButton visionAlign = new JoystickButton(m_OI.xbox, 8);
     // visionAlign.whileHeld(new VisionAlignCMD(m_ddriveTrain, m_vision2));

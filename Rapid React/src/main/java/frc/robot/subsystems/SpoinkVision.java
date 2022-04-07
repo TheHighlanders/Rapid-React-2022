@@ -17,6 +17,7 @@ public class SpoinkVision extends SubsystemBase {
   NetworkTableEntry tx = m_limelightTable.getEntry("tx");
   NetworkTableEntry ty = m_limelightTable.getEntry("ty");
   //NetworkTableEntry ta = m_limelightTable.getEntry("ta");
+  NetworkTableEntry ledMode = m_limelightTable.getEntry("ledMode");
 
   //read values periodically
   double x = tx.getDouble(0.0);
@@ -29,6 +30,14 @@ public class SpoinkVision extends SubsystemBase {
   public SpoinkVision() {
 
   }
+
+  public void limelightOff(){
+    m_limelightTable.getEntry("ledMode").setNumber(1);
+  }
+  public void limelightOn(){
+    m_limelightTable.getEntry("ledMode").setNumber(3);
+  }
+
   public boolean isTargetValid() {
     target = true;
     return(tv == 1.0);
@@ -37,8 +46,8 @@ public class SpoinkVision extends SubsystemBase {
   @Override
   public void periodic() {
     //post to smart dashboard periodically
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
+    //SmartDashboard.putNumber("LimelightX", x);
+    //SmartDashboard.putNumber("LimelightY", y);
     // SmartDashboard.putNumber("LimelightArea", area);
     // SmartDashboard.putBoolean("TV?", target);
     tv = m_limelightTable.getEntry("tv").getDouble(0);

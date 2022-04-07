@@ -4,20 +4,22 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SpoinkVision;
-import frc.robot.subsystems.spoinkVision2;
-import frc.robot.subsystems.DriveTrain;
-public class SpoinkVisionCMD extends CommandBase {
-  /** Creates a new SpoinkVisionCMD. */
-    private final DriveTrain m_DriveTrain;
-    private final spoinkVision2 m_vision;
 
-  public SpoinkVisionCMD(DriveTrain drive_sub, spoinkVision2 spoink_sub) {
-    m_DriveTrain = drive_sub;
-    m_vision = spoink_sub;
-    addRequirements(m_DriveTrain, m_vision);
+public class limeLEDOffCMD extends CommandBase {
+  /** Creates a new limeLEDOnCMD. */
+  public SpoinkVision m_Vision;
+  boolean isFinished = false;
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+  
+
+  public limeLEDOffCMD(SpoinkVision vision_sub) {
+    m_Vision = vision_sub;
+    addRequirements(m_Vision);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -28,9 +30,10 @@ public class SpoinkVisionCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_vision.isTarget()){
-      DriverStation.reportWarning("Saw the target",false);
-    }
+    DriverStation.reportWarning("LEDs Going Off", false);
+    m_Vision.limelightOff();
+    //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3)
+    isFinished = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -40,6 +43,6 @@ public class SpoinkVisionCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isFinished();
   }
 }
