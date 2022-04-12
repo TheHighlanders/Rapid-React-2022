@@ -36,5 +36,6 @@ public final class Constants {
     public static final int CLIMBERMOTOR_TWO = 10;
     public static final int CLIMBERMOTOR_THREE = 11;
     
-    public static double open_time=0.2,close_time=0.5;
+    public static double open_time = 0.2;
+    public static double close_time = 0.5;
 }

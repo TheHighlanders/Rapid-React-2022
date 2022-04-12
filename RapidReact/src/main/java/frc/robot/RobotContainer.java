@@ -13,8 +13,10 @@ import frc.robot.commands.*;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Door;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.SpoinkVision;
 import frc.robot.subsystems.intake;
 //import frc.robot.subsystems.Door;
+import frc.robot.subsystems.spoinkVision2;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -31,13 +33,16 @@ public class RobotContainer {
   private Command m_autoCommand;
   public final Door m_door = new Door();
   public final Climber m_climber = new Climber();
+  public final spoinkVision2 m_visionAlign2 = new spoinkVision2();
+  public final SpoinkVision m_visionAlign = new SpoinkVision();
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
     // m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake,m_door);
-    m_autoCommand = new intakeAuto(m_intake,m_door);
+    m_autoCommand = new intakeAuto(m_intake, m_door);
   }
 
   /**
@@ -65,6 +70,12 @@ public class RobotContainer {
 
     JoystickButton intakearmout = new JoystickButton(m_OI.xbox, 3); // X
     intakearmout.toggleWhenActive(new IntakeReverse(m_intake));
+
+    JoystickButton vision = new JoystickButton(m_OI.xbox, 7);
+    vision.whileHeld(new VisionShootingSequenceCMDGroup(m_ddriveTrain, m_intake, m_door, m_visionAlign2, m_visionAlign));
+
+    JoystickButton limeLEDOff = new JoystickButton(m_OI.xbox, 8);
+    limeLEDOff.whenPressed(new limeLEDOffCMD(m_visionAlign));
 
     // Driver 2 controls
     // CLIMBING
