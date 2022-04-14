@@ -4,22 +4,25 @@
 
 package frc.robot.commands;
 
-//import java.util.concurrent.TimeoutException;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.intake;
 
-public class DriveBackCMD extends CommandBase {
-  /** Creates a new DriveBack. */
+public class DriveForwardIntakeAutoCMD extends CommandBase {
   public final DriveTrain m_ddriveTrain;
+  public final intake m_intake; 
   public Timer m_Timer;
-
-  public DriveBackCMD(DriveTrain drive_subsystem) {
+  boolean finished = false;
+  /** Creates a new DriveForwardIntakeAutoCMD. */
+  public DriveForwardIntakeAutoCMD(intake intake_subsystem, DriveTrain drive_subsystem) {
+    m_intake = intake_subsystem;
     m_ddriveTrain = drive_subsystem;
+
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_ddriveTrain);
+    addRequirements(m_intake, m_ddriveTrain);
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -33,16 +36,16 @@ public class DriveBackCMD extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
- //+ +
- // - +
     if(m_Timer.get() < 1 ) { 
-       m_ddriveTrain.drivepower(-0.6, 0.6); 
-    }
-    else{ 
-      m_ddriveTrain.drivepower(0, 0); 
-      m_Timer.stop();
-
-    }
+      m_ddriveTrain.drivepower(0.6, -0.6);
+      m_intake.asecendAuto();
+      finished = false;
+   }
+   else{ 
+     m_ddriveTrain.drivepower(0, 0); 
+     m_Timer.stop();
+    finished = true;
+   }
   }
 
   // Called once the command ends or is interrupted.
@@ -52,6 +55,6 @@ public class DriveBackCMD extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }

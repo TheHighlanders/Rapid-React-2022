@@ -42,7 +42,7 @@ public class RobotContainer {
     configureButtonBindings();
     m_ddriveTrain.setDefaultCommand(new driveCMD(m_ddriveTrain, m_OI));
     // m_autoCommand = new AutoGroupCMD(m_ddriveTrain, m_intake,m_door);
-    m_autoCommand = new intakeAuto(m_intake, m_door);
+    m_autoCommand = new NewAutoDCMPCMDGrp(m_ddriveTrain, m_intake, m_door, m_visionAlign2, m_visionAlign);
   }
 
   /**

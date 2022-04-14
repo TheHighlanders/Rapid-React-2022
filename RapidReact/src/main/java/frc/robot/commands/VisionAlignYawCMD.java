@@ -33,18 +33,21 @@ public class VisionAlignYawCMD extends CommandBase {
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ta = table.getEntry("ta");
     double taDoub = ta.getDouble(0);
+    NetworkTableEntry tv = table.getEntry("tv");
+    double tvDoub = ta.getDouble(0);
     double TargetOffsetYaw = tx.getDouble(0.0);
     double MaxYaw = 5;
     double MinYaw = -5;
+    if(tvDoub==1){
     if(TargetOffsetYaw > MaxYaw){
       DriverStation.reportWarning("Turning Left", false);
-      m_dDriveTrain.drivepower(0.05, 0.05);
+      m_dDriveTrain.drivepower(0.15, 0.15);
       finished = false;
 
     }
     if(TargetOffsetYaw < MinYaw) {
       DriverStation.reportWarning("Turning Right", false);
-      m_dDriveTrain.drivepower(-0.05, -0.05);
+      m_dDriveTrain.drivepower(-0.15, -0.15);
       finished = false;
     }
     if(TargetOffsetYaw < MaxYaw && TargetOffsetYaw > MinYaw) {
@@ -52,7 +55,7 @@ public class VisionAlignYawCMD extends CommandBase {
       m_dDriveTrain.drivepower(0, 0);
       finished = true;
     }
-  
+  }
 
   }
 

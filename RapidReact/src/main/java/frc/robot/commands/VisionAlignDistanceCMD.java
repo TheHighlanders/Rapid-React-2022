@@ -58,6 +58,7 @@ public class VisionAlignDistanceCMD extends CommandBase {
     double visionPower = (distanceFromLimelightToGoalInches - 42) * 0.01;
     // distances > 42  give a pos proportional to the difference
     //distances < 42 give a neg val proportional to the difference
+    if(tv2==1){
     if (visionPower > 0.025){
         DriverStation.reportWarning("BONK GOING FORWARD", false);
         m_dDriveTrain.drivepower(0.25, -0.25);
@@ -73,7 +74,7 @@ public class VisionAlignDistanceCMD extends CommandBase {
         m_dDriveTrain.drivepower(0, 0);
         finished = true;
       }
-    
+    }
     // if distance is not good
     // drive
     // if distance is good
