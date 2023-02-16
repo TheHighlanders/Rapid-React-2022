@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.subsystems.DriveTrain;
@@ -27,17 +26,6 @@ public class driveCMD extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
-  private double transfer_func(double y){
-    //https://www.desmos.com/calculator/vk48zqdn3p
-    double threshold = 0.15;
-    double low_turn_sensitivity = 0.25;
-    double high_sensitivity_threshold = 0.5; 
-    double low_line=(Math.abs(y)-threshold)/(1-threshold) * Math.signum(y)*low_turn_sensitivity;
-    double high_line= 1/(1-high_sensitivity_threshold)*(Math.abs(y)-high_sensitivity_threshold);
-    high_line = Math.abs(Math.max(high_line,0));
-    y = Math.max(Math.abs(high_line),Math.abs(low_line))*Math.signum(y);
-    return y;
-  }
   @Override
   public void execute() {
     //dead band stuff

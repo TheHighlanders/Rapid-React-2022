@@ -4,14 +4,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.spoinkVision2;
 import frc.robot.subsystems.Door;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.SpoinkVision;
 import frc.robot.subsystems.intake;
+import frc.robot.subsystems.spoinkVision2;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html

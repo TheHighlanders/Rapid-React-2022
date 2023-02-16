@@ -4,8 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
-
 //import java.util.concurrent.TimeoutException;
 
 import edu.wpi.first.wpilibj.Timer;

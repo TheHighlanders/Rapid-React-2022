@@ -1,10 +1,9 @@
 package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.spoinkVision2;
@@ -31,8 +30,6 @@ public class VisionAlignYawCMD extends CommandBase {
   public void execute() {
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ta = table.getEntry("ta");
-    double taDoub = ta.getDouble(0);
     double TargetOffsetYaw = tx.getDouble(0.0);
     double MaxYaw = 5;
     double MinYaw = -5;

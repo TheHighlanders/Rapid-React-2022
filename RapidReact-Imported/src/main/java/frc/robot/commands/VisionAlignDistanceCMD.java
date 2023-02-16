@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.SpoinkVision;
-import frc.robot.subsystems.spoinkVision2;
 
 
 public class VisionAlignDistanceCMD extends CommandBase {
@@ -42,11 +41,6 @@ public class VisionAlignDistanceCMD extends CommandBase {
   public void execute() {
     NetworkTableEntry ty = table.getEntry("ty");
     double targetOffsetAngle_Vertical = ty.getDouble(0.0);
-    NetworkTableEntry tv = table.getEntry("tv");
-    double tv2 = tv.getDouble(0.0); 
-    NetworkTableEntry ta = table.getEntry("ta");
-    double taDoub = ta.getDouble(0);  
-
     double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
     double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
     

@@ -15,7 +15,6 @@ import frc.robot.subsystems.Door;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.SpoinkVision;
 import frc.robot.subsystems.intake;
-//import frc.robot.subsystems.Door;
 import frc.robot.subsystems.spoinkVision2;
 
 /**
@@ -57,56 +56,56 @@ public class RobotContainer {
     //Intake
     
     JoystickButton inTakein = new JoystickButton(m_OI.xbox, 1); //A
-    inTakein.whileHeld(new inTakeInCMD(m_intake,m_OI));
+    inTakein.whileTrue(new inTakeInCMD(m_intake,m_OI));
 
     JoystickButton intakeoutCMD = new JoystickButton(m_OI.xbox, 2); // B
-    intakeoutCMD.whileHeld(new intakeoutCMD(m_intake));
+    intakeoutCMD.whileTrue(new intakeoutCMD(m_intake));
 
     JoystickButton DoorOpen = new JoystickButton(m_OI.xbox, 5); // LB
-    DoorOpen.whileHeld(new DoorOpenCMD(m_door));
+    DoorOpen.whileTrue(new DoorOpenCMD(m_door));
 
     JoystickButton intakearmin = new JoystickButton(m_OI.xbox, 4); // y
-    intakearmin.whileHeld(new IntakeArmInCMD(m_intake));
+    intakearmin.whileTrue(new IntakeArmInCMD(m_intake));
 
     JoystickButton intakearmout = new JoystickButton(m_OI.xbox, 3); // X
-    intakearmout.toggleWhenActive(new IntakeReverse(m_intake));
+    intakearmout.toggleOnTrue(new IntakeReverse(m_intake));
 
     JoystickButton vision = new JoystickButton(m_OI.xbox, 7);
-    vision.whileHeld(new VisionShootingSequenceCMDGroup(m_ddriveTrain, m_intake, m_door, m_visionAlign2, m_visionAlign));
+    vision.whileTrue(new VisionShootingSequenceCMDGroup(m_ddriveTrain, m_intake, m_door, m_visionAlign2, m_visionAlign));
 
     JoystickButton limeLEDOff = new JoystickButton(m_OI.xbox, 8);
-    limeLEDOff.whenPressed(new limeLEDOffCMD(m_visionAlign));
+    limeLEDOff.onTrue(new limeLEDOffCMD(m_visionAlign));
 
     // Driver 2 controls
     // CLIMBING
     JoystickButton BigArmsForward = new JoystickButton(m_OI.xboxClimb,1); // a
-    BigArmsForward.whileHeld(new DadMotorUpCMD(m_climber,m_OI));
+    BigArmsForward.whileTrue(new DadMotorUpCMD(m_climber,m_OI));
 
     JoystickButton BigArmsBack = new JoystickButton(m_OI.xboxClimb,4); // y
-    BigArmsBack.whileHeld(new DadMotorDownCMD(m_climber,m_OI));
+    BigArmsBack.whileTrue(new DadMotorDownCMD(m_climber,m_OI));
 
     JoystickButton SmallArmsBack = new JoystickButton(m_OI.xboxClimb,5); // LB
-    SmallArmsBack.whileHeld(new BabyMotorDownCMD(m_climber,m_OI));
+    SmallArmsBack.whileTrue(new BabyMotorDownCMD(m_climber,m_OI));
 
     POVButton SmallArmsForward = new POVButton(m_OI.xboxClimb,180); // X
-    SmallArmsForward.whileHeld(new BabyMotorUpCMD(m_climber,m_OI));
+    SmallArmsForward.whileTrue(new BabyMotorUpCMD(m_climber,m_OI));
     //cancelWhenActive
 
     // POVButton smallArmsUp2 = new POVButton(m_OI.xboxClimb, 315);
-    // smallArmsUp2.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));
+    // smallArmsUp2.whileTrue(new BabyClimberUpCMD(m_climber, m_OI));
 
     // POVButton smallArmsUp3 = new POVButton(m_OI.xboxClimb, 45);
-    // smallArmsUp3.whileHeld(new BabyClimberUpCMD(m_climber, m_OI));
+    // smallArmsUp3.whileTrue(new BabyClimberUpCMD(m_climber, m_OI));
 
     // // ALL SMALL ARMS DOWN BUTTONS
     // POVButton smallArmsDown = new POVButton(m_OI.xboxClimb, 180);
-    // smallArmsDown.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
+    // smallArmsDown.whileTrue(new BabyClimberDownCMD(m_climber, m_OI));
 
     // POVButton smallArmsDown1 = new POVButton(m_OI.xboxClimb, 225);
-    // smallArmsDown1.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
+    // smallArmsDown1.whileTrue(new BabyClimberDownCMD(m_climber, m_OI));
 
     // POVButton smallArmsDown2 = new POVButton(m_OI.xboxClimb, 135);
-    // smallArmsDown2.whileHeld(new BabyClimberDownCMD(m_climber, m_OI));
+    // smallArmsDown2.whileTrue(new BabyClimberDownCMD(m_climber, m_OI));
     }
 
 
